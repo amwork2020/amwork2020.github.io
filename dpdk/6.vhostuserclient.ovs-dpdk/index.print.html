@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>6. vhostuserclient ovs-dpdk :: amwork2010 blog</title>
+    <link href="https://example.com/dpdk/6.vhostuserclient.ovs-dpdk/index.html" rel="canonical" type="text/html" title="6. vhostuserclient ovs-dpdk :: amwork2010 blog">
+    <link href="../../dpdk/6.vhostuserclient.ovs-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="6. vhostuserclient ovs-dpdk :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675517263" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675517263" rel="stylesheet">
+    <link href="../../css/fonts.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675517263" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675517263" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675517263" rel="stylesheet">
+    <link href="../../css/variant.css?1675517263" rel="stylesheet">
+    <link href="../../css/print.css?1675517263" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675517263" rel="stylesheet">
+    <script src="../../js/url.js?1675517263"></script>
+    <script src="../../js/variant.js?1675517263"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675517263" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/6.vhostuserclient.ovs-dpdk/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">6. vhostuserclient ovs-dpdk</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="6-vhostuserclient-ovs-dpdk">6. vhostuserclient ovs-dpdk</h1>
+
+<p>date: 2023-02-04  <br>
+<a href="https://libvirt.org/formatdomain.html" target="_blank">https://libvirt.org/formatdomain.html</a>    <br>
+<a href="https://docs.openvswitch.org/en/latest/topics/dpdk/vhost-user/" target="_blank">https://docs.openvswitch.org/en/latest/topics/dpdk/vhost-user/</a></p>
+<pre tabindex="0"><code># Open vSwitch provides two types of vHost User ports:
+. vhost-user (dpdkvhostuser) ---&gt; deprecated!
+. vhost-user-client (dpdkvhostuserclient)
+# Ports of type vhost-user are currently deprecated and will be removed in a future release.
+# https://libvirt.org/formatdomain.html
+
+# 133
+hostnamectl set-hostname ovs3
+ip a
+2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 52:54:00:55:b6:f4 brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    inet 10.1.5.133/21 brd 10.1.7.255 scope global ens3
+3: ens4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:56:79:6c brd ff:ff:ff:ff:ff:ff
+    altname enp0s4
+4: ens5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:f7:61:4d brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
+
+# 134
+hostnamectl set-hostname ovs4
+ip a
+2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 52:54:00:9b:e5:3d brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    inet 10.1.5.134/21 brd 10.1.7.255 scope global ens3
+3: ens4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:5a:1e:4b brd ff:ff:ff:ff:ff:ff
+    altname enp0s4
+4: ens5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:54:30:07 brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
+
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+vm.nr_hugepages = 2048
+EOF
+sysctl -p
+
+dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens3 drv=vmxnet3 unused=vfio-pci *Active*
+0000:00:04.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens4 drv=vmxnet3 unused=vfio-pci 
+0000:00:05.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens5 drv=vmxnet3 unused=vfio-pci 
+
+dpdk-devbind.py -b vfio-pci 0000:00:04.0
+
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=&#34;1024,0&#34; ### 只有一个numa node0
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x2      ### 0b0010 --&gt; Cpu1
+ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x4                   ### 0b0100 --&gt; Cpu2
+
+ovs-vsctl get Open_vSwitch . dpdk_initialized
+ovs-vsctl get Open_vSwitch . dpdk_version
+ovs-vsctl list open_vswitch
+
+# 10.1.5.133
+ovs-vsctl add-br br-phy -- set Bridge br-phy datapath_type=netdev -- br-set-external-id br-phy bridge-id br-phy -- set bridge br-phy fail-mode=standalone \
+  other_config:hwaddr=52:54:00:56:79:6c
+ovs-vsctl show
+ovs-ofctl show br-phy
+ovs-vsctl add-port br-phy dpdk0 -- set Interface dpdk0 type=dpdk options:dpdk-devargs=0000:00:04.0
+ovs-vsctl show
+
+# 10.1.5.134
+ovs-vsctl add-br br-phy -- set Bridge br-phy datapath_type=netdev -- br-set-external-id br-phy bridge-id br-phy -- set bridge br-phy fail-mode=standalone \
+  other_config:hwaddr=52:54:00:5a:1e:4b
+ovs-vsctl show
+ovs-ofctl show br-phy
+ovs-vsctl add-port br-phy dpdk0 -- set Interface dpdk0 type=dpdk options:dpdk-devargs=0000:00:04.0
+ovs-vsctl show
+
+# both
+apt update &amp;&amp; apt install -y qemu-kvm virt-manager libvirt-daemon-system virtinst libvirt-clients qemu-utils bridge-utils iperf tcpdump uml-utilities
+
+cat &gt;&gt; /etc/libvirt/qemu.conf &lt;&lt; EOF
+user = &#34;root&#34;
+group = &#34;root&#34;
+EOF
+systemctl restart libvirtd.service
+
+# 133
+ovs-vsctl add-port br-phy dpdkvhostclient0 -- set Interface dpdkvhostclient0 type=dpdkvhostuserclient options:vhost-server-path=/run/openvswitch/dpdkvhostclient0
+ovs-vsctl add-port br-phy dpdkvhostclient1 -- set Interface dpdkvhostclient1 type=dpdkvhostuserclient options:vhost-server-path=/run/openvswitch/dpdkvhostclient1
+
+qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/vms/alpine1/alpine1-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -net none -nographic \
+-chardev socket,id=char1,path=/run/openvswitch/dpdkvhostclient0,server=on \
+-netdev type=vhost-user,id=mynet1,chardev=char1,vhostforce=on \
+-device virtio-net-pci,mac=00:00:00:00:33:01,netdev=mynet1 \
+-object memory-backend-file,id=mem,size=1G,mem-path=/dev/hugepages,share=on \
+-numa node,memdev=mem -mem-prealloc \
+-vnc :01
+
+qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/vms/alpine2/alpine2-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -net none -nographic \
+-chardev socket,id=char2,path=/run/openvswitch/dpdkvhostclient1,server=on \
+-netdev type=vhost-user,id=mynet2,chardev=char2,vhostforce=on \
+-device virtio-net-pci,mac=00:00:00:00:33:02,netdev=mynet2 \
+-object memory-backend-file,id=mem,size=1G,mem-path=/dev/hugepages,share=on \
+-numa node,memdev=mem -mem-prealloc \
+-vnc :02
+
+# 133 vm1 login:
+ip a flush eth0
+ip addr add 3.3.3.31/24 dev eth0
+ip link set eth0 up
+iperf3 -s -i 1
+
+# 133 vm2 login:
+ip a flush eth0
+ip addr add 3.3.3.32/24 dev eth0
+ip link set eth0 up
+ping -c 5 3.3.3.31
+# ping ---&gt; OK
+iperf3 -t 10 -i 1 -c 3.3.3.31
+
+## 结论：同一台主机内vm 6G
+
+# 134
+ovs-vsctl add-port br-phy dpdkvhostclient3 -- set Interface dpdkvhostclient3 type=dpdkvhostuserclient options:vhost-server-path=/run/openvswitch/dpdkvhostclient3
+
+qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/vms/alpine3/alpine3-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -net none -nographic \
+-chardev socket,id=char3,path=/run/openvswitch/dpdkvhostclient3,server=on \
+-netdev type=vhost-user,id=mynet3,chardev=char3,vhostforce=on \
+-device virtio-net-pci,mac=00:00:00:00:00:03,netdev=mynet3 \
+-object memory-backend-file,id=mem,size=1G,mem-path=/dev/hugepages,share=on \
+-numa node,memdev=mem -mem-prealloc \
+-vnc :03
+
+# 134 vm1 login:
+ip a flush eth0
+ip addr add 3.3.3.33/24 dev eth0
+ip link set eth0 up
+ping -c 5 3.3.3.31
+# ping ---&gt; OK
+iperf3 -t 10 -i 1 -c 3.3.3.31
+
+## 结论：不同主机之间 vm 1.2G
+
+
+root@ovs3:~/vms/alpine1# cat vm.xml 
+&lt;domain type=&#39;kvm&#39;&gt;
+	&lt;name&gt;alpine1&lt;/name&gt;
+	&lt;vcpu placement=&#39;static&#39;&gt;2&lt;/vcpu&gt;
+	&lt;memory&gt;1048576&lt;/memory&gt;
+	&lt;memoryBacking&gt;
+		&lt;hugepages&gt;
+			&lt;page size=&#39;2048&#39; unit=&#39;KiB&#39;/&gt;
+		&lt;/hugepages&gt;
+	&lt;/memoryBacking&gt;
+	&lt;os&gt;
+		&lt;type arch=&#39;x86_64&#39; machine=&#39;pc&#39;&gt;hvm&lt;/type&gt;
+		&lt;bootmenu enable=&#39;yes&#39;/&gt;
+	&lt;/os&gt;
+	&lt;features&gt;
+		&lt;acpi/&gt;
+		&lt;apic/&gt;
+		&lt;pae/&gt;
+	&lt;/features&gt;
+	&lt;cpu mode=&#34;host-passthrough&#34;&gt;
+		&lt;numa&gt;
+			&lt;cell id=&#39;0&#39; cpus=&#39;0-1&#39; memory=&#39;1048576&#39; unit=&#39;KiB&#39; memAccess=&#39;shared&#39;/&gt;
+		&lt;/numa&gt;
+	&lt;/cpu&gt;
+	&lt;clock offset=&#39;utc&#39;/&gt;
+	&lt;on_poweroff&gt;destroy&lt;/on_poweroff&gt;
+	&lt;on_reboot&gt;restart&lt;/on_reboot&gt;
+	&lt;on_crash&gt;destroy&lt;/on_crash&gt;
+	&lt;devices&gt;
+		&lt;emulator&gt;/usr/bin/kvm&lt;/emulator&gt;
+		&lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
+			&lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39;/&gt;
+			&lt;source file=&#39;/root/vms/alpine1/alpine1-virt-3.16.1-x86_64.qcow2&#39;/&gt;
+			&lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
+			&lt;boot order=&#39;1&#39;/&gt;
+		&lt;/disk&gt;
+		&lt;interface type=&#39;vhostuser&#39;&gt;
+			&lt;mac address=&#39;00:00:00:00:33:01&#39;/&gt;
+			&lt;source type=&#39;unix&#39; path=&#39;/run/openvswitch/dpdkvhostclient0&#39; mode=&#39;server&#39;/&gt;
+			&lt;model type=&#39;virtio&#39;/&gt;
+			&lt;driver queues=&#39;2&#39;&gt;
+				 &lt;host mrg_rxbuf=&#39;off&#39;/&gt;
+			&lt;/driver&gt;
+		&lt;/interface&gt;
+		&lt;serial type=&#39;pty&#39;&gt;
+		  &lt;target port=&#39;0&#39;/&gt;
+		&lt;/serial&gt;
+		&lt;console type=&#39;pty&#39;&gt;
+		  &lt;target type=&#39;serial&#39; port=&#39;0&#39;/&gt;
+		&lt;/console&gt;
+		&lt;graphics type=&#39;vnc&#39; port=&#39;-1&#39; autoport=&#39;yes&#39; listen=&#39;0.0.0.0&#39;/&gt;
+		&lt;video&gt;
+			&lt;model type=&#39;cirrus&#39; vram=&#39;65536&#39; heads=&#39;1&#39;/&gt;
+		&lt;/video&gt;
+		&lt;input type=&#39;tablet&#39; bus=&#39;usb&#39;/&gt;
+		&lt;input type=&#39;mouse&#39; bus=&#39;ps2&#39;/&gt;
+	&lt;/devices&gt;
+&lt;/domain&gt;
+
+### xml 生成的 id 都是一样的，无法修改，所以vhost-user模式下，启动2台虚拟机会冲突，用qemu-system-x86_64 指定不同的id等启动才行。
+### dpdkvhostuserclient模式下，2台虚拟机可以互相ping通，但iperf3测试，同一台主机内vm 3G，比指定id，性能差了一倍，说明还是有冲突。
+
+
+
+
+### reboot
+dpdk-devbind.py -b vfio-pci 0000:00:04.0
+systemctl restart openvswitch-switch.service
+ovs-vsctl show
+###
+vi /etc/rc.local
+#!/bin/bash
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+dpdk-devbind.py -b vfio-pci 0000:00:04.0
+systemctl restart openvswitch-switch.service
+
+
+### 下面方式不好用！why？
+vi /lib/systemd/system/openvswitch-switch.service
+ExecStartPre=-/usr/bin/echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+ExecStartPre=-/sbin/modprobe vfio-pci
+ExecStartPre=-/usr/bin/dpdk-devbind.py -b vfio-pci 0000:00:04.0
+ExecStart=/bin/true
+
+systemctl daemon-reload &amp;&amp; systemctl restart openvswitch-switch
+systemctl status openvswitch-switch
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675517263" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675517263" defer></script>
+    <script src="../../js/theme.js?1675517263" defer></script>
+  </body>
+</html>

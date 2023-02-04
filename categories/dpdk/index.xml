@@ -6,7 +6,7 @@
     <description>Recent content in dpdk on amwork2010 blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Feb 2023 13:40:36 +0800</lastBuildDate><atom:link href="https://example.com/categories/dpdk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Feb 2023 19:59:05 +0800</lastBuildDate><atom:link href="https://example.com/categories/dpdk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. vmware-dpdk</title>
       <link>https://example.com/dpdk/1.vmware-dpdk/index.html</link>
@@ -41,6 +41,45 @@ apt install -y openvswitch-switch-dpdk update-alternatives --set ovs-vswitchd /u
       <guid>https://example.com/dpdk/4.ovs-dpdk.qemu/index.html</guid>
       <description>date: 2023-02-04 HOST: 10.1.1.12 VM : ovs1:10.1.5.131 ovs2:10.1.5.132
 # ovs1:10.1.5.131 ovs2:10.1.5.132 apt update apt -y full-upgrade ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime [ -f /var/run/reboot-required ] &amp;amp;&amp;amp; reboot -f ######### 1. 启用rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/rc.local #!/bin/bash echo 1 &amp;gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode EOF chmod +x /etc/rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /lib/systemd/system/rc-local.service [Install] WantedBy=multi-user.target EOF cat /lib/systemd/system/rc-local.service # 启用服务 systemctl enable rc-local systemctl start rc-local systemctl status rc-local # 查看是否成功 cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode echo &amp;#34;vfio-pci&amp;#34; &amp;gt; /etc/modules-load.</description>
+    </item>
+    <item>
+      <title>5. vhostuser ovs-dpdk</title>
+      <link>https://example.com/dpdk/5.vhostuser.ovs-dpdk/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/dpdk/5.vhostuser.ovs-dpdk/index.html</guid>
+      <description>date: 2023-02-04
+dpdk-devbind.py -b vfio-pci 0000:00:04.0 systemctl restart openvswitch-switch.service ovs-vsctl show cat &amp;gt;&amp;gt; /etc/libvirt/qemu.conf &amp;lt;&amp;lt; EOF user = &amp;#34;root&amp;#34; group = &amp;#34;root&amp;#34; EOF systemctl restart libvirtd.service # 131 ovs-vsctl add-port br-phy vhost-user1 -- set Interface vhost-user1 type=dpdkvhostuser ovs-vsctl add-port br-phy vhost-user2 -- set Interface vhost-user2 type=dpdkvhostuser qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/vms/alpine1/alpine1-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -net none -nographic \ -chardev socket,id=char1,path=/run/openvswitch/vhost-user1 \ -netdev type=vhost-user,id=mynet1,chardev=char1,vhostforce=on \ -device virtio-net-pci,mac=00:00:00:00:00:01,netdev=mynet1 \ -object memory-backend-file,id=mem,size=1G,mem-path=/dev/hugepages,share=on \ -numa node,memdev=mem -mem-prealloc \ -vnc :01 qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/vms/alpine2/alpine2-virt-3.</description>
+    </item>
+    <item>
+      <title>6. vhostuserclient ovs-dpdk</title>
+      <link>https://example.com/dpdk/6.vhostuserclient.ovs-dpdk/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 19:59:05 +0800</pubDate>
+      <guid>https://example.com/dpdk/6.vhostuserclient.ovs-dpdk/index.html</guid>
+      <description>date: 2023-02-04 https://libvirt.org/formatdomain.html https://docs.openvswitch.org/en/latest/topics/dpdk/vhost-user/
+# Open vSwitch provides two types of vHost User ports: . vhost-user (dpdkvhostuser) ---&amp;gt; deprecated! . vhost-user-client (dpdkvhostuserclient) # Ports of type vhost-user are currently deprecated and will be removed in a future release. # https://libvirt.org/formatdomain.html # 133 hostnamectl set-hostname ovs3 ip a 2: ens3: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq state UP group default qlen 1000 link/ether 52:54:00:55:b6:f4 brd ff:ff:ff:ff:ff:ff altname enp0s3 inet 10.1.5.133/21 brd 10.1.7.255 scope global ens3 3: ens4: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 52:54:00:56:79:6c brd ff:ff:ff:ff:ff:ff altname enp0s4 4: ens5: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 52:54:00:f7:61:4d brd ff:ff:ff:ff:ff:ff altname enp0s5 # 134 hostnamectl set-hostname ovs4 ip a 2: ens3: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq state UP group default qlen 1000 link/ether 52:54:00:9b:e5:3d brd ff:ff:ff:ff:ff:ff altname enp0s3 inet 10.</description>
+    </item>
+    <item>
+      <title>7. ovs-dpdk-docker</title>
+      <link>https://example.com/dpdk/7.ovs-dpdk-docker/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 19:59:05 +0800</pubDate>
+      <guid>https://example.com/dpdk/7.ovs-dpdk-docker/index.html</guid>
+      <description>date: 2023-02-04
+DPDK_in_Containers_Hands-on_Lab https://github.com/intel/SDN-NFV-Hands-on-Samples/tree/master/DPDK_in_Containers_Hands-on_Lab vmware : 192.168.68.56 u22.04 vi /etc/default/grub GRUB_CMDLINE_LINUX=&amp;#34;default_hugepagesz=1G hugepagesz=1G hugepages=8 iommu=pt intel_iommu=on&amp;#34; update-grub reboot # hugepages=4 同时运行pktgen, dpdk-testpmd报错！ root@dpdk56:~# dpdk-hugepages.py -s Node Pages Size Total 0 5 1Gb 5Gb Hugepages mounted on /dev/hugepages ## no 8G -&amp;gt; 5G 实际 5G ## vm内存修改为16G apt install -y openvswitch-switch-dpdk update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk ovs-vswitchd --version systemctl restart openvswitch-switch.service ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=&amp;#34;1024,0&amp;#34; ### 只有一个numa node0 ovs-vsctl --no-wait set Open_vSwitch .</description>
+    </item>
+    <item>
+      <title>8. rocky 9.1 DPDK</title>
+      <link>https://example.com/dpdk/8.rocky9.1-dpdk/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 19:59:05 +0800</pubDate>
+      <guid>https://example.com/dpdk/8.rocky9.1-dpdk/index.html</guid>
+      <description>date: 2023-02-04 VMWARE 加网卡 编辑对应的 dpdk1.vmx，修改所有e1000为vmxnet3 ，多队列网卡 ethernet0.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet0.wakeOnPcktRcv = &amp;#34;true&amp;#34; ... ethernet1.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet1.wakeOnPcktRcv = &amp;#34;true&amp;#34; ethernet2.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet2.wakeOnPcktRcv = &amp;#34;true&amp;#34; ethernet3.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet3.wakeOnPcktRcv = &amp;#34;true&amp;#34; [root@rocky91 ~]# dmesg |grep ens [ 0.794713] ACPI: Added _OSI(3.0 _SCP Extensions) [ 5.571790] vmxnet3 0000:1b:00.0 ens256: renamed from eth2 [ 5.590331] vmxnet3 0000:0b:00.0 ens192: renamed from eth0 [ 5.615548] vmxnet3 0000:13:00.0 ens224: renamed from eth1 [ 5.632393] vmxnet3 0000:1b:00.</description>
+    </item>
+    <item>
+      <title>9. centos7 upgrade qemu</title>
+      <link>https://example.com/dpdk/9.centos7-upgrade-qemu/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 19:59:05 +0800</pubDate>
+      <guid>https://example.com/dpdk/9.centos7-upgrade-qemu/index.html</guid>
+      <description>date: 2023-02-04 https://www.qemu.org/download/
+## centos7 升级 qemu ## https://www.qemu.org/download/ ## qemu 新版本要求gcc 7.4 以上，CentOS官方源自带的gcc是4.8.5 yum -y groupinstall &amp;#34;Development Tools&amp;#34; yum install -y python3 python3-pip ## centos8: yum install -y python39 python39-pip yum install -y numactl numactl-devel pip3 install meson ninja pyelftools -i https://pypi.tuna.tsinghua.edu.cn/simple yum install -y glib2 glib2-devel pixman-devel zlib zlib-devel ## 安装RedHat的软件集合（SCLs） yum install centos-release-scl -y yum search devtoolset devtoolset-10 devtoolset-11 devtoolset-7 devtoolset-8 devtoolset-9 yum remove gcc -y ## 安装GCC8 yum install devtoolset-8 ## or 安装GCC11 # yum install devtoolset-11 ## 临时生效，执行： scl enable devtoolset-8 bash # scl enable devtoolset-11 bash gcc -v gcc version 8.</description>
     </item>
   </channel>
 </rss>

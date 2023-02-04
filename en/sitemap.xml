@@ -37,26 +37,46 @@
     <lastmod>2023-02-04T13:40:36+08:00</lastmod>
   </url>
   <url>
-    <loc>https://example.com/index.html</loc>
+    <loc>https://example.com/dpdk/5.vhostuser.ovs-dpdk/index.html</loc>
     <lastmod>2023-02-04T13:40:36+08:00</lastmod>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/index.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/index.html" />
-    <xhtml:link rel="alternate" hreflang="pir" href="https://example.com/pir/index.html" />
+  </url>
+  <url>
+    <loc>https://example.com/dpdk/6.vhostuserclient.ovs-dpdk/index.html</loc>
+    <lastmod>2023-02-04T19:59:05+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/dpdk/7.ovs-dpdk-docker/index.html</loc>
+    <lastmod>2023-02-04T19:59:05+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/dpdk/8.rocky9.1-dpdk/index.html</loc>
+    <lastmod>2023-02-04T19:59:05+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/dpdk/9.centos7-upgrade-qemu/index.html</loc>
+    <lastmod>2023-02-04T19:59:05+08:00</lastmod>
   </url>
   <url>
     <loc>https://example.com/categories/index.html</loc>
-    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+    <lastmod>2023-02-04T19:59:05+08:00</lastmod>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/categories/index.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/categories/index.html" />
     <xhtml:link rel="alternate" hreflang="pir" href="https://example.com/pir/categories/index.html" />
   </url>
   <url>
     <loc>https://example.com/categories/dpdk/index.html</loc>
-    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+    <lastmod>2023-02-04T19:59:05+08:00</lastmod>
   </url>
   <url>
     <loc>https://example.com/dpdk/index.html</loc>
+    <lastmod>2023-02-04T19:59:05+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/index.html</loc>
     <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/index.html" />
+    <xhtml:link rel="alternate" hreflang="pir" href="https://example.com/pir/index.html" />
   </url>
   <url>
     <loc>https://example.com/categories/vpp/index.html</loc>

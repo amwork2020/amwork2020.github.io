@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>7. ovs-dpdk-docker :: amwork2010 blog</title>
+    <link href="https://example.com/dpdk/7.ovs-dpdk-docker/index.html" rel="canonical" type="text/html" title="7. ovs-dpdk-docker :: amwork2010 blog">
+    <link href="../../dpdk/7.ovs-dpdk-docker/index.xml" rel="alternate" type="application/rss+xml" title="7. ovs-dpdk-docker :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675517263" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675517263" rel="stylesheet">
+    <link href="../../css/fonts.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675517263" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675517263" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675517263" rel="stylesheet">
+    <link href="../../css/variant.css?1675517263" rel="stylesheet">
+    <link href="../../css/print.css?1675517263" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675517263" rel="stylesheet">
+    <script src="../../js/url.js?1675517263"></script>
+    <script src="../../js/variant.js?1675517263"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675517263" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/7.ovs-dpdk-docker/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">7. ovs-dpdk-docker</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="7-ovs-dpdk-docker">7. ovs-dpdk-docker</h1>
+
+<p>date: 2023-02-04<br>
+<strong>DPDK_in_Containers_Hands-on_Lab</strong>
+<a href="https://github.com/intel/SDN-NFV-Hands-on-Samples/tree/master/DPDK_in_Containers_Hands-on_Lab" target="_blank">https://github.com/intel/SDN-NFV-Hands-on-Samples/tree/master/DPDK_in_Containers_Hands-on_Lab</a>        <br>
+<strong>vmware : 192.168.68.56 u22.04</strong>
+
+<a href="#image-99b51f6f3266688f7130b7b584ab10ce">
+<img src="../../img/dpdk/1675512588627.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-99b51f6f3266688f7130b7b584ab10ce">
+<img src="../../img/dpdk/1675512588627.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>vi /etc/default/grub 
+GRUB_CMDLINE_LINUX=&#34;default_hugepagesz=1G hugepagesz=1G hugepages=8 iommu=pt intel_iommu=on&#34;
+update-grub
+reboot
+# hugepages=4 同时运行pktgen, dpdk-testpmd报错！
+root@dpdk56:~# dpdk-hugepages.py -s
+Node Pages Size Total
+0    5     1Gb    5Gb
+Hugepages mounted on /dev/hugepages
+##  no 8G -&gt; 5G  实际 5G  ## vm内存修改为16G
+</code></pre><pre tabindex="0"><code>apt install -y openvswitch-switch-dpdk 
+update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk
+ovs-vswitchd --version
+systemctl restart openvswitch-switch.service
+</code></pre><pre tabindex="0"><code>ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=&#34;1024,0&#34; ### 只有一个numa node0
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x2      ### 0b0010 --&gt; Cpu1
+ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x4                   ### 0b0100 --&gt; Cpu2
+
+ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
+ovs-vsctl add-port br0 vhost-user1 -- set Interface vhost-user1 type=dpdkvhostuser
+ovs-vsctl add-port br0 vhost-user2 -- set Interface vhost-user2 type=dpdkvhostuser
+ovs-vsctl add-port br0 vhost-user3 -- set Interface vhost-user3 type=dpdkvhostuser
+ovs-vsctl add-port br0 vhost-user4 -- set Interface vhost-user4 type=dpdkvhostuser
+
+ovs-vsctl show
+ovs-ofctl show br0
+
+# 不加也可以
+# echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+# echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+
+ls -l /var/run/openvswitch/|grep vhost-user
+srwxr-xr-x 1 root root 0 Dec 30 16:13 vhost-user1
+srwxr-xr-x 1 root root 0 Dec 30 16:13 vhost-user2
+srwxr-xr-x 1 root root 0 Dec 30 16:13 vhost-user3
+srwxr-xr-x 1 root root 0 Dec 30 16:13 vhost-user4
+</code></pre><p>
+<a href="#image-ddb4596cae7cdbe0caf7ce7afd678438">
+<img src="../../img/dpdk/1675512831731.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ddb4596cae7cdbe0caf7ce7afd678438">
+<img src="../../img/dpdk/1675512831731.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-60d58d0907a5507cb437bd93a3a4bb79">
+<img src="../../img/dpdk/1675512879769.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-60d58d0907a5507cb437bd93a3a4bb79">
+<img src="../../img/dpdk/1675512879769.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>ovs-ofctl del-flows br0 
+echo &#34;(Add bi-directional flow vhost-user2 and vhost-user3)&#34;
+ovs-ofctl add-flow br0 in_port=2,dl_type=0x800,idle_timeout=0,action=output:3
+ovs-ofctl add-flow br0 in_port=3,dl_type=0x800,idle_timeout=0,action=output:2
+
+echo &#34;(Add bi-directional flow between vhost-user1 and vhost-user4)&#34;
+ovs-ofctl add-flow br0 in_port=1,dl_type=0x800,idle_timeout=0,action=output:4
+ovs-ofctl add-flow br0 in_port=4,dl_type=0x800,idle_timeout=0,action=output:1
+
+ovs-ofctl dump-flows br0
+echo &#34;Showing OpenFlow to Open vSwitch port mapping:&#34;
+ovs-ofctl show br0
+ovs-ofctl dump-ports br0
+</code></pre><p>
+<a href="#image-91c64b909dffdd70f7e87ead0e7fd842">
+<img src="../../img/dpdk/1675512951866.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-91c64b909dffdd70f7e87ead0e7fd842">
+<img src="../../img/dpdk/1675512951866.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-0fab5882cd63d27a4cd59be46a12c308">
+<img src="../../img/dpdk/1675512988415.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-0fab5882cd63d27a4cd59be46a12c308">
+<img src="../../img/dpdk/1675512988415.png" alt=""loading="lazy">
+</a></p>
+<p><strong>build dpdk-docker, (包含dpdk-testpmd，没有dpdk-l2fwd)</strong></p>
+<pre tabindex="0"><code>cat &lt;&lt; EOF &gt; Dockerfile
+FROM ubuntu:22.04
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN apt-get update &amp;&amp; apt-get install -y dpdk dpdk-dev iperf tcpdump
+WORKDIR /root
+RUN apt-get -qq clean &amp;&amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+CMD [&#34;/bin/bash&#34;]
+EOF
+
+docker build -t amwork2010/dpdk:u2204 .
+</code></pre><p><strong>##### 源码build dpdk-docker, (包含dpdk-testpmd，包含dpdk-l2fwd)</strong></p>
+<pre tabindex="0"><code>cat &lt;&lt; EOF &gt; Dockerfile
+FROM ubuntu:22.04
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN apt update &amp;&amp; apt install -y build-essential
+RUN apt install -y meson python3-pyelftools pkg-config libnuma-dev wget
+WORKDIR /root
+RUN wget http://fast.dpdk.org/rel/dpdk-22.11.1.tar.xz
+RUN tar Jxvf dpdk-22.11.1.tar.xz
+RUN cd dpdk-stable-22.11.1 &amp;&amp; meson setup -Dexamples=all build &amp;&amp; cd build &amp;&amp; ninja &amp;&amp; ninja install
+RUN apt-get -qq clean &amp;&amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+CMD [&#34;/bin/bash&#34;]
+EOF
+
+docker build -t amwork2010/dpdk:22.11 .
+</code></pre><p><strong>build dpdk-pktgen</strong></p>
+<pre tabindex="0"><code>cat &lt;&lt; EOF &gt; Dockerfile
+FROM ubuntu:22.04
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN apt update &amp;&amp; apt install -y build-essential meson python3-pyelftools pkg-config libnuma-dev wget dpdk dpdk-dev
+WORKDIR /root
+RUN wget https://github.com/pktgen/Pktgen-DPDK/archive/refs/tags/pktgen-22.07.1.tar.gz
+RUN tar zxvf pktgen-22.07.1.tar.gz 
+RUN cd Pktgen-DPDK-pktgen-22.07.1 &amp;&amp; meson build &amp;&amp; cd build &amp;&amp; ninja
+RUN cp /root/Pktgen-DPDK-pktgen-22.07.1/build/app/pktgen /usr/bin
+RUN apt-get -qq clean &amp;&amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+CMD [&#34;/bin/bash&#34;]
+EOF
+
+docker build -t amwork2010/pktgen:22.07 .
+</code></pre><p><strong>run dpdk-testpmd</strong></p>
+<pre tabindex="0"><code>docker run -it --rm --privileged \
+ -v /dev/hugepages:/dev/hugepages -v /var/run/openvswitch:/var/run/openvswitch amwork2010/dpdk:u2204
+
+#-c 0xE0: DPDK can run on core 5-7: (0b1110 0000)--&gt; Cpu6 Cpu7
+#--main-lcore 5: make the make the master testpmd thread run on core 5 (0b0010 0000)
+#-n 1: we only have one memory bank in this VM
+#--file-prefix testpmd: &#34;testpmd&#34; will be appended to hugepage memory files used by this process
+#--no-pci don&#39;t look for any PCI devices
+#--vdev=net_virtio_user3,mac=00:00:00:00:00:03,path=/var/run/openvswitch/vhost-user3
+#--vdev=net_virtio_user4,mac=00:00:00:00:00:04,path=/var/run/openvswitch/vhost-user4: 
+#	use a virtual 
+#	device using the net_virtio_user driver, MAC address 00:00:00:00:00:03, and the path to the 
+#	unix socket is /var/run/openvswitch/vhost-user3
+
+dpdk-testpmd -c 0xE0 -n 1 --socket-mem 1024 --file-prefix testpmd --no-pci \
+--vdev &#39;net_virtio_user3,mac=00:00:00:00:00:03,path=/var/run/openvswitch/vhost-user3&#39; \
+--vdev &#39;net_virtio_user4,mac=00:00:00:00:00:04,path=/var/run/openvswitch/vhost-user4&#39; \
+-- -i --burst=64 --txd=2048 --rxd=2048 --auto-start --coremask=0xc0
+
+提示符：
+testpmd&gt; show port stats all
+</code></pre><p>
+<a href="#image-05ff7e1cffea8bd0b9be4fcc98d769da">
+<img src="../../img/dpdk/1675513238592.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-05ff7e1cffea8bd0b9be4fcc98d769da">
+<img src="../../img/dpdk/1675513238592.png" alt=""loading="lazy">
+</a></p>
+<p><strong>run pktgen</strong></p>
+<pre tabindex="0"><code>docker run -it --rm --privileged \
+ -v /dev/hugepages:/dev/hugepages -v /var/run/openvswitch:/var/run/openvswitch amwork2010/pktgen:22.07
+
+#-c 0x19: DPDK can run on core 0,3-4: (0b0001 1001)
+#--main-lcore 3: make the pktgen dpdk thread run on core 3 (0b1000)
+#-n 1: we only have one memory bank in this VM
+#--file-prefix pktgen: &#34;pktgen&#34; will be appended to hugepage memory files used by this process
+#--no-pci don&#39;t look for any PCI devices 
+#--vdev &#39;virtio_user1,mac=00:00:00:00:00:01,path=/var/run/openvswitch/vhost-user1&#39; 
+#--vdev &#39;virtio_user2,mac=00:00:00:00:00:02,path=/var/run/openvswitch/vhost-user2&#39;
+#-P: Promiscuous mode
+#-T: Color terminal output
+#-m &#34;0.0,4.1&#34; (core.port): core 0: port 0 rx/tx; core 4: port 1 rx/tx
+#注：-m选项一定要和前面dpdk的-c选项符合
+
+pktgen -c 0x19 --main-lcore 3 -n 1 --socket-mem 1024 --file-prefix pktgen --no-pci  \
+--vdev &#39;net_virtio_user1,mac=00:00:00:00:00:01,path=/var/run/openvswitch/vhost-user1&#39; \
+--vdev &#39;net_virtio_user2,mac=00:00:00:00:00:02,path=/var/run/openvswitch/vhost-user2&#39; \
+-- -T -P -m &#34;0.0,4.1&#34;
+
+提示符：
+&gt; start all    ### str ### stp
+
+# 在pktgen中设置速率为10%，更具体的速率设置可以通过tx_cycles设置
+# 端口0共发送100个包，端口1发送200个
+Pktgen:/&gt;set all rate 10
+Pktgen:/&gt;set 0 count 100
+Pktgen:/&gt;set 1 count 200
+Pktgen:/&gt;str
+</code></pre><p>
+<a href="#image-ce36a6fc0274f2ad77c29636548c0bd7">
+<img src="../../img/dpdk/1675513331513.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ce36a6fc0274f2ad77c29636548c0bd7">
+<img src="../../img/dpdk/1675513331513.png" alt=""loading="lazy">
+</a></p>
+<p>watch -n 1 ovs-ofctl dump-flows br0   <br>
+
+<a href="#image-0d32b141326c89232425e4cbb593258d">
+<img src="../../img/dpdk/1675513442447.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-0d32b141326c89232425e4cbb593258d">
+<img src="../../img/dpdk/1675513442447.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-f6d10a8965bb9d0b44b8e666423a638f">
+<img src="../../img/dpdk/1675513493909.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-f6d10a8965bb9d0b44b8e666423a638f">
+<img src="../../img/dpdk/1675513493909.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-de40ee756cdf51bad25574249f3a5619">
+<img src="../../img/dpdk/1675513522971.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-de40ee756cdf51bad25574249f3a5619">
+<img src="../../img/dpdk/1675513522971.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-4de03e14a5f29fc386bb5c9b782722a3">
+<img src="../../img/dpdk/1675513591413.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-4de03e14a5f29fc386bb5c9b782722a3">
+<img src="../../img/dpdk/1675513591413.png" alt=""loading="lazy">
+</a></p>
+<p><strong>run pktgen</strong></p>
+<pre tabindex="0"><code>docker run -it --rm --privileged \
+ -v /dev/hugepages:/dev/hugepages -v /var/run/openvswitch:/var/run/openvswitch amwork2010/pktgen:22.07
+
+pktgen -c 0x19 --main-lcore 3 -n 1 --socket-mem 1024 --file-prefix pktgen --no-pci  \
+--vdev &#39;net_virtio_user1,mac=00:00:00:00:00:01,path=/var/run/openvswitch/vhost-user1&#39; \
+--vdev &#39;net_virtio_user2,mac=00:00:00:00:00:02,path=/var/run/openvswitch/vhost-user2&#39; \
+-- -T -P -m &#34;0.0,4.1&#34;
+</code></pre><pre tabindex="0"><code>发包验证
+在pktgen端执行：
+# 在pktgen中设置速率为10%，更具体的速率设置可以通过tx_cycles设置
+# 端口0共发送100个包，端口1发送200个
+Pktgen:/&gt;set all rate 10
+Pktgen:/&gt;set 0 count 100
+Pktgen:/&gt;set 1 count 200
+Pktgen:/&gt;str
+
+set all rate 10
+set 0 count 100
+set 1 count 200
+str
+</code></pre><p>
+<a href="#image-242e6d9f816732c25290591542f49c62">
+<img src="../../img/dpdk/1675513668577.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-242e6d9f816732c25290591542f49c62">
+<img src="../../img/dpdk/1675513668577.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-53a517567dd19ed942aff5c4eeca991a">
+<img src="../../img/dpdk/1675513703005.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-53a517567dd19ed942aff5c4eeca991a">
+<img src="../../img/dpdk/1675513703005.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-5b0c80fd54e5d13958d972ef00c4b798">
+<img src="../../img/dpdk/1675513788942.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-5b0c80fd54e5d13958d972ef00c4b798">
+<img src="../../img/dpdk/1675513788942.png" alt=""loading="lazy">
+</a></p>
+<p>总结
+本次实践主要还是集中在OVS上面的container App的互通以及container内部对dpdk的支持，分别验证了在container内部运行testpmd和l2fwd来进行报文转发。其中，dpdk app的运行模式可以为后续cneos平台server docker化提供一定的技术指导作用。
+如果从更系统化的层面来考虑docker结合ovs以及dpdk的使用，更通用的使用场景应该是这样的：在ovs的南向通过dpdk pmd和硬件平台上物理nic的PF或VF绑定，高速收发报文；在ovs的北向，通过virtual device和docker container来共享收发报文，进行上层业务的处理。 南北向之间的流量需要配置flow table来指导转发。流量示意如下图所示：</p>
+<p>
+<a href="#image-d75bf1734c90ce4ae6c8da29e01a27ce">
+<img src="../../img/dpdk/1675513848655.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-d75bf1734c90ce4ae6c8da29e01a27ce">
+<img src="../../img/dpdk/1675513848655.png" alt=""loading="lazy">
+</a>
+流量从物理port流入，到达OVS查找流表送入到串联检测类container1(如NF，IPS)中，container1处理完后再送回流表，再次查找流表找到物理口发送出去
+流量从物理port流入，到达OVS查找流表送入到检测类container2中(如WAF)
+考虑到有多个安全container app，流量串行通过containerN,container2; 实际上，container之间的数据交互还有别的实现方式，如docker天然支持容器互联技术，这块还有待进一步确定实际方案</p>
+<p><a href="https://github.com/intel/SDN-NFV-Hands-on-Samples/tree/master/DPDK_in_Containers_Hands-on_Lab" target="_blank">https://github.com/intel/SDN-NFV-Hands-on-Samples/tree/master/DPDK_in_Containers_Hands-on_Lab</a>   <br>
+ovs+dpdk-docker实践</p>
+<pre tabindex="0"><code>https://huaweicloud.csdn.net/635669a1d3efff3090b5e5af.html?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromBaidu~activity-1-78589592-blog-77887910.pc_relevant_vip_default&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromBaidu~activity-1-78589592-blog-77887910.pc_relevant_vip_default&amp;utm_relevant_index=1
+</code></pre><p><a href="https://datawine.github.io/docker-ovs-dpdk-vnf-exp.html" target="_blank">https://datawine.github.io/docker-ovs-dpdk-vnf-exp.html</a>
+<a href="https://blog.csdn.net/me_blue/article/details/78589592" target="_blank">https://blog.csdn.net/me_blue/article/details/78589592</a>
+<a href="https://www.youtube.com/watch?v=hEmvd7ZjkFw&amp;list=PLg-UKERBljNx44Q68QfQcYsza-fV0ARbp" target="_blank">https://www.youtube.com/watch?v=hEmvd7ZjkFw&list=PLg-UKERBljNx44Q68QfQcYsza-fV0ARbp</a>
+<a href="https://www.slideshare.net/MichelleHolley1/dpdk-in-containers-handson-lab" target="_blank">https://www.slideshare.net/MichelleHolley1/dpdk-in-containers-handson-lab</a></p>
+<p><a href="https://doc.dpdk.org/guides/howto/virtio_user_for_container_networking.html" target="_blank">https://doc.dpdk.org/guides/howto/virtio_user_for_container_networking.html</a>
+
+<a href="#image-8ce4cfeb72629490c69bf96d3f3e0ba9">
+<img src="../../img/dpdk/1675513995609.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-8ce4cfeb72629490c69bf96d3f3e0ba9">
+<img src="../../img/dpdk/1675513995609.png" alt=""loading="lazy">
+</a>
+<strong>上图(1)</strong> 方案中需要NIC支持SR-IOV功能，物理NIC支持的VF个数也依赖于硬件资源；每个container的接口独占VF，多个VF共享下面的一个PF。基于这种方案实现的container，无论对硬件的依赖和绑定，还是container的迁移，支持性都做得不够好。
+<strong>上图(2)</strong> 方案中需要在host中运行vswitch或者vRouter来将上层的containers和底层的物理NIC解耦，只要vswitch（当前比较流行的OVS+DPDK，将OVS放在用户态来实现）的性能足够，一样可以实现高性能的container app了。
+
+<a href="#image-e380f02e71485d0cad110fef9cc0e860">
+<img src="../../img/dpdk/1675514071129.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-e380f02e71485d0cad110fef9cc0e860">
+<img src="../../img/dpdk/1675514071129.png" alt=""loading="lazy">
+</a>
+基于以上比较，本次预研主要选取第二种方案来实现，方案中使用virtual device(包括virtio-user和vhost-user backend）来实现高性能的container App 或者IPC。Virtio使用共享内存的方式来收发报文，传统的VM可以通过qemu来共享vhost后端的物理地址，但对container而言，作为系统的一个进程，使用这种方式则比较难。目前的思路是只能使用DPDK初始化的hugepages来进行内存共享。所以，要在container中使用dpdk，必须要分配足够的大页内存，且不同container在使用共享内存时要能够分区使用，避免地址重复。</p>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675517263" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675517263" defer></script>
+    <script src="../../js/theme.js?1675517263" defer></script>
+  </body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>8. rocky 9.1 DPDK :: amwork2010 blog</title>
+    <link href="https://example.com/dpdk/8.rocky9.1-dpdk/index.html" rel="canonical" type="text/html" title="8. rocky 9.1 DPDK :: amwork2010 blog">
+    <link href="../../dpdk/8.rocky9.1-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="8. rocky 9.1 DPDK :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675517263" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675517263" rel="stylesheet">
+    <link href="../../css/fonts.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675517263" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675517263" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675517263" rel="stylesheet">
+    <link href="../../css/variant.css?1675517263" rel="stylesheet">
+    <link href="../../css/print.css?1675517263" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675517263" rel="stylesheet">
+    <script src="../../js/url.js?1675517263"></script>
+    <script src="../../js/variant.js?1675517263"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675517263" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/8.rocky9.1-dpdk/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">8. rocky 9.1 DPDK</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="8-rocky-91-dpdk">8. rocky 9.1 DPDK</h1>
+
+<p>date: 2023-02-04   <br>
+<strong>VMWARE 加网卡</strong>
+
+<a href="#image-8de43f3ec29137051f0519b0ef9e8a9c">
+<img src="../../img/dpdk/1675514357163.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-8de43f3ec29137051f0519b0ef9e8a9c">
+<img src="../../img/dpdk/1675514357163.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>编辑对应的 dpdk1.vmx，修改所有e1000为vmxnet3 ，多队列网卡
+ethernet0.virtualDev = &#34;vmxnet3&#34;
+ethernet0.wakeOnPcktRcv = &#34;true&#34;
+...
+ethernet1.virtualDev = &#34;vmxnet3&#34;
+ethernet1.wakeOnPcktRcv = &#34;true&#34;
+ethernet2.virtualDev = &#34;vmxnet3&#34;
+ethernet2.wakeOnPcktRcv = &#34;true&#34;
+ethernet3.virtualDev = &#34;vmxnet3&#34;
+ethernet3.wakeOnPcktRcv = &#34;true&#34;
+</code></pre><pre tabindex="0"><code>[root@rocky91 ~]# dmesg |grep ens
+[    0.794713] ACPI: Added _OSI(3.0 _SCP Extensions)
+[    5.571790] vmxnet3 0000:1b:00.0 ens256: renamed from eth2
+[    5.590331] vmxnet3 0000:0b:00.0 ens192: renamed from eth0
+[    5.615548] vmxnet3 0000:13:00.0 ens224: renamed from eth1
+[    5.632393] vmxnet3 0000:1b:00.0 ens256: intr type 3, mode 0, 5 vectors allocated
+[    5.632872] vmxnet3 0000:1b:00.0 ens256: NIC Link is Up 10000 Mbps
+[    5.716301] vmxnet3 0000:0b:00.0 ens192: intr type 3, mode 0, 5 vectors allocated
+[    5.716640] vmxnet3 0000:0b:00.0 ens192: NIC Link is Up 10000 Mbps
+[    5.774846] vmxnet3 0000:13:00.0 ens224: intr type 3, mode 0, 5 vectors allocated
+[    5.775629] vmxnet3 0000:13:00.0 ens224: NIC Link is Up 10000 Mbps
+[    6.497363] IPv6: ADDRCONF(NETDEV_CHANGE): ens224: link becomes ready
+[    6.497983] IPv6: ADDRCONF(NETDEV_CHANGE): ens256: link becomes ready
+</code></pre><pre tabindex="0"><code>[root@rocky91 ~]# cat /proc/interrupts |grep ens
+  75:          7         67          0        185  IR-PCI-MSI 5767168-edge      ens192-rxtx-0
+  76:          3          1         45          0  IR-PCI-MSI 5767169-edge      ens192-rxtx-1
+  77:          0         11          0          9  IR-PCI-MSI 5767170-edge      ens192-rxtx-2
+  78:          1         42          0        105  IR-PCI-MSI 5767171-edge      ens192-rxtx-3
+  79:          0          0          0          0  IR-PCI-MSI 5767172-edge      ens192-event-4
+</code></pre><p>[root@dpdk1 ~]# cat /proc/interrupts |grep ens
+vmxnet3 (4CPU)
+
+<a href="#image-8a2ce2e91f8a86bd001c55ed795f56e9">
+<img src="../../img/dpdk/1675514512476.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-8a2ce2e91f8a86bd001c55ed795f56e9">
+<img src="../../img/dpdk/1675514512476.png" alt=""loading="lazy">
+</a></p>
+<p><strong>1G大页</strong></p>
+<pre tabindex="0"><code>vi /etc/default/grub 
+#GRUB_CMDLINE_LINUX=&#34;default_hugepagesz=1G hugepagesz=1G hugepages=2 isolcpus=2-3 iommu=pt intel_iommu=on&#34;
+GRUB_CMDLINE_LINUX=&#34;resume=/dev/mapper/rl_rocky91-swap rd.lvm.lv=rl_rocky91/root rd.lvm.lv=rl_rocky91/swap default_hugepagesz=1G hugepagesz=1G hugepages=4 isolcpus=2-3 iommu=pt intel_iommu=on&#34;
+grub2-mkconfig -o /boot/grub2/grub.cfg
+reboot
+dmesg | grep -e DMAR -e IOMMU
+cat /proc/cmdline | grep iommu=pt
+cat /proc/cmdline | grep intel_iommu=on
+</code></pre><p>
+<a href="#image-0f0d4a4bff7b5cb81f3258c034942862">
+<img src="../../img/dpdk/1675514577483.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-0f0d4a4bff7b5cb81f3258c034942862">
+<img src="../../img/dpdk/1675514577483.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>[root@rocky91 ~]#  cat /proc/meminfo |grep Huge
+AnonHugePages:      4096 kB
+ShmemHugePages:        0 kB
+FileHugePages:         0 kB
+HugePages_Total:       2
+HugePages_Free:        2
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:    1048576 kB
+Hugetlb:         2097152 kB
+
+[root@rocky91 ~]# cat /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
+4
+[root@alma91 ~]# mount | grep huge
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,pagesize=1024M)
+
+使用大页
+mkdir /mnt/huge
+mount -t hugetlbfs pagesize=1GB /mnt/huge
+
+通过在/etc/fstab文件中添加以下行，可以使挂载点在重新启动后永久存在：
+nodev /mnt/huge hugetlbfs pagesize=1GB 0 0
+reboot
+[root@dpdk1 ~]# mount|grep hugetlbfs
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime)
+nodev on /mnt/huge type hugetlbfs (rw,relatime,pagesize=1GB)
+</code></pre><pre tabindex="0"><code>yum install -y dpdk dpdk-devel dpdk-tools
+[root@rocky91 ~]# dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:0b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens192 drv=vmxnet3 unused= *Active*
+0000:13:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens224 drv=vmxnet3 unused= *Active*
+0000:1b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens256 drv=vmxnet3 unused= *Active*
+
+[root@rocky91 ~]# ip link set ens224 down
+[root@rocky91 ~]# ip link set ens256 down
+
+[root@rocky91 ~]# modprobe vfio-pci
+
+[root@rocky91 ~]# dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:0b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens192 drv=vmxnet3 unused=vfio-pci *Active*
+0000:13:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens224 drv=vmxnet3 unused=vfio-pci 
+0000:1b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens256 drv=vmxnet3 unused=vfio-pci 
+
+[root@rocky91 ~]# dpdk-devbind.py -b vfio-pci 0000:13:00.0
+[root@rocky91 ~]# dpdk-devbind.py -b vfio-pci 0000:1b:00.0
+[root@rocky91 ~]# dpdk-devbind.py -s
+Network devices using DPDK-compatible driver
+============================================
+0000:13:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
+0000:1b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
+
+Network devices using kernel driver
+===================================
+0000:0b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens192 drv=vmxnet3 unused=vfio-pci *Active*
+
+取消绑定:
+dpdk-devbind.py -u 0000:1b:00.0
+dpdk-devbind.py -b vmxnet3  0000:1b:00.0    ##绑回vmxnet3
+</code></pre><p><strong>dpdk-testpmd  测试失败！</strong>
+<strong>dpdk-testpmd  测试失败！未查明原因！</strong>
+<strong>dpdk-testpmd  测试失败！</strong></p>
+<pre tabindex="0"><code># top 会看到1cpu 100%us
+show port stats all
+./build/examples/dpdk-helloworld -l 0-3 -n 4
+./build/app/dpdk-testpmd -l 2-3 -m 4096 -n 4  -- -i -a --forward-mode=rxonly --rxd=4096 --txd=4096 --rss-ip  ## 选到3
+./build/app/dpdk-testpmd -l 1-2 -m 4096 -n 4  -- -i -a --forward-mode=rxonly --rxd=4096 --txd=4096 --rss-ip  ## 选到2
+./build/app/dpdk-testpmd -l 0-3 -m 4096 -n 4  -- -i -a --forward-mode=rxonly --rxd=4096 --txd=4096 --rss-ip  ## 选到1
+
+./build/app/dpdk-testpmd -l0-3 --  -i --nb-cores=2 --nb-ports=2 --total-num-mbufs=2048
+start
+stop
+</code></pre><p><strong>自己build好用！</strong></p>
+<pre tabindex="0"><code>yum -y groupinstall &#34;Development Tools&#34;
+yum install -y python3 python3-pip
+pip3 install meson ninja pyelftools -i https://pypi.tuna.tsinghua.edu.cn/simple
+yum install -y numactl numactl-devel
+
+export http_proxy=http://10.1.1.12:8118
+export https_proxy=http://10.1.1.12:8118
+wget http://fast.dpdk.org/rel/dpdk-22.11.1.tar.xz
+tar Jxvf dpdk-22.11.1.tar.xz
+cd dpdk-stable-22.11.1
+meson setup -Dexamples=all build
+cd build
+ninja
+ninja install
+
+自己build好用！
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675517263" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675517263" defer></script>
+    <script src="../../js/theme.js?1675517263" defer></script>
+  </body>
+</html>

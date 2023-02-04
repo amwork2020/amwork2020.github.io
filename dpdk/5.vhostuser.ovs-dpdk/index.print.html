@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>5. vhostuser ovs-dpdk :: amwork2010 blog</title>
+    <link href="https://example.com/dpdk/5.vhostuser.ovs-dpdk/index.html" rel="canonical" type="text/html" title="5. vhostuser ovs-dpdk :: amwork2010 blog">
+    <link href="../../dpdk/5.vhostuser.ovs-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="5. vhostuser ovs-dpdk :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675517263" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675517263" rel="stylesheet">
+    <link href="../../css/fonts.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675517263" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675517263" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675517263" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675517263" rel="stylesheet">
+    <link href="../../css/variant.css?1675517263" rel="stylesheet">
+    <link href="../../css/print.css?1675517263" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675517263" rel="stylesheet">
+    <script src="../../js/url.js?1675517263"></script>
+    <script src="../../js/variant.js?1675517263"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675517263" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/5.vhostuser.ovs-dpdk/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">5. vhostuser ovs-dpdk</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="5-vhostuser-ovs-dpdk">5. vhostuser ovs-dpdk</h1>
+
+<p>date: 2023-02-04</p>
+<pre tabindex="0"><code>dpdk-devbind.py -b vfio-pci 0000:00:04.0
+systemctl restart openvswitch-switch.service
+ovs-vsctl show
+
+cat &gt;&gt; /etc/libvirt/qemu.conf &lt;&lt; EOF
+user = &#34;root&#34;
+group = &#34;root&#34;
+EOF
+systemctl restart libvirtd.service
+
+# 131
+ovs-vsctl add-port br-phy vhost-user1 -- set Interface vhost-user1 type=dpdkvhostuser
+ovs-vsctl add-port br-phy vhost-user2 -- set Interface vhost-user2 type=dpdkvhostuser
+
+qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/vms/alpine1/alpine1-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -net none -nographic \
+-chardev socket,id=char1,path=/run/openvswitch/vhost-user1 \
+-netdev type=vhost-user,id=mynet1,chardev=char1,vhostforce=on \
+-device virtio-net-pci,mac=00:00:00:00:00:01,netdev=mynet1 \
+-object memory-backend-file,id=mem,size=1G,mem-path=/dev/hugepages,share=on \
+-numa node,memdev=mem -mem-prealloc \
+-vnc :01
+
+
+qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/vms/alpine2/alpine2-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -net none -nographic \
+-chardev socket,id=char2,path=/run/openvswitch/vhost-user2 \
+-netdev type=vhost-user,id=mynet2,chardev=char2,vhostforce=on \
+-device virtio-net-pci,mac=00:00:00:00:00:02,netdev=mynet2 \
+-object memory-backend-file,id=mem,size=1G,mem-path=/dev/hugepages,share=on \
+-numa node,memdev=mem -mem-prealloc \
+-vnc :02
+
+
+# 131 vm1 login:
+ip a flush eth0
+ip addr add 3.3.3.31/24 dev eth0
+ip link set eth0 up
+iperf3 -s -i 1
+
+# 131 vm2 login:
+ip a flush eth0
+ip addr add 3.3.3.32/24 dev eth0
+ip link set eth0 up
+ping -c 5 3.3.3.31
+# ping ---&gt; OK
+iperf3 -t 10 -i 1 -c 3.3.3.31
+
+alpine:~# iperf3 -t 10 -i 1 -c 3.3.3.31
+Connecting to host 3.3.3.31, port 5201
+[  5] local 3.3.3.32 port 58624 connected to 3.3.3.31 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   604 MBytes  5.07 Gbits/sec  289    386 KBytes       
+[  5]   1.00-2.00   sec   768 MBytes  6.44 Gbits/sec   31    354 KBytes       
+[  5]   2.00-3.00   sec   811 MBytes  6.80 Gbits/sec   26    359 KBytes       
+[  5]   3.00-4.00   sec   774 MBytes  6.49 Gbits/sec   76    358 KBytes       
+[  5]   4.00-5.00   sec   808 MBytes  6.78 Gbits/sec    5    380 KBytes       
+[  5]   5.00-6.00   sec   805 MBytes  6.75 Gbits/sec   44    290 KBytes       
+[  5]   6.00-7.00   sec   810 MBytes  6.80 Gbits/sec   20    438 KBytes       
+[  5]   7.00-8.00   sec   814 MBytes  6.83 Gbits/sec   20    389 KBytes       
+[  5]   8.00-9.00   sec   791 MBytes  6.64 Gbits/sec   19    361 KBytes       
+[  5]   9.00-10.00  sec   803 MBytes  6.74 Gbits/sec   13    334 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  7.61 GBytes  6.53 Gbits/sec  543             sender
+[  5]   0.00-10.01  sec  7.61 GBytes  6.53 Gbits/sec                  receiver
+
+## 结论：同一台主机内vm 6G
+
+# 132
+ovs-vsctl add-port br-phy vhost-user3 -- set Interface vhost-user3 type=dpdkvhostuser
+
+qemu-system-x86_64 -m 1024 -smp 2 -cpu host -hda /root/alpine-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -net none -nographic \
+-chardev socket,id=char3,path=/run/openvswitch/vhost-user3 \
+-netdev type=vhost-user,id=mynet3,chardev=char3,vhostforce=on \
+-device virtio-net-pci,mac=00:00:00:00:00:03,netdev=mynet3 \
+-object memory-backend-file,id=mem,size=1G,mem-path=/dev/hugepages,share=on \
+-numa node,memdev=mem -mem-prealloc \
+-vnc :03
+
+
+# 132 vm1 login:
+ip a flush eth0
+ip addr add 3.3.3.33/24 dev eth0
+ip link set eth0 up
+ping -c 5 3.3.3.31
+# ping ---&gt; OK
+iperf3 -t 10 -i 1 -c 3.3.3.31
+
+alpine:~# iperf3 -t 10 -i 1 -c 3.3.3.31
+Connecting to host 3.3.3.31, port 5201
+[  5] local 3.3.3.33 port 40190 connected to 3.3.3.31 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   151 MBytes  1.26 Gbits/sec    0    508 KBytes       
+[  5]   1.00-2.00   sec   153 MBytes  1.29 Gbits/sec    0    592 KBytes       
+[  5]   2.00-3.00   sec   154 MBytes  1.29 Gbits/sec    0    625 KBytes       
+[  5]   3.00-4.00   sec   144 MBytes  1.21 Gbits/sec    0    656 KBytes       
+[  5]   4.00-5.00   sec   144 MBytes  1.21 Gbits/sec    0    687 KBytes       
+[  5]   5.00-6.00   sec   140 MBytes  1.17 Gbits/sec    0    735 KBytes       
+[  5]   6.00-7.00   sec   142 MBytes  1.19 Gbits/sec    0    772 KBytes       
+[  5]   7.00-8.00   sec   139 MBytes  1.16 Gbits/sec  310    639 KBytes       
+[  5]   8.00-9.00   sec   143 MBytes  1.20 Gbits/sec    0    735 KBytes       
+[  5]   9.00-10.00  sec   144 MBytes  1.21 Gbits/sec  111    543 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.42 GBytes  1.22 Gbits/sec  421             sender
+[  5]   0.00-10.01  sec  1.42 GBytes  1.22 Gbits/sec                  receiver
+
+## 结论：不同主机之间 vm 1.2G
+
+
+# 131 vm1 
+alpine:~# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:00:00:00:00:01 brd ff:ff:ff:ff:ff:ff
+    inet 3.3.3.31/24 scope global eth0
+       valid_lft forever preferred_lft forever
+alpine:~# iperf3 -s -i 1
+-----------------------------------------------------------
+Server listening on 5201 (test #1)
+-----------------------------------------------------------
+Accepted connection from 3.3.3.32, port 36032
+[  5] local 3.3.3.31 port 5201 connected to 3.3.3.32 port 36034
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec   480 MBytes  4.03 Gbits/sec                  
+[  5]   1.00-2.00   sec   514 MBytes  4.31 Gbits/sec                  
+[  5]   2.00-3.00   sec   533 MBytes  4.47 Gbits/sec                  
+[  5]   3.00-4.00   sec   520 MBytes  4.36 Gbits/sec                  
+[  5]   4.00-5.00   sec   517 MBytes  4.34 Gbits/sec                  
+[  5]   5.00-6.00   sec   533 MBytes  4.47 Gbits/sec                  
+[  5]   6.00-7.00   sec   538 MBytes  4.51 Gbits/sec                  
+[  5]   7.00-8.00   sec   531 MBytes  4.45 Gbits/sec                  
+[  5]   8.00-9.00   sec   542 MBytes  4.55 Gbits/sec                  
+[  5]   9.00-10.00  sec   553 MBytes  4.64 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-10.00  sec  5.14 GBytes  4.41 Gbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5201 (test #2)
+-----------------------------------------------------------
+Accepted connection from 3.3.3.33, port 50596
+[  5] local 3.3.3.31 port 5201 connected to 3.3.3.33 port 50610
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec   143 MBytes  1.20 Gbits/sec                  
+[  5]   1.00-2.00   sec   151 MBytes  1.27 Gbits/sec                  
+[  5]   2.00-3.00   sec   154 MBytes  1.29 Gbits/sec                  
+[  5]   3.00-4.00   sec   155 MBytes  1.30 Gbits/sec                  
+[  5]   4.00-5.00   sec   156 MBytes  1.31 Gbits/sec                  
+[  5]   5.00-6.00   sec   151 MBytes  1.27 Gbits/sec                  
+[  5]   6.00-7.00   sec   154 MBytes  1.29 Gbits/sec                  
+[  5]   7.00-8.00   sec   155 MBytes  1.30 Gbits/sec                  
+[  5]   8.00-9.00   sec   156 MBytes  1.30 Gbits/sec                  
+[  5]   9.00-10.00  sec   154 MBytes  1.29 Gbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-10.01  sec  1.49 GBytes  1.28 Gbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5201 (test #3)
+-----------------------------------------------------------
+
+
+
+### 131
+ovs-vsctl add-br br0
+ovs-vsctl add-port br0 ens5
+
+qemu-system-x86_64 -m 1024 -net nic,macaddr=00:00:00:00:01:01 -net tap -drive file=/root/alpine-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -nographic
+
+ovs-vsctl add-port br0 tap0
+
+ip a flush eth0
+ip addr add 2.2.2.21/24 dev eth0
+ip link set eth0 up
+iperf3 -s -i 1
+
+qemu-system-x86_64 -m 1024 -net nic,macaddr=00:00:00:00:01:02 -net tap -drive file=/root/alpine2-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -nographic
+ovs-vsctl add-port br0 tap1
+
+
+ip a flush eth0
+ip addr add 2.2.2.22/24 dev eth0
+ip link set eth0 up
+iperf3 -t 10 -i 1 -c 2.2.2.21
+
+alpine:~# iperf3 -t 10 -i 1 -c 2.2.2.21
+Connecting to host 2.2.2.21, port 5201
+[  5] local 2.2.2.22 port 34292 connected to 2.2.2.21 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  91.9 MBytes   770 Mbits/sec    0   1.33 MBytes       
+[  5]   1.00-2.01   sec  73.8 MBytes   612 Mbits/sec    0   1.57 MBytes       
+[  5]   2.01-3.00   sec  82.5 MBytes   699 Mbits/sec    0   1.99 MBytes       
+[  5]   3.00-4.02   sec  62.5 MBytes   516 Mbits/sec    0   1.99 MBytes       
+[  5]   4.02-5.00   sec  85.0 MBytes   723 Mbits/sec    0   2.20 MBytes       
+[  5]   5.00-6.01   sec  72.5 MBytes   605 Mbits/sec    0   2.20 MBytes       
+[  5]   6.01-7.01   sec  71.2 MBytes   595 Mbits/sec    0   2.20 MBytes       
+[  5]   7.01-8.00   sec   144 MBytes  1.22 Gbits/sec  265   1.43 MBytes       
+[  5]   8.00-9.00   sec   149 MBytes  1.25 Gbits/sec    0   1.52 MBytes       
+[  5]   9.00-10.00  sec   150 MBytes  1.26 Gbits/sec    0   1.59 MBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec   982 MBytes   824 Mbits/sec  265             sender
+[  5]   0.00-10.02  sec   979 MBytes   820 Mbits/sec                  receiver
+
+## 结论：同一台主机内vm 1G
+
+ip l s ens5 up
+ip l s br0 up
+ip addr add 2.2.2.1/24 dev br0
+
+
+### 132
+qemu-system-x86_64 -m 1024 -net nic,macaddr=00:00:00:00:01:03 -net tap -drive file=/root/alpine-virt-3.16.1-x86_64.qcow2 -boot c -enable-kvm -no-reboot -nographic
+
+ovs-vsctl add-port br0 tap0
+
+ip a flush eth0
+ip addr add 2.2.2.23/24 dev eth0
+ip link set eth0 up
+
+ping 2.2.2.21 不通 ### ens5 br0 up
+
+ip l s ens5 up
+ip l s br0 up
+ip addr add 2.2.2.2/24 dev br0
+
+alpine:~# iperf3 -t 10 -i 1 -c 2.2.2.21
+Connecting to host 2.2.2.21, port 5201
+[  5] local 2.2.2.23 port 40028 connected to 2.2.2.21 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.04   sec  23.8 MBytes   191 Mbits/sec    0   1.08 MBytes       
+[  5]   1.04-2.01   sec  22.5 MBytes   195 Mbits/sec    0   1.08 MBytes       
+[  5]   2.01-3.01   sec  22.5 MBytes   189 Mbits/sec    0   1.08 MBytes       
+[  5]   3.01-4.00   sec  22.5 MBytes   191 Mbits/sec    0   1.08 MBytes       
+[  5]   4.00-5.01   sec  22.5 MBytes   188 Mbits/sec    0   1.08 MBytes       
+[  5]   5.01-6.01   sec  23.8 MBytes   199 Mbits/sec    0   1.08 MBytes       
+[  5]   6.01-7.04   sec  25.0 MBytes   203 Mbits/sec    0   1.08 MBytes       
+[  5]   7.04-8.04   sec  22.5 MBytes   188 Mbits/sec    0   1.08 MBytes       
+[  5]   8.04-9.04   sec  23.1 MBytes   195 Mbits/sec    0   1.13 MBytes       
+[  5]   9.04-10.05  sec  22.5 MBytes   187 Mbits/sec    0   1.13 MBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.05  sec   231 MBytes   193 Mbits/sec    0             sender
+[  5]   0.00-10.05  sec   231 MBytes   192 Mbits/sec                  receiver
+
+## 结论：不同主机之间 vm 190M
+
+
+
+root@ovs1:~/vms/alpine1# cat vm.xml
+&lt;domain type=&#39;kvm&#39;&gt;
+	&lt;name&gt;alpine1&lt;/name&gt;
+	&lt;vcpu placement=&#39;static&#39;&gt;2&lt;/vcpu&gt;
+	&lt;memory&gt;1048576&lt;/memory&gt;
+	&lt;memoryBacking&gt;
+		&lt;hugepages&gt;
+			&lt;page size=&#39;2048&#39; unit=&#39;KiB&#39;/&gt;
+		&lt;/hugepages&gt;
+	&lt;/memoryBacking&gt;
+	&lt;os&gt;
+		&lt;type arch=&#39;x86_64&#39; machine=&#39;pc&#39;&gt;hvm&lt;/type&gt;
+		&lt;bootmenu enable=&#39;yes&#39;/&gt;
+	&lt;/os&gt;
+	&lt;features&gt;
+		&lt;acpi/&gt;
+		&lt;apic/&gt;
+		&lt;pae/&gt;
+	&lt;/features&gt;
+	&lt;cpu mode=&#34;host-passthrough&#34;&gt;
+		&lt;numa&gt;
+			&lt;cell id=&#39;0&#39; cpus=&#39;0-1&#39; memory=&#39;1048576&#39; unit=&#39;KiB&#39; memAccess=&#39;shared&#39;/&gt;
+		&lt;/numa&gt;
+	&lt;/cpu&gt;
+	&lt;clock offset=&#39;utc&#39;/&gt;
+	&lt;on_poweroff&gt;destroy&lt;/on_poweroff&gt;
+	&lt;on_reboot&gt;restart&lt;/on_reboot&gt;
+	&lt;on_crash&gt;destroy&lt;/on_crash&gt;
+	&lt;devices&gt;
+		&lt;emulator&gt;/usr/bin/kvm&lt;/emulator&gt;
+		&lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
+			&lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39;/&gt;
+			&lt;source file=&#39;/root/vms/alpine1/alpine1-virt-3.16.1-x86_64.qcow2&#39;/&gt;
+			&lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
+			&lt;boot order=&#39;1&#39;/&gt;
+		&lt;/disk&gt;
+		&lt;interface type=&#39;vhostuser&#39;&gt;
+			&lt;mac address=&#39;00:00:00:00:00:01&#39;/&gt;
+			&lt;source type=&#39;unix&#39; path=&#39;/run/openvswitch/vhost-user1&#39; mode=&#39;client&#39;/&gt;
+			&lt;target dev=&#39;vnet1&#39;/&gt;
+			&lt;model type=&#39;virtio&#39;/&gt;
+			&lt;driver queues=&#39;2&#39;&gt;
+				 &lt;host mrg_rxbuf=&#39;off&#39;/&gt;
+			&lt;/driver&gt;
+		&lt;/interface&gt;
+		&lt;serial type=&#39;pty&#39;&gt;
+		  &lt;target port=&#39;0&#39;/&gt;
+		&lt;/serial&gt;
+		&lt;console type=&#39;pty&#39;&gt;
+		  &lt;target type=&#39;serial&#39; port=&#39;0&#39;/&gt;
+		&lt;/console&gt;
+		&lt;graphics type=&#39;vnc&#39; port=&#39;-1&#39; autoport=&#39;yes&#39; listen=&#39;0.0.0.0&#39;/&gt;
+		&lt;video&gt;
+			&lt;model type=&#39;cirrus&#39; vram=&#39;65536&#39; heads=&#39;1&#39;/&gt;
+		&lt;/video&gt;
+		&lt;input type=&#39;tablet&#39; bus=&#39;usb&#39;/&gt;
+		&lt;input type=&#39;mouse&#39; bus=&#39;ps2&#39;/&gt;
+	&lt;/devices&gt;
+&lt;/domain&gt;
+
+
+root@ovs1:~/vms/alpine1# cat /var/log/libvirt/qemu/alpine1.log
+2023-01-12 22:27:56.091+0000: starting up libvirt version: 8.0.0, package: 1ubuntu7.4 (Christian Ehrhardt &lt;christian.ehrhardt@canonical.com&gt; Tue, 22 Nov 2022 15:59:28 +0100), qemu version: 6.2.0Debian 1:6.2+dfsg-2ubuntu6.6, kernel: 5.15.0-57-generic, hostname: ovs1
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin \
+HOME=/var/lib/libvirt/qemu/domain-7-alpine1 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-7-alpine1/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-7-alpine1/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-7-alpine1/.config \
+/usr/bin/kvm \
+-name guest=alpine1,debug-threads=on \
+-S \
+-object &#39;{&#34;qom-type&#34;:&#34;secret&#34;,&#34;id&#34;:&#34;masterKey0&#34;,&#34;format&#34;:&#34;raw&#34;,&#34;file&#34;:&#34;/var/lib/libvirt/qemu/domain-7-alpine1/master-key.aes&#34;}&#39; \
+-machine pc-i440fx-6.2,usb=off,dump-guest-core=off \
+-accel kvm \
+-cpu host,migratable=on \
+-m 1024 \
+-overcommit mem-lock=off \
+-smp 2,sockets=2,cores=1,threads=1 \
+-object &#39;{&#34;qom-type&#34;:&#34;memory-backend-file&#34;,&#34;id&#34;:&#34;ram-node0&#34;,&#34;mem-path&#34;:&#34;/dev/hugepages/libvirt/qemu/7-alpine1&#34;,&#34;share&#34;:true,&#34;prealloc&#34;:true,&#34;size&#34;:1073741824}&#39; \
+-numa node,nodeid=0,cpus=0-1,memdev=ram-node0 \
+-uuid fd61bba1-7b26-4f1d-a612-5fca2a6358e6 \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=32,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=utc \
+-no-shutdown \
+-boot menu=on,strict=on \
+-device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2 \
+-blockdev &#39;{&#34;driver&#34;:&#34;file&#34;,&#34;filename&#34;:&#34;/root/vms/alpine1/alpine1-virt-3.16.1-x86_64.qcow2&#34;,&#34;node-name&#34;:&#34;libvirt-1-storage&#34;,&#34;auto-read-only&#34;:true,&#34;discard&#34;:&#34;unmap&#34;}&#39; \
+-blockdev &#39;{&#34;node-name&#34;:&#34;libvirt-1-format&#34;,&#34;read-only&#34;:false,&#34;driver&#34;:&#34;qcow2&#34;,&#34;file&#34;:&#34;libvirt-1-storage&#34;,&#34;backing&#34;:null}&#39; \
+-device virtio-blk-pci,bus=pci.0,addr=0x4,drive=libvirt-1-format,id=virtio-disk0,bootindex=1 \
+-chardev socket,id=charnet0,path=/run/openvswitch/vhost-user1 \
+-netdev vhost-user,chardev=charnet0,queues=2,id=hostnet0 \
+-device virtio-net-pci,mrg_rxbuf=off,mq=on,vectors=6,netdev=hostnet0,id=net0,mac=00:00:00:00:00:01,bus=pci.0,addr=0x3 \
+-chardev pty,id=charserial0 \
+-device isa-serial,chardev=charserial0,id=serial0 \
+-device usb-tablet,id=input0,bus=usb.0,port=1 \
+-audiodev &#39;{&#34;id&#34;:&#34;audio1&#34;,&#34;driver&#34;:&#34;none&#34;}&#39; \
+-vnc 0.0.0.0:0,audiodev=audio1 \
+-device cirrus-vga,id=video0,bus=pci.0,addr=0x2 \
+-device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x5 \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+char device redirected to /dev/pts/1 (label charserial0)
+2023-01-12T22:50:38.845268Z kvm: terminating on signal 15 from pid 1032 (/usr/sbin/libvirtd)
+2023-01-12 22:50:39.047+0000: shutting down, reason=destroyed
+
+
+
+
+-chardev socket,id=charnet0,path=/run/openvswitch/vhost-user1 \
+-netdev vhost-user,chardev=charnet0,queues=2,id=hostnet0 \
+-device virtio-net-pci,mrg_rxbuf=off,mq=on,vectors=6,netdev=hostnet0,id=net0,mac=00:00:00:00:00:01,bus=pci.0,addr=0x3 \
+
+
+### xml 生成的 id 都是一样的，无法修改，所以vhost-user模式下，启动2台虚拟机会冲突，用qemu-system-x86_64 指定不同的id等启动才行。
+id=charnet0 
+netdev=hostnet0
+</code></pre><p>
+<a href="#image-168eaad1d8e7169b1973c8c37e3f7e35">
+<img src="../../img/dpdk/1675511742026.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-168eaad1d8e7169b1973c8c37e3f7e35">
+<img src="../../img/dpdk/1675511742026.png" alt=""loading="lazy">
+</a></p>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675517263" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675517263" defer></script>
+    <script src="../../js/theme.js?1675517263" defer></script>
+  </body>
+</html>
