@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://example.com/dpdk/1.vmware-dpdk/index.html</loc>
+    <lastmod>2023-02-03T21:16:52+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/index.html</loc>
+    <lastmod>2023-02-03T21:16:52+08:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/index.html" />
+    <xhtml:link rel="alternate" hreflang="pir" href="https://example.com/pir/index.html" />
+  </url>
+  <url>
+    <loc>https://example.com/categories/index.html</loc>
+    <lastmod>2023-02-03T21:16:52+08:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="pir" href="https://example.com/pir/categories/index.html" />
+  </url>
+  <url>
+    <loc>https://example.com/categories/dpdk/index.html</loc>
+    <lastmod>2023-02-03T21:16:52+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/dpdk/index.html</loc>
+    <lastmod>2023-02-03T21:16:52+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/tags/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="pir" href="https://example.com/pir/tags/index.html" />
+  </url>
+</urlset>

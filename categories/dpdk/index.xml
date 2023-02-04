@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dpdk on amwork2010 blog</title>
+    <link>https://example.com/categories/dpdk/index.html</link>
+    <description>Recent content in dpdk on amwork2010 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Feb 2023 21:16:52 +0800</lastBuildDate><atom:link href="https://example.com/categories/dpdk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1. vmware-dpdk</title>
+      <link>https://example.com/dpdk/1.vmware-dpdk/index.html</link>
+      <pubDate>Fri, 03 Feb 2023 21:16:52 +0800</pubDate>
+      <guid>https://example.com/dpdk/1.vmware-dpdk/index.html</guid>
+      <description>date: 2023-02-04
+VMWARE 加网卡 (192.168.68.56 8c 8G)
+https://www.dpdk.org/
+http://doc.dpdk.org/guides-22.11/
+编辑对应的 jammy.vmx，修改所有e1000为vmxnet3 ，多队列网卡 ethernet0.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet0.wakeOnPcktRcv = &amp;#34;true&amp;#34; ... ethernet1.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet1.wakeOnPcktRcv = &amp;#34;true&amp;#34; ethernet2.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet2.wakeOnPcktRcv = &amp;#34;true&amp;#34; lshw -c network -businfo root@jammy:~# ip a ... 2: ens192: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq state UP group default qlen 1000 link/ether 00:0c:29:9f:04:74 brd ff:ff:ff:ff:ff:ff altname enp11s0 inet 192.168.68.56/24 brd 192.168.68.255 scope global ens192 valid_lft forever preferred_lft forever inet6 fe80::20c:29ff:fe9f:474/64 scope link valid_lft forever preferred_lft forever 3: ens224: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 00:0c:29:9f:04:7e brd ff:ff:ff:ff:ff:ff altname enp19s0 4: ens256: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 00:0c:29:9f:04:88 brd ff:ff:ff:ff:ff:ff altname enp27s0 apt install dpdk dpdk-dev -y vi /etc/default/grub GRUB_CMDLINE_LINUX=&amp;#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&amp;#34; #GRUB_CMDLINE_LINUX=&amp;#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 isolcpus=2-3 iommu=pt intel_iommu=on&amp;#34; update-grub # grub2-mkconfig -o /boot/grub2/grub.</description>
+    </item>
+  </channel>
+</rss>
