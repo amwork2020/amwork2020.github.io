@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vpp on amwork2010 blog</title>
+    <link>https://example.com/categories/vpp/index.html</link>
+    <description>Recent content in vpp on amwork2010 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 04 Feb 2023 13:40:36 +0800</lastBuildDate><atom:link href="https://example.com/categories/vpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0. vpp-u2204</title>
+      <link>https://example.com/vpp/0.vpp-u2204/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/0.vpp-u2204/index.html</guid>
+      <description>date: 2023-02-04 https://wiki.fd.io/view/VPP/Progressive_VPP_Tutorial https://s3-docs.fd.io/vpp/22.10/
+vpp u2204 vmware : 网卡均为vmxnet3 https://packagecloud.io/fdio apt install driverctl driverctl list-devices | grep vmxnet3 0000:0b:00.0 vmxnet3 0000:13:00.0 vmxnet3 0000:1b:00.0 vmxnet3 driverctl set-override 0000:13:00.0 vfio-pci # 重启后仍然绑定 driverctl unset-override 0000:13:00.0 # 解除绑定 dpdk-devbind.py -b vfio-pci 0000:13:00.0 # 重启后解除绑定 apt install dpdk dpdk-dev -y ## 22.10 curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | sudo bash -vx cat /etc/apt/sources.list.d/fdio_release.list apt-get update apt-get install vpp vpp-plugin-core vpp-plugin-dpdk # apt-get install vpp-api-python python3-vpp-api vpp-dbg vpp-dev # Uninstall the Packages # apt-get remove --purge vpp* # systemctl enable vpp systemctl status vpp vi /lib/systemd/system/vpp.</description>
+    </item>
+    <item>
+      <title>0. vpp-qemu</title>
+      <link>https://example.com/vpp/0.vpp-qemu/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/0.vpp-qemu/index.html</guid>
+      <description>date: 2023-02-04
+# vm.xml &amp;lt;interface type=&amp;#39;bridge&amp;#39;&amp;gt; &amp;lt;source bridge=&amp;#39;br0&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;vmxnet3&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; &amp;lt;interface type=&amp;#39;bridge&amp;#39;&amp;gt; &amp;lt;source bridge=&amp;#39;br0&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;vmxnet3&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; ## HOST : 10.1.1.8 ../startVMs/startvm.sh vpp_5.151 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8 ######### 0.prepare apt update apt -y full-upgrade ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime [ -f /var/run/reboot-required ] &amp;amp;&amp;amp; reboot -f ######### 1. 启用rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/rc.local #!/bin/bash echo 1 &amp;gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode EOF chmod +x /etc/rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /lib/systemd/system/rc-local.service [Install] WantedBy=multi-user.target EOF cat /lib/systemd/system/rc-local.</description>
+    </item>
+    <item>
+      <title>0. vpp-rocky87</title>
+      <link>https://example.com/vpp/0.vpp-rocky87/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/0.vpp-rocky87/index.html</guid>
+      <description>date: 2023-02-04 https://wiki.fd.io/view/VPP/Progressive_VPP_Tutorial https://s3-docs.fd.io/vpp/22.10/
+Rocky Linux 8.7
+# rocky87 vi /etc/default/grub GRUB_CMDLINE_LINUX=&amp;#34;........... default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&amp;#34; grub2-mkconfig -o /boot/grub2/grub.cfg reboot [root@rocky87 ~]# lshw -c network -businfo Bus info Device Class Description ======================================================== pci@0000:04:00.0 ens161 network VMXNET3 Ethernet Controller pci@0000:0b:00.0 ens192 network VMXNET3 Ethernet Controller pci@0000:13:00.0 ens224 network VMXNET3 Ethernet Controller pci@0000:1b:00.0 ens256 network VMXNET3 Ethernet Controller yum install -y driverctl driverctl list-devices | grep -i vmxnet3 [root@rocky87 ~]# driverctl list-devices | grep -i vmxnet3 0000:04:00.</description>
+    </item>
+    <item>
+      <title>0. vpp-rocky87-build</title>
+      <link>https://example.com/vpp/1.vpp-rocky87-build/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/1.vpp-rocky87-build/index.html</guid>
+      <description>date: 2023-02-04 https://wiki.fd.io/view/VPP/Progressive_VPP_Tutorial https://s3-docs.fd.io/vpp/22.10/
+Rocky Linux 8.7
+vi /etc/default/grub GRUB_CMDLINE_LINUX=&amp;#34;..... default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&amp;#34; grub2-mkconfig -o /boot/grub2/grub.cfg reboot cp /etc/os-release /etc/os-release.bak vi /etc/os-release ID=&amp;#34;rocky&amp;#34; --&amp;gt; centos VERSION_ID=&amp;#34;8.7&amp;#34; --&amp;gt; VERSION_ID=&amp;#34;8&amp;#34; yum -y groupinstall &amp;#34;Development Tools&amp;#34; yum -y install git export https_proxy=http://10.1.1.12:8118 export http_proxy=http://10.1.1.12:8118 git clone https://github.com/FDio/vpp.git cd vpp git branch -a git checkout -b 2210 origin/stable/2210 git branch -a make install-dep make install-ext-dep make pkg-rpm #make build #make build-release cd /root mkdir -p rpm cd rpm/ mv /root/vpp/build/external/vpp-ext-deps-22.</description>
+    </item>
+  </channel>
+</rss>

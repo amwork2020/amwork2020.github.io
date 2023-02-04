@@ -14,5 +14,12 @@
       <guid>https://example.com/categories/dpdk/index.html</guid>
       <description></description>
     </item>
+    <item>
+      <title>vpp</title>
+      <link>https://example.com/categories/vpp/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/categories/vpp/index.html</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

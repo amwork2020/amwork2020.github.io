@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>4. ovs-dpdk qemu :: amwork2010 blog</title>
+    <link href="https://example.com/dpdk/4.ovs-dpdk.qemu/index.html" rel="canonical" type="text/html" title="4. ovs-dpdk qemu :: amwork2010 blog">
+    <link href="../../dpdk/4.ovs-dpdk.qemu/index.xml" rel="alternate" type="application/rss+xml" title="4. ovs-dpdk qemu :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675494289" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675494289" rel="stylesheet">
+    <link href="../../css/fonts.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675494289" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675494289" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675494289" rel="stylesheet">
+    <link href="../../css/variant.css?1675494289" rel="stylesheet">
+    <link href="../../css/print.css?1675494289" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675494289" rel="stylesheet">
+    <script src="../../js/url.js?1675494289"></script>
+    <script src="../../js/variant.js?1675494289"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675494289" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/4.ovs-dpdk.qemu/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">amwork2010 blog</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">4. ovs-dpdk qemu</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="4-ovs-dpdk-qemu">4. ovs-dpdk qemu</h1>
+
+<p>date: 2023-02-04 <br>
+HOST: 10.1.1.12
+VM :  ovs1:10.1.5.131  ovs2:10.1.5.132</p>
+<pre tabindex="0"><code># ovs1:10.1.5.131  ovs2:10.1.5.132
+apt update
+apt -y full-upgrade
+ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+[ -f /var/run/reboot-required ] &amp;&amp; reboot -f
+
+######### 1. 启用rc.local
+cat &lt;&lt; EOF &gt;&gt; /etc/rc.local
+#!/bin/bash
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+EOF
+
+chmod +x /etc/rc.local
+
+cat &lt;&lt; EOF &gt;&gt; /lib/systemd/system/rc-local.service
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat /lib/systemd/system/rc-local.service
+
+# 启用服务
+systemctl enable rc-local
+systemctl start rc-local
+systemctl status rc-local
+# 查看是否成功
+cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+
+echo &#34;vfio-pci&#34; &gt; /etc/modules-load.d/95-vpp.conf
+
+######### 2. hugepages 
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+vm.nr_hugepages = 1024
+EOF
+sysctl -p
+
+######### 3. check
+apt install driverctl -y
+cat /proc/meminfo | grep Huge
+lshw -businfo -c network
+driverctl list-devices
+
+######### 4. ovs+dpdk
+apt install -y openvswitch-switch-dpdk 
+update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk
+ovs-vswitchd --version
+systemctl restart openvswitch-switch.service
+
+root@ovs1:~# ip a
+2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 52:54:00:3a:2e:71 brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    inet 10.1.5.131/21 brd 10.1.7.255 scope global ens3
+3: ens4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:c0:e1:75 brd ff:ff:ff:ff:ff:ff
+    altname enp0s4
+4: ens5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:33:8e:0b brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
+
+root@ovs2:~# ip a
+2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 52:54:00:fd:02:a5 brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    inet 10.1.5.132/21 brd 10.1.7.255 scope global ens3
+3: ens4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:9e:bc:de brd ff:ff:ff:ff:ff:ff
+    altname enp0s4
+4: ens5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:16:ea:af brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
+
+root@ovs1:~# dpdk-devbind.py -s
+0000:00:03.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens3 drv=vmxnet3 unused=vfio-pci *Active*
+0000:00:04.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens4 drv=vmxnet3 unused=vfio-pci 
+0000:00:05.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens5 drv=vmxnet3 unused=vfio-pci 
+
+dpdk-devbind.py -b vfio-pci 0000:00:04.0
+
+root@ovs1:~# dpdk-devbind.py -s
+0000:00:04.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
+
+######### 5. configure ovs dpdk
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=&#34;1024,0&#34; ### 只有一个numa node0
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x2      ### 0b0010 --&gt; Cpu1
+ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x4                   ### 0b0100 --&gt; Cpu2
+
+ovs-vsctl get Open_vSwitch . dpdk_initialized
+ovs-vsctl get Open_vSwitch . dpdk_version
+ovs-vsctl list open_vswitch
+
+# 10.1.5.131
+# hwaddr=52:54:00:c0:e1:75 == ens4
+ovs-vsctl add-br br-phy -- set Bridge br-phy datapath_type=netdev -- br-set-external-id br-phy bridge-id br-phy -- set bridge br-phy fail-mode=standalone \
+  other_config:hwaddr=52:54:00:c0:e1:75
+ovs-vsctl show
+ovs-ofctl show br-phy
+ovs-vsctl add-port br-phy dpdk0 -- set Interface dpdk0 type=dpdk options:dpdk-devargs=0000:00:04.0
+ip addr add 1.1.1.1/24 dev br-phy
+ip link set br-phy up
+iperf -s -i 1
+
+# 10.1.5.132
+ovs-vsctl add-br br-phy -- set Bridge br-phy datapath_type=netdev -- br-set-external-id br-phy bridge-id br-phy -- set bridge br-phy fail-mode=standalone \
+  other_config:hwaddr=52:54:00:9e:bc:de
+ovs-vsctl show
+ovs-ofctl show br-phy
+ovs-vsctl add-port br-phy dpdk0 -- set Interface dpdk0 type=dpdk options:dpdk-devargs=0000:00:04.0
+ip addr add 1.1.1.2/24 dev br-phy
+ip link set br-phy up
+iperf -t 10 -i 1 -c 1.1.1.1
+
+#### iperf测试性能只有700-800M，而不用DPDK，iperf测试性能2G左右，why?
+
+root@ovs1:~# ovs-ofctl dump-ports br-phy dpdk0
+OFPST_PORT reply (xid=0x4): 1 ports
+  port  dpdk0: rx pkts=532994, bytes=395231512, drop=0, errs=0, frame=?, over=?, crc=?
+           tx pkts=136677, bytes=9034000, drop=0, errs=0, coll=?
+root@ovs1:~# 
+root@ovs1:~# ovs-ofctl dump-ports br-phy dpdk0
+OFPST_PORT reply (xid=0x4): 1 ports
+  port  dpdk0: rx pkts=781948, bytes=771677632, drop=0, errs=0, frame=?, over=?, crc=?
+           tx pkts=228977, bytes=15129284, drop=0, errs=0, coll=?
+root@ovs1:~# 
+root@ovs1:~# ovs-ofctl dump-ports br-phy dpdk0
+OFPST_PORT reply (xid=0x4): 1 ports
+  port  dpdk0: rx pkts=953469, bytes=1031276094, drop=0, errs=0, frame=?, over=?, crc=?
+           tx pkts=314671, bytes=20785064, drop=0, errs=0, coll=?
+root@ovs1:~# 
+root@ovs1:~# ovs-ofctl dump-ports br-phy dpdk0
+OFPST_PORT reply (xid=0x4): 1 ports
+  port  dpdk0: rx pkts=1058565, bytes=1190342002, drop=0, errs=0, frame=?, over=?, crc=?
+           tx pkts=366688, bytes=24220318, drop=0, errs=0, coll=?
+root@ovs1:~# 
+root@ovs1:~# ovs-ofctl dump-ports br-phy dpdk0
+OFPST_PORT reply (xid=0x4): 1 ports
+  port  dpdk0: rx pkts=1088174, bytes=1235080612, drop=0, errs=0, frame=?, over=?, crc=?
+           tx pkts=381556, bytes=25201606, drop=0, errs=0, coll=?
+
+###### 有数据呀，说明从dpdk走呀，why?
+
+# 1
+docker run --name ng1-1 --net=none  -p 5001:5001 --privileged=true -d nginx:alpine1
+ovs-docker add-port br-phy eth0 ng1-1
+docker exec -it ng1-1 ip addr add 1.1.1.11/24 dev eth0
+
+# 2
+docker run --name ng2-1 --net=none  -p 5001:5001 --privileged=true -d nginx:alpine1
+ovs-docker add-port br-phy eth0 ng2-1
+docker exec -it ng2-1 ip addr add 1.1.1.12/24 dev eth0
+# ovs-docker del-port br0 eth0 ng2-1
+
+可以ping通，但iperf不通
+
+
+ovs-vsctl add-br br-int -- set Bridge br-int datapath_type=netdev -- br-set-external-id br-int bridge-id br-int -- set bridge br-int fail-mode=standalone
+# 1
+ovs-vsctl add-port br-int vxlan0 -- set interface vxlan0 type=vxlan options:remote_ip=1.1.1.2
+# 2
+ovs-vsctl add-port br-int vxlan0 -- set interface vxlan0 type=vxlan options:remote_ip=1.1.1.1
+
+# 1
+docker run --name ng1-3 --net=none  -p 5001:5001 --privileged=true -d nginx:alpine1
+ovs-docker add-port br-int eth0 ng1-3
+docker exec -it ng1-3 ip addr add 3.3.3.31/24 dev eth0
+
+# 2
+docker run --name ng2-3 --net=none --privileged=true -d nginx:alpine1
+ovs-docker add-port br-int eth0 ng2-3
+docker exec -it ng2-3 ip addr add 3.3.3.32/24 dev eth0
+
+可以ping通，但iperf不通
+
+
+ovs-vsctl add-br br1
+ovs-vsctl add-port br1 ens5
+
+# 1
+ip l s ens5 up
+ifconfig br1 2.2.2.1/24 up
+
+# 2
+ip l s ens5 up
+ifconfig br1 2.2.2.2/24 up
+
+# 1
+docker run --name ng1-2 --net=none --privileged=true -d nginx:alpine1
+ovs-docker add-port br1 eth0 ng1-2
+docker exec -it ng1-2 ip addr add 2.2.2.11/24 dev eth0
+
+# 2
+docker run --name ng2-2 --net=none --privileged=true -d nginx:alpine1
+ovs-docker add-port br1 eth0 ng2-2
+docker exec -it ng2-2 ip addr add 2.2.2.12/24 dev eth0
+
+可以ping通，iperf通，2G左右！
+
+
+
+
+cat &lt;&lt; EOF &gt; Dockerfile 
+FROM nginx:alpine
+RUN sed -i &#39;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#39; /etc/apk/repositories; \\
+    apk add --no-cache bash iperf tcpdump; \\
+    rm -rf /var/cache/apk/*;
+EOF
+
+docker build -t nginx:alpine1 .
+
+
+
++--------------+
+|     vm0      | 3.3.3.31/24
++--------------+
+   (vm_port0)
+       |
+       |
+       |
++--------------+
+|    br-int    |                                       3.3.3.32/24
++--------------+                                   +--------------+
+|    vxlan0    |                                   |    vxlan0    |
++--------------+                                   +--------------+
+       |                                                  |
+       |                                                  |
+       |                                                  |
+    1.1.1.1/24                                            |
++--------------+                                          |
+|    br-phy    |                                       1.1.1.2/24
++--------------+                                  +---------------+
+|  dpdk0/eth1  |----------------------------------|      eth1     |
++--------------+                                  +---------------+
+Host A with OVS.                                     Remote host.
+
+
+https://docs.openvswitch.org/en/latest/howto/userspace-tunneling/
+https://github.com/bytedance/ovs-dpdk/blob/open-source/Documentation/howto/userspace-tunneling.rst
+https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/open-vswitch-with-dpdk-on-arm-setup-for-phy-phy-test
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675494289" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675494289" defer></script>
+    <script src="../../js/theme.js?1675494289" defer></script>
+  </body>
+</html>

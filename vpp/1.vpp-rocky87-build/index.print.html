@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>0. vpp-rocky87-build :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/1.vpp-rocky87-build/index.html" rel="canonical" type="text/html" title="0. vpp-rocky87-build :: amwork2010 blog">
+    <link href="../../vpp/1.vpp-rocky87-build/index.xml" rel="alternate" type="application/rss+xml" title="0. vpp-rocky87-build :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675494289" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675494289" rel="stylesheet">
+    <link href="../../css/fonts.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675494289" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675494289" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675494289" rel="stylesheet">
+    <link href="../../css/variant.css?1675494289" rel="stylesheet">
+    <link href="../../css/print.css?1675494289" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675494289" rel="stylesheet">
+    <script src="../../js/url.js?1675494289"></script>
+    <script src="../../js/variant.js?1675494289"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675494289" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/1.vpp-rocky87-build/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">amwork2010 blog</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPPs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">0. vpp-rocky87-build</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="0-vpp-rocky87-build">0. vpp-rocky87-build</h1>
+
+<p>date: 2023-02-04 <br>
+<a href="https://wiki.fd.io/view/VPP/Progressive_VPP_Tutorial" target="_blank">https://wiki.fd.io/view/VPP/Progressive_VPP_Tutorial</a>         <br>
+<a href="https://s3-docs.fd.io/vpp/22.10/" target="_blank">https://s3-docs.fd.io/vpp/22.10/</a></p>
+<p>Rocky Linux 8.7</p>
+<pre tabindex="0"><code>vi /etc/default/grub 
+GRUB_CMDLINE_LINUX=&#34;..... default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&#34;
+
+grub2-mkconfig -o /boot/grub2/grub.cfg
+reboot
+
+cp /etc/os-release /etc/os-release.bak
+vi /etc/os-release
+ID=&#34;rocky&#34; --&gt; centos
+VERSION_ID=&#34;8.7&#34; --&gt; VERSION_ID=&#34;8&#34;
+</code></pre><p>
+<a href="#image-c21e33e81b63f90d19ea79d89e1742c6">
+<img src="../../img/vpp/1675493926849.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-c21e33e81b63f90d19ea79d89e1742c6">
+<img src="../../img/vpp/1675493926849.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>yum -y groupinstall &#34;Development Tools&#34;
+yum -y install git
+
+export https_proxy=http://10.1.1.12:8118
+export http_proxy=http://10.1.1.12:8118
+git clone https://github.com/FDio/vpp.git
+cd vpp
+git branch -a
+git checkout -b 2210 origin/stable/2210
+git branch -a
+
+make install-dep
+make install-ext-dep
+make pkg-rpm
+
+#make build
+#make build-release
+
+cd /root
+mkdir -p rpm
+cd rpm/
+mv /root/vpp/build/external/vpp-ext-deps-22.10-9.x86_64.rpm ./
+mv /root/vpp/build-root/vpp-*rpm ./
+
+[root@rocky87 rpm]# ll
+total 201588
+-rw-r--r-- 1 root root   255504 Jan 27 08:39 vpp-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root    31608 Jan 27 08:39 vpp-api-lua-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root    71388 Jan 27 08:39 vpp-api-python3-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root  1212796 Jan 27 08:39 vpp-debuginfo-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root  5591264 Jan 27 08:39 vpp-debugsource-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root  1886688 Jan 27 08:39 vpp-devel-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root 84047680 Jan 27 08:03 vpp-ext-deps-22.10-9.x86_64.rpm
+-rw-r--r-- 1 root root  6461424 Jan 27 08:39 vpp-lib-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root 50819564 Jan 27 08:39 vpp-lib-debuginfo-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root 11108604 Jan 27 08:39 vpp-plugins-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root 44888316 Jan 27 08:40 vpp-plugins-debuginfo-22.10.0-3~gb89dcf824.x86_64.rpm
+-rw-r--r-- 1 root root    18520 Jan 27 08:39 vpp-selinux-policy-22.10.0-3~gb89dcf824.x86_64.rpm
+
+yum install *.rpm
+# 报错，conflicts with files，有冲突
+yum install *.rpm --downloadonly
+# 先把需要的依赖包安装
+cd /var/cache/dnf/.....
+yum install ....
+# 用rpm强制安装
+cd /root/rpm
+rpm -ivh --force *.rpm
+
+systemctl status vpp
+
+vi /lib/systemd/system/vpp.service
+ExecStartPre=-/sbin/modprobe vfio-pci
+
+vi /etc/vpp/startup.conf
+dpdk {
+	uio-driver vfio-pci
+	dev 0000:13:00.0
+	dev 0000:1b:00.0
+}
+plugins {
+	path /usr/lib/vpp_plugins
+}
+
+systemctl daemon-reload &amp;&amp; systemctl restart vpp &amp;&amp; systemctl status vpp
+/opt/vpp/external/x86_64/bin/dpdk-devbind.py -s
+
+vppctl show ver
+vppctl show int
+vppctl show plugins
+
+export PATH=$PATH:/opt/vpp/external/x86_64/bin/
+</code></pre><p>vmware:</p>
+<pre tabindex="0"><code>### vmware
+modprobe vfio-pci
+ip l s ens224 down
+ip l s ens256 down
+dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.0
+
+vi /lib/systemd/system/vpp.service
+ExecStartPre=-/usr/sbin/ip l s ens224 down
+ExecStartPre=-/usr/sbin/ip l s ens256 down
+ExecStartPre=-/sbin/modprobe vfio-pci
+
+## 查看网卡信息
+/opt/vpp/external/x86_64/bin/dpdk-devbind.py -s
+
+vi /etc/vpp/startup.conf
+dpdk {
+	uio-driver vfio-pci
+	dev 0000:13:00.0
+	dev 0000:1b:00.0
+}
+
+plugins {
+	path /usr/lib/vpp_plugins
+}
+
+systemctl daemon-reload &amp;&amp; systemctl restart vpp &amp;&amp; systemctl status vpp
+/opt/vpp/external/x86_64/bin/dpdk-devbind.py -s
+</code></pre><p>qemu:</p>
+<pre tabindex="0"><code>### qemu
+### 以下可以不用做 BEGIN
+echo &#34;vfio-pci&#34; &gt; /etc/modules-load.d/95-vpp.conf
+
+cat &lt;&lt; EOF &gt;&gt; /etc/rc.local
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+EOF
+
+chmod +x /etc/rc.local
+### 可以不用做 END
+
+vi /lib/systemd/system/vpp.service
+After=syslog.target network.target auditd.service NetworkManager-wait-online.service
+
+ExecStartPre=-/usr/sbin/ip l s eth1 down
+ExecStartPre=-/usr/sbin/ip l s eth2 down
+ExecStartPre=-/sbin/modprobe vfio-pci
+ExecStartPre=-/bin/bash -c &#39;echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode &amp;&amp; sleep 2&#39;
+
+## 查看网卡信息
+export PATH=$PATH:/opt/vpp/external/x86_64/bin/
+/opt/vpp/external/x86_64/bin/dpdk-devbind.py -s
+
+vi /etc/vpp/startup.conf
+dpdk {
+	uio-driver vfio-pci
+	dev 0000:00:04.0
+	dev 0000:00:05.0
+}
+
+plugins {
+	path /usr/lib/vpp_plugins
+}
+
+systemctl daemon-reload &amp;&amp; systemctl restart vpp &amp;&amp; systemctl status vpp
+/opt/vpp/external/x86_64/bin/dpdk-devbind.py -s
+
+vppctl show ver
+vppctl show int
+vppctl show plugins
+
+top -H
+# CPU0 100%
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675494289" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675494289" defer></script>
+    <script src="../../js/theme.js?1675494289" defer></script>
+  </body>
+</html>

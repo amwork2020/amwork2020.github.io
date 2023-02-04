@@ -34,5 +34,13 @@ root@junnan-gpu:/u01/vms/j1210# more vm.xml &amp;lt;domain type=&amp;#39;kvm&amp
       <description>date: 2023-02-04 192.168.68.56、 192.168.68.57
 apt install -y openvswitch-switch-dpdk update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk ovs-vswitchd --version systemctl restart openvswitch-switch.service root@dpdk56:~# ovs-vswitchd --version ovs-vswitchd (Open vSwitch) 2.17.3 DPDK 21.11.2 root@dpdk56:~# dpdk-devbind.py -s Network devices using kernel driver =================================== 0000:0b:00.0 &amp;#39;VMXNET3 Ethernet Controller 07b0&amp;#39; if=ens192 drv=vmxnet3 unused=vfio-pci *Active* 0000:13:00.0 &amp;#39;VMXNET3 Ethernet Controller 07b0&amp;#39; if=ens224 drv=vmxnet3 unused=vfio-pci 0000:1b:00.0 &amp;#39;VMXNET3 Ethernet Controller 07b0&amp;#39; if=ens256 drv=vmxnet3 unused=vfio-pci dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.0 root@dpdk56:~# dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.</description>
     </item>
+    <item>
+      <title>4. ovs-dpdk qemu</title>
+      <link>https://example.com/dpdk/4.ovs-dpdk.qemu/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/dpdk/4.ovs-dpdk.qemu/index.html</guid>
+      <description>date: 2023-02-04 HOST: 10.1.1.12 VM : ovs1:10.1.5.131 ovs2:10.1.5.132
+# ovs1:10.1.5.131 ovs2:10.1.5.132 apt update apt -y full-upgrade ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime [ -f /var/run/reboot-required ] &amp;amp;&amp;amp; reboot -f ######### 1. 启用rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/rc.local #!/bin/bash echo 1 &amp;gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode EOF chmod +x /etc/rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /lib/systemd/system/rc-local.service [Install] WantedBy=multi-user.target EOF cat /lib/systemd/system/rc-local.service # 启用服务 systemctl enable rc-local systemctl start rc-local systemctl status rc-local # 查看是否成功 cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode echo &amp;#34;vfio-pci&amp;#34; &amp;gt; /etc/modules-load.</description>
+    </item>
   </channel>
 </rss>

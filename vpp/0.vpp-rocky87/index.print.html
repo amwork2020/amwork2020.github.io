@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>0. vpp-rocky87 :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/0.vpp-rocky87/index.html" rel="canonical" type="text/html" title="0. vpp-rocky87 :: amwork2010 blog">
+    <link href="../../vpp/0.vpp-rocky87/index.xml" rel="alternate" type="application/rss+xml" title="0. vpp-rocky87 :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675494289" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675494289" rel="stylesheet">
+    <link href="../../css/fonts.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675494289" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675494289" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675494289" rel="stylesheet">
+    <link href="../../css/variant.css?1675494289" rel="stylesheet">
+    <link href="../../css/print.css?1675494289" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675494289" rel="stylesheet">
+    <script src="../../js/url.js?1675494289"></script>
+    <script src="../../js/variant.js?1675494289"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675494289" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/0.vpp-rocky87/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">amwork2010 blog</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPPs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">0. vpp-rocky87</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="0-vpp-rocky87">0. vpp-rocky87</h1>
+
+<p>date: 2023-02-04 <br>
+<a href="https://wiki.fd.io/view/VPP/Progressive_VPP_Tutorial" target="_blank">https://wiki.fd.io/view/VPP/Progressive_VPP_Tutorial</a>         <br>
+<a href="https://s3-docs.fd.io/vpp/22.10/" target="_blank">https://s3-docs.fd.io/vpp/22.10/</a></p>
+<p>Rocky Linux 8.7</p>
+<pre tabindex="0"><code># rocky87
+vi /etc/default/grub 
+GRUB_CMDLINE_LINUX=&#34;........... default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&#34;
+grub2-mkconfig -o /boot/grub2/grub.cfg
+reboot
+[root@rocky87 ~]# lshw -c network -businfo
+Bus info          Device          Class      Description
+========================================================
+pci@0000:04:00.0  ens161          network    VMXNET3 Ethernet Controller
+pci@0000:0b:00.0  ens192          network    VMXNET3 Ethernet Controller
+pci@0000:13:00.0  ens224          network    VMXNET3 Ethernet Controller
+pci@0000:1b:00.0  ens256          network    VMXNET3 Ethernet Controller
+
+yum install -y driverctl
+driverctl list-devices | grep -i vmxnet3
+[root@rocky87 ~]# driverctl list-devices | grep -i vmxnet3
+0000:04:00.0 vmxnet3
+0000:0b:00.0 vmxnet3
+0000:13:00.0 vmxnet3
+0000:1b:00.0 vmxnet3
+
+yum install -y epel-release
+sed -e &#39;s|^metalink=|#metalink=|g&#39; \
+         -e &#39;s|^#baseurl=https\?://download.fedoraproject.org/pub/epel/|baseurl=https://mirrors.ustc.edu.cn/epel/|g&#39; \
+         -e &#39;s|^#baseurl=https\?://download.example/pub/epel/|baseurl=https://mirrors.ustc.edu.cn/epel/|g&#39; \
+         -i.bak \
+         /etc/yum.repos.d/epel.repo
+yum install -y mbedtls
+
+# https://packagecloud.io/fdio
+# curl -s https://packagecloud.io/install/repositories/fdio/release/script.rpm.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/fdio/2106/script.rpm.sh | sudo bash
+
+yum install -y vpp vpp-plugins vpp-devel vpp-debuginfo vpp-api-python3 vpp-api-lua vpp-ext-deps
+#yum install -y vpp vpp-plugins vpp-devel vpp-debuginfo vpp-api-python3 vpp-api-lua vpp-ext-deps ### auto install vpp-lib vpp-selinux-policy
+
+[root@rocky87 yum.repos.d]# yum install vpp vpp-plugins vpp-devel vpp-debuginfo vpp-api-python3 vpp-api-lua vpp-ext-deps
+Last metadata expiration check: 0:02:59 ago on Sun 01 Jan 2023 10:30:25 AM CST.
+Error: 
+ Problem: cannot install the best candidate for the job
+  - nothing provides libmbedcrypto.so.3()(64bit) needed by vpp-plugins-21.06-release.x86_64
+  - nothing provides libmbedtls.so.12()(64bit) needed by vpp-plugins-21.06-release.x86_64
+  - nothing provides libmbedx509.so.0()(64bit) needed by vpp-plugins-21.06-release.x86_64
+(try to add &#39;--skip-broken&#39; to skip uninstallable packages or &#39;--nobest&#39; to use not only best candidate packages)
+
+[root@rocky87 yum.repos.d]# rpm -ql mbedtls
+...
+/usr/lib64/libmbedcrypto.so.2.28.1
+/usr/lib64/libmbedcrypto.so.7
+/usr/lib64/libmbedtls.so.14
+/usr/lib64/libmbedtls.so.2.28.1
+/usr/lib64/libmbedx509.so.1
+/usr/lib64/libmbedx509.so.2.28.1
+...
+
+cd /usr/lib64/
+ln -s libmbedcrypto.so.7 libmbedcrypto.so.3
+ln -s libmbedtls.so.14 libmbedtls.so.12
+ln -s libmbedx509.so.1 libmbedx509.so.0
+
+yum install -y vpp vpp-devel vpp-debuginfo vpp-api-python3 vpp-api-lua vpp-ext-deps
+wget --content-disposition https://packagecloud.io/fdio/2106/packages/el/8/vpp-plugins-21.06.0-3~gbb25fbf28~b50.x86_64.rpm/download.rpm?distro_version_id=205
+rpm -ivh vpp-plugins-21.06.0-3~gbb25fbf28~b50.x86_64.rpm --nodeps
+
+修改配置同ubuntu
+
+ip l s ens224 down
+ip l s ens256 down
+systemctl restart vpp
+systemctl status vpp
+
+自己build 失败！make install-dep 依赖包安装不全，名字也对不上，比如：python36-ply实际能安装python3-ply，python-virtualenv 实际 python3-virtualenv
+devtoolset-9 devtoolset-9-libasan-devel 根本没有 gcc9的，安装的是gcc version 8.5.0 20210514 (Red Hat 8.5.0-15) (GCC) 
+
+# build OK, 见下篇文档
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675494289" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675494289" defer></script>
+    <script src="../../js/theme.js?1675494289" defer></script>
+  </body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>0. vpp-qemu :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/0.vpp-qemu/index.html" rel="canonical" type="text/html" title="0. vpp-qemu :: amwork2010 blog">
+    <link href="../../vpp/0.vpp-qemu/index.xml" rel="alternate" type="application/rss+xml" title="0. vpp-qemu :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675494289" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675494289" rel="stylesheet">
+    <link href="../../css/fonts.css?1675494289" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675494289" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675494289" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675494289" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675494289" rel="stylesheet">
+    <link href="../../css/variant.css?1675494289" rel="stylesheet">
+    <link href="../../css/print.css?1675494289" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675494289" rel="stylesheet">
+    <script src="../../js/url.js?1675494289"></script>
+    <script src="../../js/variant.js?1675494289"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675494289" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/0.vpp-qemu/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">amwork2010 blog</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPPs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">0. vpp-qemu</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="0-vpp-qemu">0. vpp-qemu</h1>
+
+<p>date: 2023-02-04</p>
+<pre tabindex="0"><code># vm.xml
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+
+## HOST : 10.1.1.8
+../startVMs/startvm.sh vpp_5.151 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8
+
+######### 0.prepare
+apt update
+apt -y full-upgrade
+ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+[ -f /var/run/reboot-required ] &amp;&amp; reboot -f
+
+######### 1. 启用rc.local
+cat &lt;&lt; EOF &gt;&gt; /etc/rc.local
+#!/bin/bash
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+EOF
+
+chmod +x /etc/rc.local
+
+cat &lt;&lt; EOF &gt;&gt; /lib/systemd/system/rc-local.service
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat /lib/systemd/system/rc-local.service
+
+# 启用服务
+systemctl enable rc-local
+systemctl start rc-local
+systemctl status rc-local
+# 查看是否成功
+cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+
+echo &#34;vfio-pci&#34; &gt; /etc/modules-load.d/95-vpp.conf
+
+######### 2. hugepages 
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+vm.nr_hugepages = 2048
+EOF
+
+sysctl -p
+
+######### 3. vpp &amp;&amp; dpdk
+lshw -businfo -c network
+apt install dpdk dpdk-dev -y
+
+## https://packagecloud.io/fdio
+#curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/fdio/2210/script.deb.sh | sudo bash
+cat /etc/apt/sources.list.d/fdio_2210.list
+apt update
+apt install vpp vpp-plugin-core vpp-plugin-dpdk -y
+# systemctl enable vpp
+# systemctl disable vpp
+systemctl status vpp
+mkdir -p /var/log/vpp
+cat /etc/sysctl.d/80-vpp.conf 
+
+vi /lib/systemd/system/vpp.service
+ExecStartPre=-/sbin/modprobe vfio-pci
+ExecStartPre=-/bin/bash -c &#39;echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode &amp;&amp; sleep 2&#39;
+
+vi /etc/vpp/startup.conf
+dpdk {
+	uio-driver vfio-pci
+	dev 0000:00:04.0
+}
+
+systemctl daemon-reload &amp;&amp; systemctl restart vpp
+## CPU0 100%
+vppctl show ver
+
+vppctl
+show interface
+</code></pre><pre tabindex="0"><code>apt install docker.io -y
+docker pull ubuntu:22.04
+
+vi Dockerfile 
+FROM ubuntu:22.04
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list &amp;&amp; \
+    sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN apt-get update -y &amp;&amp; apt-get install -y tzdata &amp;&amp; \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; \
+    dpkg-reconfigure -f noninteractive tzdata
+RUN apt-get install dpdk kmod curl vim -y
+RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | bash &amp;&amp; \
+    apt-get update -y &amp;&amp; apt-get install vpp vpp-plugin-core vpp-plugin-dpdk -y
+RUN mkdir -p /var/log/vpp
+### vpp v22.10-release
+### dpdk 21.11
+
+docker build -t amwork2010/vppdpdk:22.10 .
+
+docker run --privileged \
+ -v /sys/bus/pci/devices:/sys/bus/pci/devices \
+ -v /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages \
+ -v /sys/devices/system/node:/sys/devices/system/node \
+ -v /lib/modules:/lib/modules \
+ -v /dev:/dev \
+ -it amwork2010/vppdpdk:22.10 bash
+
+docker run --privileged \
+ -v /sys/bus/pci/devices:/sys/bus/pci/devices \
+ -v /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages \
+ -v /sys/devices/system/node:/sys/devices/system/node \
+ -v /lib/modules:/lib/modules \
+ -v /dev:/dev \
+ -d amwork2010/vppdpdk:22.10 sleep infinity
+
+vi /etc/vpp/startup.conf
+dpdk {
+	uio-driver vfio-pci
+	dev 0000:00:04.0
+}
+
+vpp -c /etc/vpp/startup.conf &amp;
+
+
+#### 
+docker run --privileged \
+ -v /lib/modules:/lib/modules \
+ -d amwork2010/vppdpdk:22.10 sleep infinity
+# 也可以banding ,  kmod  ： the kmod package would provide modinfo, modprobe and other related tools.
+# root@714c8d6fc89e:/# modprobe vfio-pci
+# modprobe: FATAL: Module vfio-pci not found in directory /lib/modules/5.15.0-58-generic
+# so:  -v /lib/modules:/lib/modules
+# vpp 启动 带不到dpdk网卡，docker stop ， 再start，再 vpp -c /etc/vpp/startup.conf &amp; 才可以banding
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675494289" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675494289" defer></script>
+    <script src="../../js/theme.js?1675494289" defer></script>
+  </body>
+</html>

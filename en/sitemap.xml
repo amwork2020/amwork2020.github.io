@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.com/vpp/0.vpp-u2204/index.html</loc>
+    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/dpdk/1.vmware-dpdk/index.html</loc>
     <lastmod>2023-02-03T21:16:52+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/vpp/0.vpp-qemu/index.html</loc>
+    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
   </url>
   <url>
     <loc>https://example.com/dpdk/2.qemu-dpdk/index.html</loc>
     <lastmod>2023-02-03T22:48:42+08:00</lastmod>
   </url>
   <url>
+    <loc>https://example.com/vpp/0.vpp-rocky87/index.html</loc>
+    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/dpdk/3.ovs-dpdk.vmware/index.html</loc>
+    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/dpdk/4.ovs-dpdk.qemu/index.html</loc>
+    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/vpp/1.vpp-rocky87-build/index.html</loc>
     <lastmod>2023-02-04T13:40:36+08:00</lastmod>
   </url>
   <url>
@@ -32,6 +52,14 @@
   </url>
   <url>
     <loc>https://example.com/dpdk/index.html</loc>
+    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/categories/vpp/index.html</loc>
+    <lastmod>2023-02-04T13:40:36+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/vpp/index.html</loc>
     <lastmod>2023-02-04T13:40:36+08:00</lastmod>
   </url>
   <url>
