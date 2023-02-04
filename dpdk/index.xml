@@ -6,17 +6,33 @@
     <description>Recent content in DPDKs on amwork2010 blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Feb 2023 21:16:52 +0800</lastBuildDate><atom:link href="https://example.com/dpdk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Feb 2023 13:40:36 +0800</lastBuildDate><atom:link href="https://example.com/dpdk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. vmware-dpdk</title>
       <link>https://example.com/dpdk/1.vmware-dpdk/index.html</link>
       <pubDate>Fri, 03 Feb 2023 21:16:52 +0800</pubDate>
       <guid>https://example.com/dpdk/1.vmware-dpdk/index.html</guid>
-      <description>date: 2023-02-04
+      <description>+++ title = &amp;ldquo;My page&amp;rdquo; weight = 5 +++ date: 2023-02-04
 VMWARE 加网卡 (192.168.68.56 8c 8G)
 https://www.dpdk.org/
 http://doc.dpdk.org/guides-22.11/
-编辑对应的 jammy.vmx，修改所有e1000为vmxnet3 ，多队列网卡 ethernet0.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet0.wakeOnPcktRcv = &amp;#34;true&amp;#34; ... ethernet1.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet1.wakeOnPcktRcv = &amp;#34;true&amp;#34; ethernet2.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet2.wakeOnPcktRcv = &amp;#34;true&amp;#34; lshw -c network -businfo root@jammy:~# ip a ... 2: ens192: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq state UP group default qlen 1000 link/ether 00:0c:29:9f:04:74 brd ff:ff:ff:ff:ff:ff altname enp11s0 inet 192.168.68.56/24 brd 192.168.68.255 scope global ens192 valid_lft forever preferred_lft forever inet6 fe80::20c:29ff:fe9f:474/64 scope link valid_lft forever preferred_lft forever 3: ens224: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 00:0c:29:9f:04:7e brd ff:ff:ff:ff:ff:ff altname enp19s0 4: ens256: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 00:0c:29:9f:04:88 brd ff:ff:ff:ff:ff:ff altname enp27s0 apt install dpdk dpdk-dev -y vi /etc/default/grub GRUB_CMDLINE_LINUX=&amp;#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&amp;#34; #GRUB_CMDLINE_LINUX=&amp;#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 isolcpus=2-3 iommu=pt intel_iommu=on&amp;#34; update-grub # grub2-mkconfig -o /boot/grub2/grub.</description>
+编辑对应的 jammy.vmx，修改所有e1000为vmxnet3 ，多队列网卡 ethernet0.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet0.wakeOnPcktRcv = &amp;#34;true&amp;#34; ... ethernet1.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet1.wakeOnPcktRcv = &amp;#34;true&amp;#34; ethernet2.virtualDev = &amp;#34;vmxnet3&amp;#34; ethernet2.wakeOnPcktRcv = &amp;#34;true&amp;#34; lshw -c network -businfo root@jammy:~# ip a ... 2: ens192: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq state UP group default qlen 1000 link/ether 00:0c:29:9f:04:74 brd ff:ff:ff:ff:ff:ff altname enp11s0 inet 192.168.68.56/24 brd 192.</description>
+    </item>
+    <item>
+      <title>2. qemu-dpdk</title>
+      <link>https://example.com/dpdk/2.qemu-dpdk/index.html</link>
+      <pubDate>Fri, 03 Feb 2023 22:48:42 +0800</pubDate>
+      <guid>https://example.com/dpdk/2.qemu-dpdk/index.html</guid>
+      <description>+++ title = &amp;ldquo;My page&amp;rdquo; weight = 3 +++ date: 2023-02-04 HOST: 10.1.1.12, guest: j1210 10.1.5.110
+root@junnan-gpu:/u01/vms/j1210# more vm.xml &amp;lt;domain type=&amp;#39;kvm&amp;#39;&amp;gt; &amp;lt;name&amp;gt;j1210&amp;lt;/name&amp;gt; &amp;lt;vcpu current=&amp;#39;8&amp;#39;&amp;gt;24&amp;lt;/vcpu&amp;gt; &amp;lt;memory&amp;gt;8388608&amp;lt;/memory&amp;gt; &amp;lt;os&amp;gt; &amp;lt;type arch=&amp;#39;x86_64&amp;#39; machine=&amp;#39;pc&amp;#39;&amp;gt;hvm&amp;lt;/type&amp;gt; &amp;lt;bootmenu enable=&amp;#39;yes&amp;#39;/&amp;gt; &amp;lt;/os&amp;gt; &amp;lt;features&amp;gt; &amp;lt;acpi/&amp;gt; &amp;lt;apic/&amp;gt; &amp;lt;pae/&amp;gt; &amp;lt;/features&amp;gt; &amp;lt;cpu mode=&amp;#34;host-passthrough&amp;#34; check=&amp;#34;none&amp;#34; migratable=&amp;#34;on&amp;#34;/&amp;gt; &amp;lt;clock offset=&amp;#39;utc&amp;#39;/&amp;gt; &amp;lt;on_poweroff&amp;gt;destroy&amp;lt;/on_poweroff&amp;gt; &amp;lt;on_reboot&amp;gt;restart&amp;lt;/on_reboot&amp;gt; &amp;lt;on_crash&amp;gt;destroy&amp;lt;/on_crash&amp;gt; &amp;lt;devices&amp;gt; &amp;lt;emulator&amp;gt;/usr/bin/kvm&amp;lt;/emulator&amp;gt; &amp;lt;disk type=&amp;#39;file&amp;#39; device=&amp;#39;disk&amp;#39;&amp;gt; &amp;lt;driver name=&amp;#39;qemu&amp;#39; type=&amp;#39;qcow2&amp;#39;/&amp;gt; &amp;lt;source file=&amp;#39;/u01/vms/j1210/disk&amp;#39;/&amp;gt; &amp;lt;target dev=&amp;#39;vda&amp;#39; bus=&amp;#39;virtio&amp;#39;/&amp;gt; &amp;lt;boot order=&amp;#39;1&amp;#39;/&amp;gt; &amp;lt;/disk&amp;gt; &amp;lt;interface type=&amp;#39;bridge&amp;#39;&amp;gt; &amp;lt;source bridge=&amp;#39;br0&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;virtio&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; &amp;lt;interface type=&amp;#39;network&amp;#39;&amp;gt; &amp;lt;source network=&amp;#39;default&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;e1000&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; &amp;lt;interface type=&amp;#39;network&amp;#39;&amp;gt; &amp;lt;source network=&amp;#39;default&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;e1000&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; &amp;lt;serial type=&amp;#39;pty&amp;#39;&amp;gt; &amp;lt;target port=&amp;#39;0&amp;#39;/&amp;gt; &amp;lt;/serial&amp;gt; &amp;lt;console type=&amp;#39;pty&amp;#39;&amp;gt; &amp;lt;target type=&amp;#39;serial&amp;#39; port=&amp;#39;0&amp;#39;/&amp;gt; &amp;lt;/console&amp;gt; &amp;lt;graphics type=&amp;#39;vnc&amp;#39; port=&amp;#39;-1&amp;#39; autoport=&amp;#39;yes&amp;#39; listen=&amp;#39;0.</description>
+    </item>
+    <item>
+      <title>3. ovs-dpdk vmware</title>
+      <link>https://example.com/dpdk/3.ovs-dpdk.vmware/index.html</link>
+      <pubDate>Sat, 04 Feb 2023 13:40:36 +0800</pubDate>
+      <guid>https://example.com/dpdk/3.ovs-dpdk.vmware/index.html</guid>
+      <description>date: 2023-02-04 192.168.68.56、 192.168.68.57
+apt install -y openvswitch-switch-dpdk update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk ovs-vswitchd --version systemctl restart openvswitch-switch.service root@dpdk56:~# ovs-vswitchd --version ovs-vswitchd (Open vSwitch) 2.17.3 DPDK 21.11.2 root@dpdk56:~# dpdk-devbind.py -s Network devices using kernel driver =================================== 0000:0b:00.0 &amp;#39;VMXNET3 Ethernet Controller 07b0&amp;#39; if=ens192 drv=vmxnet3 unused=vfio-pci *Active* 0000:13:00.0 &amp;#39;VMXNET3 Ethernet Controller 07b0&amp;#39; if=ens224 drv=vmxnet3 unused=vfio-pci 0000:1b:00.0 &amp;#39;VMXNET3 Ethernet Controller 07b0&amp;#39; if=ens256 drv=vmxnet3 unused=vfio-pci dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.0 root@dpdk56:~# dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.</description>
     </item>
   </channel>
 </rss>

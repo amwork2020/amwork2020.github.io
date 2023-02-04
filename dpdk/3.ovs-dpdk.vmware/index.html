@@ -7,9 +7,9 @@
     <meta name="generator" content="Relearn 5.10.2+tip">
     <meta name="description" content="Documentation for Hugo Relearn Theme">
     <meta name="author" content="amwork2010">
-    <title>1. vmware-dpdk :: amwork2010 blog</title>
-    <link href="../../dpdk/1.vmware-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="1. vmware-dpdk :: amwork2010 blog">
-    <link href="../../dpdk/1.vmware-dpdk/index.print.html" rel="alternate" type="text/html" title="1. vmware-dpdk :: amwork2010 blog">
+    <title>3. ovs-dpdk vmware :: amwork2010 blog</title>
+    <link href="../../dpdk/3.ovs-dpdk.vmware/index.xml" rel="alternate" type="application/rss+xml" title="3. ovs-dpdk vmware :: amwork2010 blog">
+    <link href="../../dpdk/3.ovs-dpdk.vmware/index.print.html" rel="alternate" type="text/html" title="3. ovs-dpdk vmware :: amwork2010 blog">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
     <link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet"></noscript>
     <link href="../../css/auto-complete.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675489744" rel="stylesheet"></noscript>
@@ -42,25 +42,25 @@
     </script>
     <script src="../../js/jquery.min.js?1675489744" defer></script>
   </head>
-  <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../dpdk/1.vmware-dpdk/index.html">
+  <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../dpdk/3.ovs-dpdk.vmware/index.html">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
       <nav id="topbar" class="highlightable" dir="ltr">
         <div>
           <div class="navigation">
-            <a class="nav nav-next" href="../../dpdk/2.qemu-dpdk/index.html" title="2. qemu-dpdk (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+            <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
           </div>
           <div class="navigation">
-            <a class="nav nav-prev" href="../../dpdk/index.html" title="DPDKs (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            <a class="nav nav-prev" href="../../dpdk/2.qemu-dpdk/index.html" title="2. qemu-dpdk (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
           </div>
           <div id="top-print-link">
-            <a class="print-link" title='Print whole chapter (CTRL+ALT+p)' href="../../dpdk/1.vmware-dpdk/index.print.html">
+            <a class="print-link" title='Print whole chapter (CTRL+ALT+p)' href="../../dpdk/3.ovs-dpdk.vmware/index.print.html">
               <i class="fas fa-print fa-fw"></i>
             </a>
           </div>
           <div id="top-github-link">
-            <a class="github-link" title='Edit (CTRL+ALT+w)' href="https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/DPDK/1.vmware-dpdk.md" target="_blank">
+            <a class="github-link" title='Edit (CTRL+ALT+w)' href="https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/DPDK/3.ovs-dpdk.vmware.md" target="_blank">
               <i class="fas fa-pen fa-fw"></i>
             </a>
           </div>
@@ -71,7 +71,7 @@
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">amwork2010 blog</span></a><meta itemprop="position" content="1"> > </li>
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">1. vmware-dpdk</span><meta itemprop="position" content="3"></li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">3. ovs-dpdk vmware</span><meta itemprop="position" content="3"></li>
             </ol>
           </div>
         </div>
@@ -81,77 +81,19 @@
           <div id="head-tags">
           </div>
           <article class="default">
-<h1 id="1-vmware-dpdk">1. vmware-dpdk</h1>
+<h1 id="3-ovs-dpdk-vmware">3. ovs-dpdk vmware</h1>
 
-<p>+++
-title = &ldquo;My page&rdquo;
-weight = 5
-+++
-date: 2023-02-04</p>
-<p>VMWARE 加网卡     (192.168.68.56 8c 8G)<br>
+<p>date: 2023-02-04 <br>
+192.168.68.56、 192.168.68.57</p>
+<pre tabindex="0"><code>apt install -y openvswitch-switch-dpdk 
+update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk
+ovs-vswitchd --version
+systemctl restart openvswitch-switch.service
+</code></pre><pre tabindex="0"><code>root@dpdk56:~# ovs-vswitchd --version
+ovs-vswitchd (Open vSwitch) 2.17.3
+DPDK 21.11.2
 
-<a href="#image-9edd328f699c5ae3fcbe8f47d34f86da">
-<img src="../../img/dpdk/1675428633881.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-9edd328f699c5ae3fcbe8f47d34f86da">
-<img src="../../img/dpdk/1675428633881.png" alt=""loading="lazy">
-</a></p>
-<p><a href="https://www.dpdk.org/" target="_blank">https://www.dpdk.org/</a><br>
-<a href="http://doc.dpdk.org/guides-22.11/" target="_blank">http://doc.dpdk.org/guides-22.11/</a></p>
-<pre tabindex="0"><code>编辑对应的 jammy.vmx，修改所有e1000为vmxnet3 ，多队列网卡
-ethernet0.virtualDev = &#34;vmxnet3&#34;
-ethernet0.wakeOnPcktRcv = &#34;true&#34;
-...
-ethernet1.virtualDev = &#34;vmxnet3&#34;
-ethernet1.wakeOnPcktRcv = &#34;true&#34;
-ethernet2.virtualDev = &#34;vmxnet3&#34;
-ethernet2.wakeOnPcktRcv = &#34;true&#34;
-</code></pre><pre tabindex="0"><code>lshw -c network -businfo
-root@jammy:~# ip a
-...
-2: ens192: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:0c:29:9f:04:74 brd ff:ff:ff:ff:ff:ff
-    altname enp11s0
-    inet 192.168.68.56/24 brd 192.168.68.255 scope global ens192
-       valid_lft forever preferred_lft forever
-    inet6 fe80::20c:29ff:fe9f:474/64 scope link 
-       valid_lft forever preferred_lft forever
-3: ens224: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:0c:29:9f:04:7e brd ff:ff:ff:ff:ff:ff
-    altname enp19s0
-4: ens256: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:0c:29:9f:04:88 brd ff:ff:ff:ff:ff:ff
-    altname enp27s0
-</code></pre><pre tabindex="0"><code>apt install dpdk dpdk-dev -y
-vi /etc/default/grub 
-GRUB_CMDLINE_LINUX=&#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&#34;
-#GRUB_CMDLINE_LINUX=&#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 isolcpus=2-3 iommu=pt intel_iommu=on&#34;
-update-grub
-# grub2-mkconfig -o /boot/grub2/grub.cfg
-reboot
-
-## dmesg | grep -e DMAR -e IOMMU
-cat /proc/cmdline | grep -e iommu=pt -e intel_iommu=on -e huge
-dmesg| grep -i iommu
-cat /proc/meminfo | grep Huge
-lscpu | grep NUMA
-dpdk-hugepages.py -s
-dpdk-devbind.py -s
-
-lshw -businfo -c network
-root@dpdk56:~# lshw -businfo -c network
-Bus info          Device      Class      Description
-====================================================
-pci@0000:0b:00.0  ens192      network    VMXNET3 Ethernet Controller
-pci@0000:13:00.0  ens224      network    VMXNET3 Ethernet Controller
-pci@0000:1b:00.0  ens256      network    VMXNET3 Ethernet Controller
-
-dmesg| grep -i iommu | grep -e 0000:0b:00.0 -e 0000:13:00.0 -e 0000:1b:00.0
-root@dpdk56:~# dmesg| grep -i iommu | grep -e 0000:0b:00.0 -e 0000:13:00.0 -e 0000:1b:00.0
-[    2.723136] pci 0000:0b:00.0: Adding to iommu group 6
-[    2.723277] pci 0000:13:00.0: Adding to iommu group 7
-[    2.723432] pci 0000:1b:00.0: Adding to iommu group 8
-</code></pre><pre tabindex="0"><code>root@jammy:~ # dpdk-devbind.py -s
+root@dpdk56:~# dpdk-devbind.py -s
 Network devices using kernel driver
 ===================================
 0000:0b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens192 drv=vmxnet3 unused=vfio-pci *Active*
@@ -159,169 +101,97 @@ Network devices using kernel driver
 0000:1b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens256 drv=vmxnet3 unused=vfio-pci 
 
 dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.0
-# dpdk-devbind.py -b vfio-pci 0000:13:00.0
-# dpdk-devbind.py -b vfio-pci 0000:1b:00.0
 
-dpdk-devbind.py -s
+root@dpdk56:~# dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.0
+root@dpdk56:~# dpdk-devbind.py -s
 Network devices using DPDK-compatible driver
 ============================================
 0000:13:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
 0000:1b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
 
-Network devices using kernel driver
-===================================
-0000:0b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens192 drv=vmxnet3 unused=vfio-pci *Active*
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=&#34;1024,0&#34; ### 只有一个numa node0
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x2      ### 0b0010 --&gt; Cpu1
+ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x4                   ### 0b0100 --&gt; Cpu2
 
-dpdk-hugepages.py -s
-root@jammy:~ # dpdk-hugepages.py -s
-Node Pages Size Total
-0    4     1Gb    4Gb
-Hugepages mounted on /dev/hugepages
-</code></pre><pre tabindex="0"><code>### build pkten
-export https_proxy=http://10.1.1.12:8118
-wget https://github.com/pktgen/Pktgen-DPDK/archive/refs/tags/pktgen-22.07.1.tar.gz
-tar zxvf pktgen-22.07.1.tar.gz 
-cd Pktgen-DPDK-pktgen-22.07.1
-meson build
-cd build
-ninja
-编译完毕后的pkten在[Pktgen dir]/build/app/pktgen
-</code></pre><pre tabindex="0"><code>## 源码BUILD dpdk
-apt install -y build-essential
-## pip3 install meson ninja
-apt install meson python3-pyelftools pkg-config libnuma-dev
-export http_proxy=http://10.1.1.12:8118
-wget http://fast.dpdk.org/rel/dpdk-22.11.1.tar.xz
-tar Jxvf dpdk-22.11.1.tar.xz
-cd dpdk-stable-22.11.1
-meson setup -Dexamples=all build
-cd build
-ninja
-# ninja install  ### 因为 apt install dpdk dpdk-dev -y
-</code></pre><pre tabindex="0"><code>./pktgen -l 1-3 -n 2 -- -T -P -m &#34;2.0,3.1&#34;
--l: 使用CPU Cores 1、2、3
--n: 内存通道
---：此符号前是DPDK的配置参数，此符号后是DPDK Application的配置参数，此处即是Pktgen的参数
--T: 启用彩色文本输出
--P: Enable PROMISCUOUS mode on all ports
--m string: 重点！指定cpu core与NIC的绑定关系，格式参照下图：
+ovs-vsctl get Open_vSwitch . dpdk_initialized
+ovs-vsctl get Open_vSwitch . dpdk_version
+
+# dpdk-init
+    指定 OVS 是否应该初始化并支持 DPDK 端口。该字段可以是true或try。值true将导致 ovs-vswitchd 进程在初始化失败时中止。值try表示即使 EAL 初始化失败，ovs-vswitchd 进程也应该继续运行。
+# dpdk-lcore-mask
+    指定应该生成 dpdk lcore 线程的 CPU 核心，并需要十六进制字符串（例如“0x123”）。
+# dpdk-socket-mem
+    逗号分隔的内存列表，用于从特定套接字上的大页面中预分配。如果未指定，则默认情况下不会设置此选项。将使用 DPDK 默认值。
+# dpdk-hugepage-dir
+    hugetlbfs挂载目录
+# vhost-sock-dir
+    设置虚拟主机用户 unix 套接字文件路径的选项。
+
+root@dpdk56:~# ovs-vsctl list open_vswitch
+_uuid               : 6b97fe90-77a5-4a61-a8b6-0b74ed9f803d
+bridges             : [db9afd87-ad4d-4d1a-842a-3e2eb21abf9e]
+cur_cfg             : 12
+datapath_types      : [netdev, system]
+datapaths           : {}
+db_version          : &#34;8.3.0&#34;
+dpdk_initialized    : true
+dpdk_version        : &#34;DPDK 21.11.2&#34;
+external_ids        : {hostname=dpdk56, rundir=&#34;/var/run/openvswitch&#34;, system-id=&#34;921fb59b-cbab-4609-929b-875d5dedb844&#34;}
+iface_types         : [bareudp, dpdk, dpdkvhostuser, dpdkvhostuserclient, erspan, geneve, gre, gtpu, internal, ip6erspan, ip6gre, lisp, patch, stt, system, tap, vxlan]
+manager_options     : []
+next_cfg            : 12
+other_config        : {dpdk-init=&#34;true&#34;, dpdk-lcore-mask=&#34;0x2&#34;, dpdk-socket-mem=&#34;1024,0&#34;, pmd-cpu-mask=&#34;0x4&#34;}
+ovs_version         : &#34;2.17.3&#34;
+ssl                 : []
+statistics          : {}
+system_type         : ubuntu
+system_version      : &#34;22.04&#34;
+
+ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
+ovs-vsctl add-port br0 dpdk-p0 -- set Interface dpdk-p0 type=dpdk options:dpdk-devargs=0000:13:00.0
+ovs-vsctl add-port br0 dpdk-p1 -- set Interface dpdk-p1 type=dpdk options:dpdk-devargs=0000:1b:00.0
+
+root@dpdk56:~# ovs-vsctl show
+6b97fe90-77a5-4a61-a8b6-0b74ed9f803d
+    Bridge br0
+        datapath_type: netdev
+        Port dpdk-p1
+            Interface dpdk-p1
+                type: dpdk
+                options: {dpdk-devargs=&#34;0000:1b:00.0&#34;}
+        Port dpdk-p0
+            Interface dpdk-p0
+                type: dpdk
+                options: {dpdk-devargs=&#34;0000:13:00.0&#34;}
+        Port br0
+            Interface br0
+                type: internal
+    ovs_version: &#34;2.17.3&#34;
+
+借助 pmd 多线程支持，OVS 默认为每个 NUMA 节点创建一个 pmd 线程，前提是该 NUMA 节点至少有一个 DPDK 接口添加到 OVS。
+但是，在有多个端口/rxq 产生流量的情况下，可以通过创建在不同内核上运行的多个 pmd 线程来提高性能。
+这些 pmd 线程可以通过各自负责不同的端口/rxq 来分担工作量。将端口/rxq 分配给 pmd 线程是自动完成的。
+掩码中的设置位意味着创建了一个 pmd 线程并将其固定到相应的 CPU 内核。例如，要在核心 1 和 2 上运行 pmd 线程：0x110 = 0x6
+
+ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x6
+</code></pre><pre tabindex="0"><code>在 DPDK 端口添加到交换机后，轮询线程不断轮询 DPDK 设备并消耗 100% 的核心，可以从top和 ps命令中检查：
+$ top -H
+$ ps -eLo pid,psr,comm | grep pmd
 </code></pre><p>
-<a href="#image-b590b2c966df77f6fcd52a0caae88f67">
-<img src="../../img/dpdk/1675429011552.png" alt="" style="height: auto; width: auto;" loading="lazy">
+<a href="#image-d3b4ba87258473d4a742d8a87bc0609d">
+<img src="../../img/dpdk/1675489371087.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b590b2c966df77f6fcd52a0caae88f67">
-<img src="../../img/dpdk/1675429011552.png" alt=""loading="lazy">
-</a>
-
-<a href="#image-b276d46f6782522d84531c0d018005c6">
-<img src="../../img/dpdk/1675485816992.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-b276d46f6782522d84531c0d018005c6">
-<img src="../../img/dpdk/1675485816992.png" alt=""loading="lazy">
-</a>
-
-<a href="#image-91f36c0b9f883d324f8aa459f8f4806b">
-<img src="../../img/dpdk/1675485946004.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-91f36c0b9f883d324f8aa459f8f4806b">
-<img src="../../img/dpdk/1675485946004.png" alt=""loading="lazy">
+<a href="javascript:history.back();" class="lightbox" id="image-d3b4ba87258473d4a742d8a87bc0609d">
+<img src="../../img/dpdk/1675489371087.png" alt=""loading="lazy">
 </a></p>
-<pre tabindex="0"><code>VM1 (56)  &lt;--------&gt; VM2 (57)
-root@dpdk56:~# ip a
-2: ens192: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:0c:29:9f:04:74 brd ff:ff:ff:ff:ff:ff
-    altname enp11s0
-    inet 192.168.68.56/24 brd 192.168.68.255 scope global ens192
-       valid_lft forever preferred_lft forever
-    inet6 fe80::20c:29ff:fe9f:474/64 scope link 
-       valid_lft forever preferred_lft forever
-3: ens224: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:0c:29:9f:04:7e brd ff:ff:ff:ff:ff:ff
-    altname enp19s0
-4: ens256: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:0c:29:9f:04:88 brd ff:ff:ff:ff:ff:ff
-    altname enp27s0
+<pre tabindex="0"><code># To stop ovs-vswitchd &amp; delete bridge, run:
+$ ovs-appctl -t ovs-vswitchd exit
+$ ovs-appctl -t ovsdb-server exit
+$ ovs-vsctl del-br br0
 
-root@dpdk57:~# ip a
-2: ens192: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:0c:29:22:de:b7 brd ff:ff:ff:ff:ff:ff
-    altname enp11s0
-    inet 192.168.68.57/24 brd 192.168.68.255 scope global ens192
-       valid_lft forever preferred_lft forever
-    inet6 fe80::20c:29ff:fe22:deb7/64 scope link 
-       valid_lft forever preferred_lft forever
-3: ens224: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:0c:29:22:de:c1 brd ff:ff:ff:ff:ff:ff
-    altname enp19s0
-4: ens256: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:0c:29:22:de:cb brd ff:ff:ff:ff:ff:ff
-    altname enp27s0
-</code></pre><pre tabindex="0"><code>dpdk-devbind.py -b vfio-pci 0000:13:00.0
-dpdk-devbind.py -s
-
-00:0c:29:9f:04:7e (vm1 ens224)   ---  00:0c:29:22:de:c1 (vm2 ens224)
-</code></pre><p>vm1:</p>
-<pre tabindex="0"><code>root@dpdk56:~# /root/Pktgen-DPDK-pktgen-22.07.1/build/app/pktgen -l 0-1 -n 3 -- -T -P -m &#34;1.0&#34;
-set 0 dst mac 00:0c:29:22:de:c1
-set 0 count 100000
-str
-</code></pre><p>vm2:</p>
-<pre tabindex="0"><code>root@dpdk57:~# dpdk-testpmd -l 0-1 -n 1  -- -i
-set fwd rxonly
-show port stats all
-clear port stats all
-start
-</code></pre><p>vm1:
-
-<a href="#image-6ee3af2a18b585c2996d268761e5476f">
-<img src="../../img/dpdk/1675486179361.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-6ee3af2a18b585c2996d268761e5476f">
-<img src="../../img/dpdk/1675486179361.png" alt=""loading="lazy">
-</a>
-vm2:
-
-<a href="#image-75996453ab2e38bf12851feaa8da961c">
-<img src="../../img/dpdk/1675486228021.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-75996453ab2e38bf12851feaa8da961c">
-<img src="../../img/dpdk/1675486228021.png" alt=""loading="lazy">
-</a></p>
-<p><font color=red><strong>dpdk-l2fwd</strong></font>  <br>
-vm2:</p>
-<pre tabindex="0"><code>dpdk-devbind.py -b vfio-pci 0000:13:00.0
-dpdk-devbind.py -b vfio-pci 0000:1b:00.0
-root@dpdk57:~/dpdk-stable-22.11.1/build/examples# ./dpdk-l2fwd -l 0-3 -n 4 -- -q 1 -p 0x3
-</code></pre><p>
-<a href="#image-4d5c923d03575fdac8e6985a7cacd8fd">
-<img src="../../img/dpdk/1675486317498.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-4d5c923d03575fdac8e6985a7cacd8fd">
-<img src="../../img/dpdk/1675486317498.png" alt=""loading="lazy">
-</a></p>
-<p>vm1:</p>
-<pre tabindex="0"><code>dpdk-devbind.py -b vfio-pci 0000:13:00.0
-root@dpdk56:~# /root/Pktgen-DPDK-pktgen-22.07.1/build/app/pktgen -l 0-1 -n 4 -- -T -P -m &#34;1.0&#34;
-set 0 dst mac 00:0c:29:22:de:c1
-set 0 count 1000
-start 0
-</code></pre><p>vm2:
-
-<a href="#image-eac2deb284978ae0c8e9b4e68e5648a1">
-<img src="../../img/dpdk/1675486405688.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-eac2deb284978ae0c8e9b4e68e5648a1">
-<img src="../../img/dpdk/1675486405688.png" alt=""loading="lazy">
-</a></p>
-<p>vm1:
-
-<a href="#image-8e0dc494115a96bf41dbfb7272a2dfd0">
-<img src="../../img/dpdk/1675486433935.png" alt="" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-8e0dc494115a96bf41dbfb7272a2dfd0">
-<img src="../../img/dpdk/1675486433935.png" alt=""loading="lazy">
-</a></p>
-
+# 在笔记本T480上，跑一个还勉强，跑2个基本夯住了，跑不动。
+</code></pre>
             <footer class="footline">
             </footer>
           </article>
@@ -410,9 +280,9 @@ start 0
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
           <li data-nav-id="/dpdk/index.html" class="dd-item parent"><input type="checkbox" id="section-055936c2665801de047e07efbad92259" aria-controls="subsections-055936c2665801de047e07efbad92259" class="toggle" checked><label class="a11y-only toggle" for="section-055936c2665801de047e07efbad92259" >Submenu DPDKs</label><a href="../../dpdk/index.html">DPDKs<i class="fas fa-check read-icon"></i></a><ul id="subsections-055936c2665801de047e07efbad92259">
-          <li data-nav-id="/dpdk/1.vmware-dpdk/index.html" class="dd-item active"><a href="../../dpdk/1.vmware-dpdk/index.html">1. vmware-dpdk<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/dpdk/1.vmware-dpdk/index.html" class="dd-item"><a href="../../dpdk/1.vmware-dpdk/index.html">1. vmware-dpdk<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/dpdk/2.qemu-dpdk/index.html" class="dd-item"><a href="../../dpdk/2.qemu-dpdk/index.html">2. qemu-dpdk<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/dpdk/3.ovs-dpdk.vmware/index.html" class="dd-item"><a href="../../dpdk/3.ovs-dpdk.vmware/index.html">3. ovs-dpdk vmware<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/dpdk/3.ovs-dpdk.vmware/index.html" class="dd-item active"><a href="../../dpdk/3.ovs-dpdk.vmware/index.html">3. ovs-dpdk vmware<i class="fas fa-check read-icon"></i></a></li></ul></li>
         </ul>
         <div id="shortcuts">
           <div class="nav-title">More</div>
@@ -435,7 +305,7 @@ start 0
                 <div class="select-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
-                    <option lang="en" id="en" value="/dpdk/1.vmware-dpdk/index.html" selected>English</option>
+                    <option lang="en" id="en" value="/dpdk/3.ovs-dpdk.vmware/index.html" selected>English</option>
                   </select>
                 </div>
                 <div class="select-clear"></div>

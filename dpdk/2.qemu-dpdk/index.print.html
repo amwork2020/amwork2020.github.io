@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>2. qemu-dpdk :: amwork2010 blog</title>
+    <link href="https://example.com/dpdk/2.qemu-dpdk/index.html" rel="canonical" type="text/html" title="2. qemu-dpdk :: amwork2010 blog">
+    <link href="../../dpdk/2.qemu-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="2. qemu-dpdk :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675489744" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675489744" rel="stylesheet">
+    <link href="../../css/fonts.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675489744" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675489744" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675489744" rel="stylesheet">
+    <link href="../../css/variant.css?1675489744" rel="stylesheet">
+    <link href="../../css/print.css?1675489744" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675489744" rel="stylesheet">
+    <script src="../../js/url.js?1675489744"></script>
+    <script src="../../js/variant.js?1675489744"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675489744" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/2.qemu-dpdk/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">amwork2010 blog</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">2. qemu-dpdk</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="2-qemu-dpdk">2. qemu-dpdk</h1>
+
+<p>+++
+title = &ldquo;My page&rdquo;
+weight = 3
++++
+date: 2023-02-04  <br>
+HOST: 10.1.1.12,    guest: j1210   10.1.5.110</p>
+<pre tabindex="0"><code>root@junnan-gpu:/u01/vms/j1210# more vm.xml 
+&lt;domain type=&#39;kvm&#39;&gt;
+	&lt;name&gt;j1210&lt;/name&gt;
+	&lt;vcpu current=&#39;8&#39;&gt;24&lt;/vcpu&gt;
+	&lt;memory&gt;8388608&lt;/memory&gt;
+	&lt;os&gt;
+		&lt;type arch=&#39;x86_64&#39; machine=&#39;pc&#39;&gt;hvm&lt;/type&gt;
+		&lt;bootmenu enable=&#39;yes&#39;/&gt;
+	&lt;/os&gt;
+	&lt;features&gt;
+		&lt;acpi/&gt;
+		&lt;apic/&gt;
+		&lt;pae/&gt;
+	&lt;/features&gt;
+	&lt;cpu mode=&#34;host-passthrough&#34; check=&#34;none&#34; migratable=&#34;on&#34;/&gt;
+	&lt;clock offset=&#39;utc&#39;/&gt;
+	&lt;on_poweroff&gt;destroy&lt;/on_poweroff&gt;
+	&lt;on_reboot&gt;restart&lt;/on_reboot&gt;
+	&lt;on_crash&gt;destroy&lt;/on_crash&gt;
+	&lt;devices&gt;
+		&lt;emulator&gt;/usr/bin/kvm&lt;/emulator&gt;
+		&lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
+			&lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39;/&gt;
+			&lt;source file=&#39;/u01/vms/j1210/disk&#39;/&gt;
+			&lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
+			&lt;boot order=&#39;1&#39;/&gt;
+		&lt;/disk&gt;
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;virtio&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;network&#39;&gt;
+			&lt;source network=&#39;default&#39;/&gt;
+			&lt;model type=&#39;e1000&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;network&#39;&gt;
+			&lt;source network=&#39;default&#39;/&gt;
+			&lt;model type=&#39;e1000&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;serial type=&#39;pty&#39;&gt;
+		  &lt;target port=&#39;0&#39;/&gt;
+		&lt;/serial&gt;
+		&lt;console type=&#39;pty&#39;&gt;
+		  &lt;target type=&#39;serial&#39; port=&#39;0&#39;/&gt;
+		&lt;/console&gt;
+		&lt;graphics type=&#39;vnc&#39; port=&#39;-1&#39; autoport=&#39;yes&#39; listen=&#39;0.0.0.0&#39;/&gt;
+		&lt;video&gt;
+			&lt;model type=&#39;cirrus&#39; vram=&#39;65536&#39; heads=&#39;1&#39;/&gt;
+		&lt;/video&gt;
+		&lt;input type=&#39;tablet&#39; bus=&#39;usb&#39;/&gt;
+		&lt;input type=&#39;mouse&#39; bus=&#39;ps2&#39;/&gt;
+	&lt;/devices&gt;
+&lt;/domain&gt;
+</code></pre><pre tabindex="0"><code>		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;virtio&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;network&#39;&gt;
+			&lt;source network=&#39;default&#39;/&gt;
+			&lt;model type=&#39;e1000&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;network&#39;&gt;
+			&lt;source network=&#39;default&#39;/&gt;
+			&lt;model type=&#39;e1000&#39;/&gt;
+		&lt;/interface&gt;
+</code></pre><pre tabindex="0"><code>vi /etc/default/grub 
+GRUB_CMDLINE_LINUX=&#34;default_hugepagesz=1G hugepagesz=1G hugepages=4&#34;
+#GRUB_CMDLINE_LINUX=&#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 isolcpus=2-3 iommu=pt intel_iommu=on&#34;
+
+update-grub
+
+apt install dpdk dpdk-dev -y
+
+root@ubuntu:~# dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;Virtio network device 1000&#39; if=ens3 drv=virtio-pci unused=vfio-pci *Active*
+0000:00:04.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; if=ens4 drv=e1000 unused=vfio-pci 
+0000:00:05.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; if=ens5 drv=e1000 unused=vfio-pci 
+
+root@ubuntu:~# dpdk-devbind.py -b vfio-pci 0000:00:04.0
+Error: bind failed for 0000:00:04.0 - Cannot bind to driver vfio-pci: [Errno 22] Invalid argument
+Error: unbind failed for 0000:00:04.0 - Cannot open /sys/bus/pci/drivers//unbind: [Errno 13] Permission denied: &#39;/sys/bus/pci/drivers//unbind&#39;
+
+root@ubuntu:~# cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+N
+root@ubuntu:~# 
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+root@ubuntu:~# cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+Y
+
+root@ubuntu:~# dpdk-devbind.py -b vfio-pci 0000:00:04.0
+root@ubuntu:~# dpdk-devbind.py -b vfio-pci 0000:00:05.0
+root@ubuntu:~# dpdk-devbind.py -s
+Network devices using DPDK-compatible driver
+============================================
+0000:00:04.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; drv=vfio-pci unused=e1000
+0000:00:05.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; drv=vfio-pci unused=e1000
+
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;Virtio network device 1000&#39; if=ens3 drv=virtio-pci unused=vfio-pci *Active*
+
+root@ubuntu:~# dpdk-testpmd -l0-3 --  -i --nb-cores=2 --nb-ports=2 --total-num-mbufs=2048
+...
+start
+...
+stop
+
+# top 会看到 2cpu 100%us
+</code></pre><p>或者：</p>
+<pre tabindex="0"><code>root@ubuntu:~# dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;Virtio network device 1000&#39; if=ens3 drv=virtio-pci unused=vfio-pci *Active*
+0000:00:04.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; if=ens4 drv=e1000 unused=vfio-pci 
+0000:00:05.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; if=ens5 drv=e1000 unused=vfio-pci 
+
+apt install dpdk-kmods-dkms # 安装igb_uio
+modprobe igb_uio
+
+root@ubuntu:~# dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;Virtio network device 1000&#39; if=ens3 drv=virtio-pci unused=igb_uio,vfio-pci *Active*
+0000:00:04.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; if=ens4 drv=e1000 unused=igb_uio,vfio-pci 
+0000:00:05.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; if=ens5 drv=e1000 unused=igb_uio,vfio-pci 
+
+root@ubuntu:~# dpdk-devbind.py -b igb_uio 0000:00:04.0
+root@ubuntu:~# dpdk-devbind.py -b igb_uio 0000:00:05.0
+root@ubuntu:~# dpdk-devbind.py -s
+
+Network devices using DPDK-compatible driver
+============================================
+0000:00:04.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; drv=igb_uio unused=e1000,vfio-pci
+0000:00:05.0 &#39;82540EM Gigabit Ethernet Controller 100e&#39; drv=igb_uio unused=e1000,vfio-pci
+
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;Virtio network device 1000&#39; if=ens3 drv=virtio-pci unused=igb_uio,vfio-pci *Active*
+
+root@ubuntu:~# dpdk-testpmd -l0-3 --  -i --nb-cores=2 --nb-ports=2 --total-num-mbufs=2048
+...
+start
+...
+stop
+
+# top 会看到 2cpu 100%us
+</code></pre><pre tabindex="0"><code># build
+apt install build-essential
+pip3 install meson ninja
+apt install meson python3-pyelftools pkg-config libnuma-dev
+
+wget http://fast.dpdk.org/rel/dpdk-22.11.1.tar.xz
+tar Jxvf dpdk-22.11.1.tar.xz
+cd dpdk-stable-22.11.1
+meson setup -Dexamples=all build
+cd build
+ninja
+ninja install
+</code></pre><pre tabindex="0"><code>root@junnan-gpu:~# ll /usr/bin/kvm
+lrwxrwxrwx 1 root root 18 12月  8 17:17 /usr/bin/kvm -&gt; qemu-system-x86_64*
+root@junnan-gpu:~# qemu-system-x86_64 --version
+QEMU emulator version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.6)
+Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
+
+root@junnan-gpu:~# qemu-system-x86_64 -device ?
+...
+Network devices:
+name &#34;e1000&#34;, bus PCI, alias &#34;e1000-82540em&#34;, desc &#34;Intel Gigabit Ethernet&#34;
+name &#34;e1000-82544gc&#34;, bus PCI, desc &#34;Intel Gigabit Ethernet&#34;
+name &#34;e1000-82545em&#34;, bus PCI, desc &#34;Intel Gigabit Ethernet&#34;
+name &#34;e1000e&#34;, bus PCI, desc &#34;Intel 82574L GbE Controller&#34;
+name &#34;i82550&#34;, bus PCI, desc &#34;Intel i82550 Ethernet&#34;
+name &#34;i82551&#34;, bus PCI, desc &#34;Intel i82551 Ethernet&#34;
+name &#34;i82557a&#34;, bus PCI, desc &#34;Intel i82557A Ethernet&#34;
+name &#34;i82557b&#34;, bus PCI, desc &#34;Intel i82557B Ethernet&#34;
+name &#34;i82557c&#34;, bus PCI, desc &#34;Intel i82557C Ethernet&#34;
+name &#34;i82558a&#34;, bus PCI, desc &#34;Intel i82558A Ethernet&#34;
+name &#34;i82558b&#34;, bus PCI, desc &#34;Intel i82558B Ethernet&#34;
+name &#34;i82559a&#34;, bus PCI, desc &#34;Intel i82559A Ethernet&#34;
+name &#34;i82559b&#34;, bus PCI, desc &#34;Intel i82559B Ethernet&#34;
+name &#34;i82559c&#34;, bus PCI, desc &#34;Intel i82559C Ethernet&#34;
+name &#34;i82559er&#34;, bus PCI, desc &#34;Intel i82559ER Ethernet&#34;
+name &#34;i82562&#34;, bus PCI, desc &#34;Intel i82562 Ethernet&#34;
+name &#34;i82801&#34;, bus PCI, desc &#34;Intel i82801 Ethernet&#34;
+name &#34;ne2k_isa&#34;, bus ISA
+name &#34;ne2k_pci&#34;, bus PCI
+name &#34;pcnet&#34;, bus PCI
+name &#34;pvrdma&#34;, bus PCI, desc &#34;RDMA Device&#34;
+name &#34;rocker&#34;, bus PCI, desc &#34;Rocker Switch&#34;
+name &#34;rtl8139&#34;, bus PCI
+name &#34;tulip&#34;, bus PCI
+name &#34;usb-net&#34;, bus usb-bus
+name &#34;virtio-net-device&#34;, bus virtio-bus
+name &#34;virtio-net-pci&#34;, bus PCI, alias &#34;virtio-net&#34;
+name &#34;virtio-net-pci-non-transitional&#34;, bus PCI
+name &#34;virtio-net-pci-transitional&#34;, bus PCI
+name &#34;vmxnet3&#34;, bus PCI, desc &#34;VMWare Paravirtualized Ethernet v3&#34;
+...
+
+所以可以修改 e1000 --&gt; vmxnet3
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+</code></pre><pre tabindex="0"><code># u22.04          10.1.5.161         
+######### 0.prepare
+apt update
+apt -y full-upgrade
+ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+[ -f /var/run/reboot-required ] &amp;&amp; reboot -f
+
+######### 1. 启用rc.local
+cat &lt;&lt; EOF &gt;&gt; /etc/rc.local
+#!/bin/bash
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+EOF
+
+chmod +x /etc/rc.local
+
+cat &lt;&lt; EOF &gt;&gt; /lib/systemd/system/rc-local.service
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat /lib/systemd/system/rc-local.service
+
+# 启用服务
+systemctl enable rc-local
+systemctl start rc-local
+systemctl status rc-local
+# 查看是否成功
+cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+
+echo &#34;vfio-pci&#34; &gt; /etc/modules-load.d/95-vpp.conf
+
+######### 2. hugepages 
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+vm.nr_hugepages = 2048
+EOF
+sysctl -p
+
+######### 3. dpdk
+apt install dpdk dpdk-dev -y
+dpdk-devbind.py -s
+dpdk-devbind.py -b vfio-pci 0000:00:04.0
+dpdk-devbind.py -b vfio-pci 0000:00:05.0
+
+
+
+
+root@ubuntu:~# dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens3 drv=vmxnet3 unused=vfio-pci *Active*
+0000:00:04.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens4 drv=vmxnet3 unused=vfio-pci 
+0000:00:05.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens5 drv=vmxnet3 unused=vfio-pci 
+
+root@ubuntu:~# dpdk-devbind.py  -s
+Network devices using DPDK-compatible driver
+============================================
+0000:00:04.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
+0000:00:05.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
+Network devices using kernel driver
+===================================
+0000:00:03.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens3 drv=vmxnet3 unused=vfio-pci *Active*
+</code></pre><pre tabindex="0"><code>apt  install docker.io -y
+docker pull ubuntu:22.04
+
+cat &lt;&lt; EOF &gt; Dockerfile 
+FROM ubuntu:22.04
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list &amp;&amp; \
+    sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+RUN apt-get update -y &amp;&amp; \
+    apt-get install dpdk kmod -y
+EOF
+docker build -t amwork2010/dpdk:1 .
+
+docker run --privileged \
+ -v /sys/bus/pci/devices:/sys/bus/pci/devices \
+ -v /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages \
+ -v /sys/devices/system/node:/sys/devices/system/node \
+ -v /lib/modules:/lib/modules \
+ -v /dev:/dev \
+ -it amwork2010/dpdk:1 bash
+
+
+
+docker run --privileged \
+ -v /lib/modules:/lib/modules \
+ -it amwork2010/dpdk:1 bash
+也可以banding ,  kmod  ： the kmod package would provide modinfo, modprobe and other related tools.
+root@714c8d6fc89e:/# modprobe vfio-pci
+modprobe: FATAL: Module vfio-pci not found in directory /lib/modules/5.15.0-58-generic
+so:  -v /lib/modules:/lib/modules
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675489744" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675489744" defer></script>
+    <script src="../../js/theme.js?1675489744" defer></script>
+  </body>
+</html>

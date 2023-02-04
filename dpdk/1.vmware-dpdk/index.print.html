@@ -11,19 +11,19 @@
     <link href="https://example.com/dpdk/1.vmware-dpdk/index.html" rel="canonical" type="text/html" title="1. vmware-dpdk :: amwork2010 blog">
     <link href="../../dpdk/1.vmware-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="1. vmware-dpdk :: amwork2010 blog">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1675484122" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675484122" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1675484122" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675484122" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1675484122" rel="stylesheet">
-    <link href="../../css/nucleus.css?1675484122" rel="stylesheet">
-    <link href="../../css/fonts.css?1675484122" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675484122" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1675484122" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1675484122" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1675484122" rel="stylesheet">
-    <link href="../../css/variant.css?1675484122" rel="stylesheet">
-    <link href="../../css/print.css?1675484122" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1675484122" rel="stylesheet">
-    <script src="../../js/url.js?1675484122"></script>
-    <script src="../../js/variant.js?1675484122"></script>
+    <link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675489744" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675489744" rel="stylesheet">
+    <link href="../../css/fonts.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675489744" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675489744" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675489744" rel="stylesheet">
+    <link href="../../css/variant.css?1675489744" rel="stylesheet">
+    <link href="../../css/print.css?1675489744" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675489744" rel="stylesheet">
+    <script src="../../js/url.js?1675489744"></script>
+    <script src="../../js/variant.js?1675489744"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -41,7 +41,7 @@
       var baseUriFull='https:\/\/example.com/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1675484122" defer></script>
+    <script src="../../js/jquery.min.js?1675489744" defer></script>
   </head>
   <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/1.vmware-dpdk/index.html">
     <div id="body" class="default-animation">
@@ -68,13 +68,17 @@
           <article class="default">
 <h1 id="1-vmware-dpdk">1. vmware-dpdk</h1>
 
-<p>date: 2023-02-04</p>
+<p>+++
+title = &ldquo;My page&rdquo;
+weight = 5
++++
+date: 2023-02-04</p>
 <p>VMWARE 加网卡     (192.168.68.56 8c 8G)<br>
 
-<a href="#image-615295aab1dc1bbfc461642147e86d63">
+<a href="#image-9edd328f699c5ae3fcbe8f47d34f86da">
 <img src="../../img/dpdk/1675428633881.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-615295aab1dc1bbfc461642147e86d63">
+<a href="javascript:history.back();" class="lightbox" id="image-9edd328f699c5ae3fcbe8f47d34f86da">
 <img src="../../img/dpdk/1675428633881.png" alt=""loading="lazy">
 </a></p>
 <p><a href="https://www.dpdk.org/" target="_blank">https://www.dpdk.org/</a><br>
@@ -187,11 +191,120 @@ ninja
 -P: Enable PROMISCUOUS mode on all ports
 -m string: 重点！指定cpu core与NIC的绑定关系，格式参照下图：
 </code></pre><p>
-<a href="#image-d57a90679f2f76f4c20bb9c3472fbe4e">
+<a href="#image-b590b2c966df77f6fcd52a0caae88f67">
 <img src="../../img/dpdk/1675429011552.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d57a90679f2f76f4c20bb9c3472fbe4e">
+<a href="javascript:history.back();" class="lightbox" id="image-b590b2c966df77f6fcd52a0caae88f67">
 <img src="../../img/dpdk/1675429011552.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-b276d46f6782522d84531c0d018005c6">
+<img src="../../img/dpdk/1675485816992.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-b276d46f6782522d84531c0d018005c6">
+<img src="../../img/dpdk/1675485816992.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-91f36c0b9f883d324f8aa459f8f4806b">
+<img src="../../img/dpdk/1675485946004.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-91f36c0b9f883d324f8aa459f8f4806b">
+<img src="../../img/dpdk/1675485946004.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>VM1 (56)  &lt;--------&gt; VM2 (57)
+root@dpdk56:~# ip a
+2: ens192: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:9f:04:74 brd ff:ff:ff:ff:ff:ff
+    altname enp11s0
+    inet 192.168.68.56/24 brd 192.168.68.255 scope global ens192
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe9f:474/64 scope link 
+       valid_lft forever preferred_lft forever
+3: ens224: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:0c:29:9f:04:7e brd ff:ff:ff:ff:ff:ff
+    altname enp19s0
+4: ens256: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:0c:29:9f:04:88 brd ff:ff:ff:ff:ff:ff
+    altname enp27s0
+
+root@dpdk57:~# ip a
+2: ens192: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:22:de:b7 brd ff:ff:ff:ff:ff:ff
+    altname enp11s0
+    inet 192.168.68.57/24 brd 192.168.68.255 scope global ens192
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe22:deb7/64 scope link 
+       valid_lft forever preferred_lft forever
+3: ens224: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:0c:29:22:de:c1 brd ff:ff:ff:ff:ff:ff
+    altname enp19s0
+4: ens256: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:0c:29:22:de:cb brd ff:ff:ff:ff:ff:ff
+    altname enp27s0
+</code></pre><pre tabindex="0"><code>dpdk-devbind.py -b vfio-pci 0000:13:00.0
+dpdk-devbind.py -s
+
+00:0c:29:9f:04:7e (vm1 ens224)   ---  00:0c:29:22:de:c1 (vm2 ens224)
+</code></pre><p>vm1:</p>
+<pre tabindex="0"><code>root@dpdk56:~# /root/Pktgen-DPDK-pktgen-22.07.1/build/app/pktgen -l 0-1 -n 3 -- -T -P -m &#34;1.0&#34;
+set 0 dst mac 00:0c:29:22:de:c1
+set 0 count 100000
+str
+</code></pre><p>vm2:</p>
+<pre tabindex="0"><code>root@dpdk57:~# dpdk-testpmd -l 0-1 -n 1  -- -i
+set fwd rxonly
+show port stats all
+clear port stats all
+start
+</code></pre><p>vm1:
+
+<a href="#image-6ee3af2a18b585c2996d268761e5476f">
+<img src="../../img/dpdk/1675486179361.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-6ee3af2a18b585c2996d268761e5476f">
+<img src="../../img/dpdk/1675486179361.png" alt=""loading="lazy">
+</a>
+vm2:
+
+<a href="#image-75996453ab2e38bf12851feaa8da961c">
+<img src="../../img/dpdk/1675486228021.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-75996453ab2e38bf12851feaa8da961c">
+<img src="../../img/dpdk/1675486228021.png" alt=""loading="lazy">
+</a></p>
+<p><font color=red><strong>dpdk-l2fwd</strong></font>  <br>
+vm2:</p>
+<pre tabindex="0"><code>dpdk-devbind.py -b vfio-pci 0000:13:00.0
+dpdk-devbind.py -b vfio-pci 0000:1b:00.0
+root@dpdk57:~/dpdk-stable-22.11.1/build/examples# ./dpdk-l2fwd -l 0-3 -n 4 -- -q 1 -p 0x3
+</code></pre><p>
+<a href="#image-4d5c923d03575fdac8e6985a7cacd8fd">
+<img src="../../img/dpdk/1675486317498.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-4d5c923d03575fdac8e6985a7cacd8fd">
+<img src="../../img/dpdk/1675486317498.png" alt=""loading="lazy">
+</a></p>
+<p>vm1:</p>
+<pre tabindex="0"><code>dpdk-devbind.py -b vfio-pci 0000:13:00.0
+root@dpdk56:~# /root/Pktgen-DPDK-pktgen-22.07.1/build/app/pktgen -l 0-1 -n 4 -- -T -P -m &#34;1.0&#34;
+set 0 dst mac 00:0c:29:22:de:c1
+set 0 count 1000
+start 0
+</code></pre><p>vm2:
+
+<a href="#image-eac2deb284978ae0c8e9b4e68e5648a1">
+<img src="../../img/dpdk/1675486405688.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-eac2deb284978ae0c8e9b4e68e5648a1">
+<img src="../../img/dpdk/1675486405688.png" alt=""loading="lazy">
+</a></p>
+<p>vm1:
+
+<a href="#image-8e0dc494115a96bf41dbfb7272a2dfd0">
+<img src="../../img/dpdk/1675486433935.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-8e0dc494115a96bf41dbfb7272a2dfd0">
+<img src="../../img/dpdk/1675486433935.png" alt=""loading="lazy">
 </a></p>
 
             <footer class="footline">
@@ -200,8 +313,8 @@ ninja
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1675484122" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1675484122" defer></script>
-    <script src="../../js/theme.js?1675484122" defer></script>
+    <script src="../../js/clipboard.min.js?1675489744" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675489744" defer></script>
+    <script src="../../js/theme.js?1675489744" defer></script>
   </body>
 </html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>3. ovs-dpdk vmware :: amwork2010 blog</title>
+    <link href="https://example.com/dpdk/3.ovs-dpdk.vmware/index.html" rel="canonical" type="text/html" title="3. ovs-dpdk vmware :: amwork2010 blog">
+    <link href="../../dpdk/3.ovs-dpdk.vmware/index.xml" rel="alternate" type="application/rss+xml" title="3. ovs-dpdk vmware :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675489744" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675489744" rel="stylesheet">
+    <link href="../../css/fonts.css?1675489744" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675489744" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675489744" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675489744" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675489744" rel="stylesheet">
+    <link href="../../css/variant.css?1675489744" rel="stylesheet">
+    <link href="../../css/print.css?1675489744" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675489744" rel="stylesheet">
+    <script src="../../js/url.js?1675489744"></script>
+    <script src="../../js/variant.js?1675489744"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675489744" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/3.ovs-dpdk.vmware/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">amwork2010 blog</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dpdk/index.html"><span itemprop="name">DPDKs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">3. ovs-dpdk vmware</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="3-ovs-dpdk-vmware">3. ovs-dpdk vmware</h1>
+
+<p>date: 2023-02-04 <br>
+192.168.68.56、 192.168.68.57</p>
+<pre tabindex="0"><code>apt install -y openvswitch-switch-dpdk 
+update-alternatives --set ovs-vswitchd /usr/lib/openvswitch-switch-dpdk/ovs-vswitchd-dpdk
+ovs-vswitchd --version
+systemctl restart openvswitch-switch.service
+</code></pre><pre tabindex="0"><code>root@dpdk56:~# ovs-vswitchd --version
+ovs-vswitchd (Open vSwitch) 2.17.3
+DPDK 21.11.2
+
+root@dpdk56:~# dpdk-devbind.py -s
+Network devices using kernel driver
+===================================
+0000:0b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens192 drv=vmxnet3 unused=vfio-pci *Active*
+0000:13:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens224 drv=vmxnet3 unused=vfio-pci 
+0000:1b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; if=ens256 drv=vmxnet3 unused=vfio-pci 
+
+dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.0
+
+root@dpdk56:~# dpdk-devbind.py -b vfio-pci 0000:13:00.0 0000:1b:00.0
+root@dpdk56:~# dpdk-devbind.py -s
+Network devices using DPDK-compatible driver
+============================================
+0000:13:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
+0000:1b:00.0 &#39;VMXNET3 Ethernet Controller 07b0&#39; drv=vfio-pci unused=vmxnet3
+
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=&#34;1024,0&#34; ### 只有一个numa node0
+ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x2      ### 0b0010 --&gt; Cpu1
+ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x4                   ### 0b0100 --&gt; Cpu2
+
+ovs-vsctl get Open_vSwitch . dpdk_initialized
+ovs-vsctl get Open_vSwitch . dpdk_version
+
+# dpdk-init
+    指定 OVS 是否应该初始化并支持 DPDK 端口。该字段可以是true或try。值true将导致 ovs-vswitchd 进程在初始化失败时中止。值try表示即使 EAL 初始化失败，ovs-vswitchd 进程也应该继续运行。
+# dpdk-lcore-mask
+    指定应该生成 dpdk lcore 线程的 CPU 核心，并需要十六进制字符串（例如“0x123”）。
+# dpdk-socket-mem
+    逗号分隔的内存列表，用于从特定套接字上的大页面中预分配。如果未指定，则默认情况下不会设置此选项。将使用 DPDK 默认值。
+# dpdk-hugepage-dir
+    hugetlbfs挂载目录
+# vhost-sock-dir
+    设置虚拟主机用户 unix 套接字文件路径的选项。
+
+root@dpdk56:~# ovs-vsctl list open_vswitch
+_uuid               : 6b97fe90-77a5-4a61-a8b6-0b74ed9f803d
+bridges             : [db9afd87-ad4d-4d1a-842a-3e2eb21abf9e]
+cur_cfg             : 12
+datapath_types      : [netdev, system]
+datapaths           : {}
+db_version          : &#34;8.3.0&#34;
+dpdk_initialized    : true
+dpdk_version        : &#34;DPDK 21.11.2&#34;
+external_ids        : {hostname=dpdk56, rundir=&#34;/var/run/openvswitch&#34;, system-id=&#34;921fb59b-cbab-4609-929b-875d5dedb844&#34;}
+iface_types         : [bareudp, dpdk, dpdkvhostuser, dpdkvhostuserclient, erspan, geneve, gre, gtpu, internal, ip6erspan, ip6gre, lisp, patch, stt, system, tap, vxlan]
+manager_options     : []
+next_cfg            : 12
+other_config        : {dpdk-init=&#34;true&#34;, dpdk-lcore-mask=&#34;0x2&#34;, dpdk-socket-mem=&#34;1024,0&#34;, pmd-cpu-mask=&#34;0x4&#34;}
+ovs_version         : &#34;2.17.3&#34;
+ssl                 : []
+statistics          : {}
+system_type         : ubuntu
+system_version      : &#34;22.04&#34;
+
+ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
+ovs-vsctl add-port br0 dpdk-p0 -- set Interface dpdk-p0 type=dpdk options:dpdk-devargs=0000:13:00.0
+ovs-vsctl add-port br0 dpdk-p1 -- set Interface dpdk-p1 type=dpdk options:dpdk-devargs=0000:1b:00.0
+
+root@dpdk56:~# ovs-vsctl show
+6b97fe90-77a5-4a61-a8b6-0b74ed9f803d
+    Bridge br0
+        datapath_type: netdev
+        Port dpdk-p1
+            Interface dpdk-p1
+                type: dpdk
+                options: {dpdk-devargs=&#34;0000:1b:00.0&#34;}
+        Port dpdk-p0
+            Interface dpdk-p0
+                type: dpdk
+                options: {dpdk-devargs=&#34;0000:13:00.0&#34;}
+        Port br0
+            Interface br0
+                type: internal
+    ovs_version: &#34;2.17.3&#34;
+
+借助 pmd 多线程支持，OVS 默认为每个 NUMA 节点创建一个 pmd 线程，前提是该 NUMA 节点至少有一个 DPDK 接口添加到 OVS。
+但是，在有多个端口/rxq 产生流量的情况下，可以通过创建在不同内核上运行的多个 pmd 线程来提高性能。
+这些 pmd 线程可以通过各自负责不同的端口/rxq 来分担工作量。将端口/rxq 分配给 pmd 线程是自动完成的。
+掩码中的设置位意味着创建了一个 pmd 线程并将其固定到相应的 CPU 内核。例如，要在核心 1 和 2 上运行 pmd 线程：0x110 = 0x6
+
+ovs-vsctl set Open_vSwitch . other_config:pmd-cpu-mask=0x6
+</code></pre><pre tabindex="0"><code>在 DPDK 端口添加到交换机后，轮询线程不断轮询 DPDK 设备并消耗 100% 的核心，可以从top和 ps命令中检查：
+$ top -H
+$ ps -eLo pid,psr,comm | grep pmd
+</code></pre><p>
+<a href="#image-d3b4ba87258473d4a742d8a87bc0609d">
+<img src="../../img/dpdk/1675489371087.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-d3b4ba87258473d4a742d8a87bc0609d">
+<img src="../../img/dpdk/1675489371087.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code># To stop ovs-vswitchd &amp; delete bridge, run:
+$ ovs-appctl -t ovs-vswitchd exit
+$ ovs-appctl -t ovsdb-server exit
+$ ovs-vsctl del-br br0
+
+# 在笔记本T480上，跑一个还勉强，跑2个基本夯住了，跑不动。
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675489744" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675489744" defer></script>
+    <script src="../../js/theme.js?1675489744" defer></script>
+  </body>
+</html>
