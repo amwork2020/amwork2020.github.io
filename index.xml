@@ -21,5 +21,12 @@
       <guid>https://example.com/vpp/index.html</guid>
       <description>blogs of amwork2010 日期: 2023-02-04</description>
     </item>
+    <item>
+      <title>Ubuntu</title>
+      <link>https://example.com/ubuntu/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 19:40:36 +0800</pubDate>
+      <guid>https://example.com/ubuntu/index.html</guid>
+      <description>blogs of amwork2010 日期: 2023-02-04</description>
+    </item>
   </channel>
 </rss>

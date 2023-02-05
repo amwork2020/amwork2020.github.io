@@ -9,6 +9,10 @@
     <lastmod>2023-02-04T13:40:36+08:00</lastmod>
   </url>
   <url>
+    <loc>https://example.com/ubuntu/index.html</loc>
+    <lastmod>2023-02-05T19:40:36+08:00</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/dpdk/1.vmware-dpdk/index.html</loc>
     <lastmod>2023-02-03T21:16:52+08:00</lastmod>
   </url>
@@ -93,11 +97,19 @@
     <lastmod>2023-02-05T09:40:36+08:00</lastmod>
   </url>
   <url>
+    <loc>https://example.com/ubuntu/1.ubuntu-cloud-images/index.html</loc>
+    <lastmod>2023-02-05T09:40:36+08:00</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/vpp/10.calico_vpp_qemu/index.html</loc>
     <lastmod>2023-02-05T09:40:36+08:00</lastmod>
   </url>
   <url>
     <loc>https://example.com/categories/index.html</loc>
+    <lastmod>2023-02-05T09:40:36+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/categories/ubuntu/index.html</loc>
     <lastmod>2023-02-05T09:40:36+08:00</lastmod>
   </url>
   <url>
