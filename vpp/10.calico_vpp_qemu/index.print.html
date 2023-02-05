@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>10. calico vpp qemu :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/10.calico_vpp_qemu/index.html" rel="canonical" type="text/html" title="10. calico vpp qemu :: amwork2010 blog">
+    <link href="../../vpp/10.calico_vpp_qemu/index.xml" rel="alternate" type="application/rss+xml" title="10. calico vpp qemu :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675568222" rel="stylesheet">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/10.calico_vpp_qemu/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">10. calico vpp qemu</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="10-calico-vpp-qemu">10. calico vpp qemu</h1>
+
+<p>date: 2023-02-05<br>
+<strong>vm.xml</strong></p>
+<pre tabindex="0"><code>...
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+...
+</code></pre><pre tabindex="0"><code>## HOST : 10.1.1.12
+/opt/startVMs/startvm2.sh calicovpp_5.117 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8
+/opt/startVMs/startvm2.sh calicovpp_5.118 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8
+/opt/startVMs/startvm2.sh calicovpp_5.119 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8
+
+root@junnan-gpu:~# kvm --version
+QEMU emulator version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.6)
+Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
+
+kroot@junnan-gpu:~# kvm -device ?
+...
+Network devices:
+name &#34;e1000&#34;, bus PCI, alias &#34;e1000-82540em&#34;, desc &#34;Intel Gigabit Ethernet&#34;
+name &#34;e1000-82544gc&#34;, bus PCI, desc &#34;Intel Gigabit Ethernet&#34;
+name &#34;e1000-82545em&#34;, bus PCI, desc &#34;Intel Gigabit Ethernet&#34;
+...
+name &#34;virtio-net-pci&#34;, bus PCI, alias &#34;virtio-net&#34;
+name &#34;virtio-net-pci-non-transitional&#34;, bus PCI
+name &#34;virtio-net-pci-transitional&#34;, bus PCI
+name &#34;vmxnet3&#34;, bus PCI, desc &#34;VMWare Paravirtualized Ethernet v3&#34;
+...
+
+开始用e1000，不用DPDK，成功；采用DPDK，网络断掉，不成功。
+采用vmxnet3，DPDK 成功！
+
+## VM : 10.1.5.117 , 10.1.5.118 , 10.1.5.119
+
+######### 启用rc.local
+cat &lt;&lt; EOF &gt;&gt; /etc/rc.local
+#!/bin/bash
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+EOF
+
+chmod +x /etc/rc.local
+
+cat &lt;&lt; EOF &gt;&gt; /lib/systemd/system/rc-local.service
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat /lib/systemd/system/rc-local.service
+
+# 启用服务
+systemctl enable rc-local
+systemctl start rc-local
+systemctl status rc-local
+
+cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+
+hostnamectl set-hostname calvpp1
+cat &lt;&lt; EOF &gt;&gt; /etc/hosts
+10.1.5.111 calvpp1
+10.1.5.112 calvpp2
+10.1.5.113 calvpp3
+EOF
+
+ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+apt update &amp;&amp; \
+apt -y full-upgrade &amp;&amp; \
+[ -f /var/run/reboot-required ] &amp;&amp; reboot -f
+
+echo &#34;vfio-pci&#34; &gt; /etc/modules-load.d/95-vpp.conf
+
+swapoff -a
+sed -i &#39;/swap/ s/^\(.*\)$/#\1/g&#39; /etc/fstab
+free -h
+
+tee /etc/modules-load.d/containerd.conf &lt;&lt;EOF
+overlay
+br_netfilter
+EOF
+
+tee /etc/modules-load.d/ipvs.conf &lt;&lt;EOF
+ip_vs
+ip_vs_rr
+ip_vs_wrr
+ip_vs_sh
+br_netfilter
+bridge
+nf_conntrack
+EOF
+
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+vm.swappiness=0
+vm.nr_hugepages = 1024
+EOF
+sysctl -p
+
+cat /proc/meminfo | grep Huge
+apt install driverctl -y
+lshw -businfo -c network
+driverctl list-devices
+
+export https_proxy=http://10.1.1.12:8118
+wget https://github.com/containerd/containerd/releases/download/v1.6.14/cri-containerd-cni-1.6.14-linux-amd64.tar.gz
+tar zxvf cri-containerd-cni-1.6.14-linux-amd64.tar.gz  -C /
+mv /etc/cni/net.d/10-containerd-net.conflist /etc/cni/net.d/10-containerd-net.conflist.bak
+mkdir -p /etc/containerd
+containerd config default &gt; /etc/containerd/config.toml
+sed -i &#39;s#registry.k8s.io#registry.aliyuncs.com/google_containers#g&#39; /etc/containerd/config.toml
+# pause:3.6 ---&gt;&gt;&gt; pause:3.8
+sed -i &#39;s/pause:3.6/pause:3.8/g&#39; /etc/containerd/config.toml
+sed -i &#39;s/SystemdCgroup = false/SystemdCgroup = true/g&#39; /etc/containerd/config.toml
+systemctl daemon-reload
+systemctl enable  containerd.service
+systemctl restart containerd.service
+systemctl status containerd.service
+
+apt install -y apt-transport-https socat
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - 
+cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+EOF
+apt update
+apt install -y kubeadm=1.25.5-00 kubelet=1.25.5-00 kubectl=1.25.5-00
+
+systemctl enable kubelet.service --now
+
+kubeadm config print init-defaults --component-configs KubeletConfiguration
+# cgroupDriver: systemd # 
+# kubeadm config images pull
+kubeadm config images pull --kubernetes-version=v1.25.5 --image-repository registry.aliyuncs.com/google_containers
+
+kubeadm init --kubernetes-version=v1.25.5 \
+ --image-repository registry.aliyuncs.com/google_containers \
+ --pod-network-cidr=10.244.0.0/16 \
+ --apiserver-advertise-address=10.1.5.111
+
+cat &lt;&lt;EOF &gt;&gt; ~/.bashrc
+alias kp=&#39;kubectl get pod -o wide --all-namespaces&#39;
+alias wkp=&#39;watch -n 1 kubectl get pod -o wide --all-namespaces&#39;
+alias ks=&#39;kubectl get svc -o wide --all-namespaces&#39;
+alias kn=&#39;kubectl get node -o wide --all-namespaces&#39;
+alias k=&#39;kubectl&#39;
+EOF
+
+#kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+#kubectl taint nodes --all node-role.kubernetes.io/master-
+
+wget https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
+
+cat &lt;&lt; EOF &gt; calicovpp.img.pull.sh
+time crictl pull docker.io/calico/apiserver:v3.24.5
+time crictl pull docker.io/calico/cni:v3.24.5
+time crictl pull docker.io/calico/kube-controllers:v3.24.5
+time crictl pull docker.io/calico/node:v3.24.5
+time crictl pull docker.io/calico/pod2daemon-flexvol:v3.24.5
+time crictl pull docker.io/calico/typha:v3.24.5
+time crictl pull docker.io/calicovpp/agent:v3.24.0
+time crictl pull docker.io/calicovpp/vpp:v3.24.0
+time crictl pull quay.io/tigera/operator:v1.28.5
+EOF
+
+bash -xv calicovpp.img.pull.sh
+
+wget https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
+wget https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/yaml/calico/installation-default.yaml
+wget https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/yaml/generated/calico-vpp.yaml
+curl https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/test/scripts/vppdev.sh | tee /usr/local/bin/calivppctl
+chmod +x /usr/local/bin/calivppctl
+
+kubectl create -f tigera-operator.yaml
+
+vi installation-default.yaml
+apiVersion: operator.tigera.io/v1
+kind: Installation
+metadata:
+  name: default
+spec:
+  # Configures Calico networking.
+  calicoNetwork:
+    linuxDataplane: VPP
+    ipPools:
+    - blockSize: 24
+      cidr: 10.244.0.0/16
+      encapsulation: None                ##### NO IPIP &amp;&amp; NO VXLAN
+---
+
+kubectl create -f installation-default.yaml
+
+root@calvpp1:~/calico# lshw -businfo -c network
+Bus info          Device      Class          Description
+========================================================
+pci@0000:00:03.0  ens3        network        VMXNET3 Ethernet Controller
+pci@0000:00:04.0  ens4        network        VMXNET3 Ethernet Controller
+root@calvpp1:~/calico# driverctl list-devices | grep vmxnet3
+0000:00:03.0 vmxnet3
+0000:00:04.0 vmxnet3
+
+vi calico-vpp.yaml
+...
+    socksvr {
+        socket-name /var/run/vpp/vpp-api.sock
+    }
+    dpdk {
+        dev 0000:00:04.0 { num-rx-queues 1  num-tx-queues 1 }
+    }
+    plugins {
+        plugin default { enable }
+        plugin dpdk_plugin.so { enable }
+        plugin calico_plugin.so { enable }
+        plugin ping_plugin.so { enable }
+        plugin dispatch_trace_plugin.so { enable }
+    }
+    buffers {
+      buffers-per-numa 131072
+    }
+  vpp_dataplane_interface: ens3
+  vpp_uplink_driver: &#34;none&#34;
+...
+
+kubectl create -f calico-vpp.yaml
+### 采用e1000，DPDK不成功，网络丢失，换e1000为vmxnet3，成功！
+
+### NO DPDK 成功！
+root@calvpp1:~/calico# diff 2.installation-default.yaml installation-default.yaml.org 
+11,14d10
+&lt;     ipPools:
+&lt;     - blockSize: 24
+&lt;       cidr: 10.244.0.0/16
+&lt;       encapsulation: None
+
+root@calvpp1:~/calico# diff 3.calico-vpp.yaml calico-vpp.yaml.org 
+164c164
+&lt;   vpp_dataplane_interface: ens3
+---
+&gt;   vpp_dataplane_interface: eth1
+### NO DPDK 成功！
+
+
+##########
+#export https_proxy=http://10.1.1.12:8118
+wget https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
+wget https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/yaml/calico/installation-default.yaml
+wget https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/yaml/generated/calico-vpp.yaml
+curl https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/test/scripts/vppdev.sh | tee /usr/local/bin/calivppctl
+chmod +x /usr/local/bin/calivppctl
+
+kubectl create -f tigera-operator.yaml
+kubectl create -f installation-default.yaml
+kubectl create -f calico-vpp.yaml
+
+lshw -businfo -c network
+driverctl list-devices 
+
+ip tuntap list
+
+iperf -s -i 1
+iperf -t 10 -i 1 -c 10.1.5.113
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
+  </body>
+</html>

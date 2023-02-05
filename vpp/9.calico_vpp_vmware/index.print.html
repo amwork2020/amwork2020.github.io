@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>9. calico vpp vmware :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/9.calico_vpp_vmware/index.html" rel="canonical" type="text/html" title="9. calico vpp vmware :: amwork2010 blog">
+    <link href="../../vpp/9.calico_vpp_vmware/index.xml" rel="alternate" type="application/rss+xml" title="9. calico vpp vmware :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675568222" rel="stylesheet">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/9.calico_vpp_vmware/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">9. calico vpp vmware</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="9-calico-vpp-vmware">9. calico vpp vmware</h1>
+
+<p>date: 2023-02-05</p>
+<p><a href="https://projectcalico.docs.tigera.io/getting-started/kubernetes/vpp/getting-started" target="_blank">https://projectcalico.docs.tigera.io/getting-started/kubernetes/vpp/getting-started</a>        <br>
+VMware VM u2204 3台，双网卡: vmxnet3</p>
+<pre tabindex="0"><code>hostnamectl set-hostname vpp61
+cat &lt;&lt; EOF &gt;&gt; /etc/hosts
+192.168.68.61 vpp61
+192.168.68.62 vpp62
+192.168.68.63 vpp63
+EOF
+
+apt update
+apt -y full-upgrade
+[ -f /var/run/reboot-required ] &amp;&amp; reboot -f
+ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+vi /etc/default/grub 
+GRUB_CMDLINE_LINUX=&#34;iommu=pt intel_iommu=on&#34;
+#GRUB_CMDLINE_LINUX=&#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&#34;
+
+update-grub
+echo &#34;vfio-pci&#34; &gt; /etc/modules-load.d/95-vpp.conf
+echo &#34;vm.nr_hugepages = 1024&#34; &gt;&gt; /etc/sysctl.conf
+reboot
+
+cat /proc/cmdline | grep -e iommu=pt -e intel_iommu=on -e huge
+dmesg | grep -e DMAR -e IOMMU
+cat /proc/meminfo | grep Huge
+lscpu | grep NUMA
+lshw -businfo -c network
+    pci@0000:0b:00.0              network    VMXNET3 Ethernet Controller
+    pci@0000:13:00.0              network    VMXNET3 Ethernet Controller
+
+apt install driverctl -y
+driverctl list-devices
+...    0000:0b:00.0 vmxnet3
+...    0000:13:00.0 vmxnet3
+
+swapoff -a
+sed -i &#39;/swap/ s/^\(.*\)$/#\1/g&#39; /etc/fstab
+free -h
+
+tee /etc/modules-load.d/containerd.conf &lt;&lt;EOF
+overlay
+br_netfilter
+EOF
+
+tee /etc/modules-load.d/ipvs.conf &lt;&lt;EOF
+ip_vs
+ip_vs_rr
+ip_vs_wrr
+ip_vs_sh
+br_netfilter
+bridge
+nf_conntrack
+EOF
+
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+vm.swappiness=0
+EOF
+sysctl -p
+
+export https_proxy=http://10.1.1.12:8118
+wget https://github.com/containerd/containerd/releases/download/v1.6.14/cri-containerd-cni-1.6.14-linux-amd64.tar.gz
+tar zxvf cri-containerd-cni-1.6.14-linux-amd64.tar.gz  -C /
+mv /etc/cni/net.d/10-containerd-net.conflist /etc/cni/net.d/10-containerd-net.conflist.bak
+mkdir -p /etc/containerd
+containerd config default &gt; /etc/containerd/config.toml
+sed -i &#39;s#registry.k8s.io#registry.aliyuncs.com/google_containers#g&#39; /etc/containerd/config.toml
+# pause:3.6 ---&gt;&gt;&gt; pause:3.8
+sed -i &#39;s/pause:3.6/pause:3.8/g&#39; /etc/containerd/config.toml
+sed -i &#39;s/SystemdCgroup = false/SystemdCgroup = true/g&#39; /etc/containerd/config.toml
+systemctl daemon-reload
+systemctl enable  containerd.service
+systemctl restart containerd.service
+systemctl status containerd.service
+
+apt install -y apt-transport-https socat
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - 
+cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+EOF
+apt update
+apt install -y kubeadm=1.25.5-00 kubelet=1.25.5-00 kubectl=1.25.5-00
+
+systemctl enable kubelet.service --now
+
+kubeadm config print init-defaults --component-configs KubeletConfiguration
+# cgroupDriver: systemd # 
+# kubeadm config images pull
+kubeadm config images pull --kubernetes-version=v1.25.5 --image-repository registry.aliyuncs.com/google_containers
+
+kubeadm init --kubernetes-version=v1.25.5 \
+ --image-repository registry.aliyuncs.com/google_containers \
+ --pod-network-cidr=10.244.0.0/16 \
+ --apiserver-advertise-address=192.168.68.61
+
+cat &lt;&lt;EOF &gt;&gt; ~/.bashrc
+alias kp=&#39;kubectl get pod -o wide --all-namespaces&#39;
+alias wkp=&#39;watch -n 1 kubectl get pod -o wide --all-namespaces&#39;
+alias ks=&#39;kubectl get svc -o wide --all-namespaces&#39;
+alias kn=&#39;kubectl get node -o wide --all-namespaces&#39;
+alias k=&#39;kubectl&#39;
+EOF
+
+#kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+#kubectl taint nodes --all node-role.kubernetes.io/master-
+
+wget https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
+
+cat &lt;&lt; EOF &gt; calicovpp.img.pull.sh
+time crictl pull docker.io/calico/apiserver:v3.24.5
+time crictl pull docker.io/calico/cni:v3.24.5
+time crictl pull docker.io/calico/kube-controllers:v3.24.5
+time crictl pull docker.io/calico/node:v3.24.5
+time crictl pull docker.io/calico/pod2daemon-flexvol:v3.24.5
+time crictl pull docker.io/calico/typha:v3.24.5
+time crictl pull docker.io/calicovpp/agent:v3.24.0
+time crictl pull docker.io/calicovpp/vpp:v3.24.0
+time crictl pull quay.io/tigera/operator:v1.28.5
+EOF
+
+bash -xv calicovpp.img.pull.sh
+
+kubectl create -f tigera-operator.yaml
+
+wget https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/yaml/calico/installation-default.yaml
+
+vi installation-default.yaml
+apiVersion: operator.tigera.io/v1
+kind: Installation
+metadata:
+  name: default
+spec:
+  # Configures Calico networking.
+  calicoNetwork:
+    linuxDataplane: VPP
+    ipPools:
+    - blockSize: 24
+      cidr: 10.244.0.0/16
+      encapsulation: None                ##### NO IPIP &amp;&amp; NO VXLAN
+---
+
+kubectl create -f installation-default.yaml
+
+# If you have configured hugepages on your machines
+wget https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/yaml/generated/calico-vpp.yaml
+
+vi calico-vpp.yaml
+...
+    socksvr {
+        socket-name /var/run/vpp/vpp-api.sock
+    }
+    dpdk {
+        dev 0000:13:00.0 { num-rx-queues 1  num-tx-queues 1 }
+    }
+    plugins {
+        plugin default { enable }
+        plugin dpdk_plugin.so { enable }
+        plugin calico_plugin.so { enable }
+        plugin ping_plugin.so { enable }
+        plugin dispatch_trace_plugin.so { enable }
+    }
+    buffers {
+      buffers-per-numa 131072
+    }
+  vpp_dataplane_interface: ens192
+  vpp_uplink_driver: &#34;none&#34;
+...
+
+kubectl create -f calico-vpp.yaml
+
+curl https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.24.0/test/scripts/vppdev.sh | tee /usr/local/bin/calivppctl
+chmod +x /usr/local/bin/calivppctl
+</code></pre><p>
+<a href="#image-ea68cc740804bf17296f155ff36e32aa">
+<img src="../../img/vpp/1675566035137.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ea68cc740804bf17296f155ff36e32aa">
+<img src="../../img/vpp/1675566035137.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-074c5b07095f22a08c5b63a36ed19d21">
+<img src="../../img/vpp/1675566068693.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-074c5b07095f22a08c5b63a36ed19d21">
+<img src="../../img/vpp/1675566068693.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>driverctl list-devices
+    0000:0b:00.0 vmxnet3
+    0000:13:00.0 vfio-pci   #### vfio-pci  dpdk 纳管
+</code></pre><p>calivppctl vppctl [NODENAME]   <br>
+calivppctl vppctl vpp62    <br>
+
+<a href="#image-06b98a0c54b0f94559514b4d76c9a373">
+<img src="../../img/vpp/1675566152548.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-06b98a0c54b0f94559514b4d76c9a373">
+<img src="../../img/vpp/1675566152548.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-c422bfa84e87d8f1189d99cf12d9bc73">
+<img src="../../img/vpp/1675566185798.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-c422bfa84e87d8f1189d99cf12d9bc73">
+<img src="../../img/vpp/1675566185798.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-41d1aa06d8007918c0866dab46d7098a">
+<img src="../../img/vpp/1675566298863.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-41d1aa06d8007918c0866dab46d7098a">
+<img src="../../img/vpp/1675566298863.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-ce6b545db5cce8bca1bc3d7b4ead0f8c">
+<img src="../../img/vpp/1675566352430.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ce6b545db5cce8bca1bc3d7b4ead0f8c">
+<img src="../../img/vpp/1675566352430.png" alt=""loading="lazy">
+</a></p>
+<p><a href="http://www.tnblog.net/hb/article/details/7885" target="_blank">http://www.tnblog.net/hb/article/details/7885</a>         <br>
+<a href="https://tnblog.net/hb/article/details/7233" target="_blank">https://tnblog.net/hb/article/details/7233</a>              <br>
+<a href="https://slideplayer.com/slide/17437344/" target="_blank">https://slideplayer.com/slide/17437344/</a></p>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
+  </body>
+</html>

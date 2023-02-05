@@ -11,18 +11,18 @@
     <link href="../../vpp/2.vpp-tutorial/index.xml" rel="alternate" type="application/rss+xml" title="2. VPP Tutorial :: amwork2010 blog">
     <link href="../../vpp/2.vpp-tutorial/index.print.html" rel="alternate" type="text/html" title="2. VPP Tutorial :: amwork2010 blog">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675517263" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675517263" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1675517263" rel="stylesheet">
-    <link href="../../css/nucleus.css?1675517263" rel="stylesheet">
-    <link href="../../css/fonts.css?1675517263" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675517263" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1675517263" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1675517263" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1675517263" rel="stylesheet">
-    <link href="../../css/variant.css?1675517263" rel="stylesheet">
-    <link href="../../css/print.css?1675517263" rel="stylesheet" media="print">
-    <script src="../../js/url.js?1675517263"></script>
-    <script src="../../js/variant.js?1675517263"></script>
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -40,7 +40,7 @@
       var baseUriFull='https:\/\/example.com/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1675517263" defer></script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
   </head>
   <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../vpp/2.vpp-tutorial/index.html">
     <div id="body" class="default-animation">
@@ -49,7 +49,7 @@
       <nav id="topbar" class="highlightable" dir="ltr">
         <div>
           <div class="navigation">
-            <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
+            <a class="nav nav-next" href="../../vpp/3.frrdocker-dockervpp/index.html" title="3. frrdocker-dockervpp (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
           </div>
           <div class="navigation">
             <a class="nav nav-prev" href="../../vpp/1.vpp-rocky87-build/index.html" title="1. vpp-rocky87-build (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
@@ -70,7 +70,7 @@
             </span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPPs</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">2. VPP Tutorial</span><meta itemprop="position" content="3"></li>
             </ol>
           </div>
@@ -100,20 +100,20 @@ ip link set ns2host netns vns2
 ip netns exec vns2 ifconfig ns2host 2.2.2.2/24 up
 ip netns exec vns2 route add -net 1.1.1.0/24 gw 2.2.2.1
 </code></pre><p>
-<a href="#image-c094417a5627747cf9bf47e5dd02d7e0">
+<a href="#image-d938079798316e75c478f6ffbb8ababb">
 <img src="../../img/vpp/1675495074042.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c094417a5627747cf9bf47e5dd02d7e0">
+<a href="javascript:history.back();" class="lightbox" id="image-d938079798316e75c478f6ffbb8ababb">
 <img src="../../img/vpp/1675495074042.png" alt=""loading="lazy">
 </a></p>
 <p>vppctl</p>
 <pre tabindex="0"><code>create host-interface name ns1vpp
 create host-interface name ns2vpp
 </code></pre><p>
-<a href="#image-28b2f1d3e37a83e40f939d83bd12c260">
+<a href="#image-35818cef9f4c1ca46e38eb7005636f1a">
 <img src="../../img/vpp/1675495146074.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-28b2f1d3e37a83e40f939d83bd12c260">
+<a href="javascript:history.back();" class="lightbox" id="image-35818cef9f4c1ca46e38eb7005636f1a">
 <img src="../../img/vpp/1675495146074.png" alt=""loading="lazy">
 </a></p>
 <pre tabindex="0"><code>show interface 
@@ -311,16 +311,16 @@ ping ok!
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1675517263" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1675517263" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1675517263" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1675517263" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1675517263" defer></script>
-        <script src="../../js/search.js?1675517263" defer></script>
+        <script src="../../js/auto-complete.js?1675568222" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1675568222" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1675568222" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1675568222" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1675568222" defer></script>
+        <script src="../../js/search.js?1675568222" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
-          <li data-nav-id="/dpdk/index.html" class="dd-item"><input type="checkbox" id="section-055936c2665801de047e07efbad92259" aria-controls="subsections-055936c2665801de047e07efbad92259" class="toggle"><label class="a11y-only toggle" for="section-055936c2665801de047e07efbad92259" >Submenu DPDKs</label><a href="../../dpdk/index.html">DPDKs<i class="fas fa-check read-icon"></i></a><ul id="subsections-055936c2665801de047e07efbad92259">
+          <li data-nav-id="/dpdk/index.html" class="dd-item"><input type="checkbox" id="section-71f1e91b30ee4c52ead63c716c3bf70a" aria-controls="subsections-71f1e91b30ee4c52ead63c716c3bf70a" class="toggle"><label class="a11y-only toggle" for="section-71f1e91b30ee4c52ead63c716c3bf70a" >Submenu DPDK</label><a href="../../dpdk/index.html">DPDK<i class="fas fa-check read-icon"></i></a><ul id="subsections-71f1e91b30ee4c52ead63c716c3bf70a">
           <li data-nav-id="/dpdk/1.vmware-dpdk/index.html" class="dd-item"><a href="../../dpdk/1.vmware-dpdk/index.html">1. vmware-dpdk<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/dpdk/2.qemu-dpdk/index.html" class="dd-item"><a href="../../dpdk/2.qemu-dpdk/index.html">2. qemu-dpdk<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/dpdk/3.ovs-dpdk.vmware/index.html" class="dd-item"><a href="../../dpdk/3.ovs-dpdk.vmware/index.html">3. ovs-dpdk vmware<i class="fas fa-check read-icon"></i></a></li>
@@ -330,35 +330,32 @@ ping ok!
           <li data-nav-id="/dpdk/7.ovs-dpdk-docker/index.html" class="dd-item"><a href="../../dpdk/7.ovs-dpdk-docker/index.html">7. ovs-dpdk-docker<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/dpdk/8.rocky9.1-dpdk/index.html" class="dd-item"><a href="../../dpdk/8.rocky9.1-dpdk/index.html">8. rocky 9.1 DPDK<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/dpdk/9.centos7-upgrade-qemu/index.html" class="dd-item"><a href="../../dpdk/9.centos7-upgrade-qemu/index.html">9. centos7 upgrade qemu<i class="fas fa-check read-icon"></i></a></li></ul></li>
-          <li data-nav-id="/vpp/index.html" class="dd-item parent"><input type="checkbox" id="section-28f2189ed54afb046e5e069af0942631" aria-controls="subsections-28f2189ed54afb046e5e069af0942631" class="toggle" checked><label class="a11y-only toggle" for="section-28f2189ed54afb046e5e069af0942631" >Submenu VPPs</label><a href="../../vpp/index.html">VPPs<i class="fas fa-check read-icon"></i></a><ul id="subsections-28f2189ed54afb046e5e069af0942631">
+          <li data-nav-id="/vpp/index.html" class="dd-item parent"><input type="checkbox" id="section-caab4b249facf34448565cc6373df67a" aria-controls="subsections-caab4b249facf34448565cc6373df67a" class="toggle" checked><label class="a11y-only toggle" for="section-caab4b249facf34448565cc6373df67a" >Submenu VPP</label><a href="../../vpp/index.html">VPP<i class="fas fa-check read-icon"></i></a><ul id="subsections-caab4b249facf34448565cc6373df67a">
           <li data-nav-id="/vpp/0.vpp-u2204/index.html" class="dd-item"><a href="../../vpp/0.vpp-u2204/index.html">0. vpp-u2204<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/vpp/0.vpp-qemu/index.html" class="dd-item"><a href="../../vpp/0.vpp-qemu/index.html">0. vpp-qemu<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/vpp/0.vpp-rocky87/index.html" class="dd-item"><a href="../../vpp/0.vpp-rocky87/index.html">0. vpp-rocky87<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/vpp/1.vpp-rocky87-build/index.html" class="dd-item"><a href="../../vpp/1.vpp-rocky87-build/index.html">1. vpp-rocky87-build<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/vpp/2.vpp-tutorial/index.html" class="dd-item active"><a href="../../vpp/2.vpp-tutorial/index.html">2. VPP Tutorial<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/vpp/2.vpp-tutorial/index.html" class="dd-item active"><a href="../../vpp/2.vpp-tutorial/index.html">2. VPP Tutorial<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/3.frrdocker-dockervpp/index.html" class="dd-item"><a href="../../vpp/3.frrdocker-dockervpp/index.html">3. frrdocker-dockervpp<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/4.vpp-containers1/index.html" class="dd-item"><a href="../../vpp/4.vpp-containers1/index.html">4. VPP_TAP_INT_Containers1<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/5.vpp-containers2/index.html" class="dd-item"><a href="../../vpp/5.vpp-containers2/index.html">5. VPP_TAP_INT_Containers2<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/6.vpp_kernel/index.html" class="dd-item"><a href="../../vpp/6.vpp_kernel/index.html">6. VPP_kernel_interaction<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/7.vpp_qemu_vhost/index.html" class="dd-item"><a href="../../vpp/7.vpp_qemu_vhost/index.html">7. vpp qemu vhost<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/8.vpp_command/index.html" class="dd-item"><a href="../../vpp/8.vpp_command/index.html">8. vpp commands<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/9.calico_vpp_vmware/index.html" class="dd-item"><a href="../../vpp/9.calico_vpp_vmware/index.html">9. calico vpp vmware<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/10.calico_vpp_qemu/index.html" class="dd-item"><a href="../../vpp/10.calico_vpp_qemu/index.html">10. calico vpp qemu<i class="fas fa-check read-icon"></i></a></li></ul></li>
         </ul>
-        <div id="shortcuts">
-          <div class="nav-title">More</div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVariantSwitch showVisitedLinks showFooter">
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVariantSwitch showVisitedLinks">
           <ul>
-            <li><a class="padding" href="https://github.com/McShelby/hugo-theme-relearn"><i class='fab fa-fw fa-github'></i> GitHub repo</a></li>
-            <li><a class="padding" href="../../more/showcase/"><i class='fas fa-fw fa-camera'></i> Showcases</a></li>
-            <li><a class="padding" href="https://gohugo.io/"><i class='fas fa-fw fa-bookmark'></i> Hugo Documentation</a></li>
-            <li><a class="padding" href="../../more/credits/"><i class='fas fa-fw fa-bullhorn'></i> Credits</a></li>
-            <li><a class="padding" href="../../tags/index.html"><i class='fas fa-fw fa-tags'></i> Tags</a></li>
-          </ul>
-        </div>
-        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter"></div>
-        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showVariantSwitch showVisitedLinks showFooter">
-        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showLangSwitch showVariantSwitch showVisitedLinks">
-          <ul>
-            <li id="select-language-container" class="footerLangSwitch showLangSwitch">
+            <li id="select-language-container" class="footerLangSwitch">
               <div class="padding select-container">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
                 <div class="select-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
-                    <option lang="en" id="en" value="/vpp/2.vpp-tutorial/index.html" selected>English</option>
                   </select>
                 </div>
                 <div class="select-clear"></div>
@@ -392,8 +389,8 @@ ping ok!
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1675517263" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1675517263" defer></script>
-    <script src="../../js/theme.js?1675517263" defer></script>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
   </body>
 </html>

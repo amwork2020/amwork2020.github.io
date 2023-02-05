@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>4. VPP_TAP_INT_Containers1 :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/4.vpp-containers1/index.html" rel="canonical" type="text/html" title="4. VPP_TAP_INT_Containers1 :: amwork2010 blog">
+    <link href="../../vpp/4.vpp-containers1/index.xml" rel="alternate" type="application/rss+xml" title="4. VPP_TAP_INT_Containers1 :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675568222" rel="stylesheet">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/4.vpp-containers1/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">4. VPP_TAP_INT_Containers1</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="4-vpp_tap_int_containers1">4. VPP_TAP_INT_Containers1</h1>
+
+<p>date: 2023-02-05  <br>
+<a href="https://github.com/MarioDoman/VPP_TAP_INT_WITH_Containers" target="_blank">https://github.com/MarioDoman/VPP_TAP_INT_WITH_Containers</a>              <br>
+
+<a href="#image-cc7384981860955af2d8515a2d11c4b4">
+<img src="../../img/vpp/1675564374195.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-cc7384981860955af2d8515a2d11c4b4">
+<img src="../../img/vpp/1675564374195.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>echo &#34;Remove old netns simlink&#34;
+sudo rm -Rf /var/run/netns
+sudo mkdir /var/run/netns
+
+# veth pair for docker1
+sudo ip link add veth10 type veth peer name veth11
+sudo ip link set veth10 up
+sudo ip link set veth11 up
+
+# veth pair for docker2
+sudo ip link add veth20 type veth peer name veth21
+sudo ip link set veth20 up
+sudo ip link set veth21 up
+
+#Create docker containers
+docker pull busybox
+docker run -d --name &#34;docker1&#34; busybox sleep 36000
+docker run -d --name &#34;docker2&#34; busybox sleep 36000
+
+#Wait for containers
+sleep 10
+
+#Expose containers to the &#39;ip netns exec&#39; tools
+pid1=`docker inspect -f &#39;{{.State.Pid}}&#39; docker1`
+ln -s /proc/$pid1/ns/net /var/run/netns/docker1
+
+pid2=`docker inspect -f &#39;{{.State.Pid}}&#39; docker2`
+ln -s /proc/$pid2/ns/net /var/run/netns/docker2
+
+ip netns ls
+
+# Move the veth10 into docker1 network namespace respectivley.
+ip link set veth10 netns docker1
+ip netns exec docker1 ip addr add 192.168.1.2/24 dev veth10
+ip netns exec docker1 ip link set veth10 up
+ip netns exec docker1 ip route add 192.168.2.0/24 via 192.168.1.1
+ip netns exec docker1 ip route add 192.168.3.0/24 via 192.168.1.1
+
+ip netns exec docker1 ip a
+ip netns exec docker1 ip r
+ip netns exec docker1 route -n
+
+# Move the veth20 into docker1 network namespace respectivley.
+ip link set veth20 netns docker2
+ip netns exec docker2 ip addr add 192.168.3.2/24 dev veth20
+ip netns exec docker2 ip link set veth20 up
+ip netns exec docker2 ip route add 192.168.2.0/24 via 192.168.3.1
+ip netns exec docker2 ip route add 192.168.1.0/24 via 192.168.3.1
+
+# connect veth on the host to vpp
+vppctl create host-interface name veth11
+vppctl set int ip address host-veth11 192.168.1.1/24
+vppctl set int state host-veth11 up
+
+# connect veth on the host to vpp
+vppctl create host-interface name veth21
+vppctl set int ip address host-veth21 192.168.3.1/24
+vppctl set int state host-veth21 up
+
+# Create vpp tap interface
+vppctl create tap
+vppctl set interface state tap0 up
+vppctl set interface ip address tap0 192.168.2.1/24
+
+#Assign tap interface address on kernel interface
+sudo ip addr add 192.168.2.2/24 dev tap0
+sudo ip link set tap0 up
+
+# Add routing from host to containers via tap
+ip route add 192.168.1.0/24 via 192.168.2.1
+ip route add 192.168.3.0/24 via 192.168.2.1
+
+# Start iperf server on hostvm
+#iperf -sDB 192.168.2.2
+
+#TEST!
+echo &#34;Pinging container1 via host &gt; TAP-VPP &gt; Container1&#34;
+ping -c3 192.168.1.2
+
+echo &#34;Pinging container2 via host &gt; TAP-VPP &gt; Container2&#34;
+ping -c3 192.168.3.2
+
+#sudo docker exec docker1 apt update
+#sudo docker exec docker1 apt -y install iputils-ping net-tools iperf
+echo &#34;Ping from container1 via container &gt; VPP-TAP &gt; Host&#34;
+docker exec docker1 ping -c3 192.168.2.2
+#docker exec docker1 iperf -s -D
+#sudo docker exec docker2 apt update
+#sudo docker exec docker2 apt -y install iputils-ping net-tools iperf
+#echo &#34;Ping from container2 via container &gt; VPP-TAP &gt; Host&#34;
+docker exec docker2 ping -c3 192.168.2.2
+#docker exec docker2 iperf -s -D
+echo &#34;Ping from Container1 to Container2 via VPP&#34;
+docker exec docker1 ping -c3 192.168.3.2
+</code></pre><pre tabindex="0"><code># Create vpp tap interface
+vppctl create tap
+vppctl set interface state tap1 up
+vppctl set interface ip address tap1 192.168.2.1/24
+
+#Assign tap interface address on kernel interface
+sudo ip addr add 192.168.2.2/24 dev tap0
+sudo ip link set tap1 up
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
+  </body>
+</html>

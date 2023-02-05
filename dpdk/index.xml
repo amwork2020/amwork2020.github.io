@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DPDKs on amwork2010 blog</title>
+    <title>DPDK on amwork2010 blog</title>
     <link>https://example.com/dpdk/index.html</link>
-    <description>Recent content in DPDKs on amwork2010 blog</description>
+    <description>Recent content in DPDK on amwork2010 blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Feb 2023 19:59:05 +0800</lastBuildDate><atom:link href="https://example.com/dpdk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Feb 2023 13:40:36 +0800</lastBuildDate><atom:link href="https://example.com/dpdk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. vmware-dpdk</title>
       <link>https://example.com/dpdk/1.vmware-dpdk/index.html</link>

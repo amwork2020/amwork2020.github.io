@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>8. vpp commands :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/8.vpp_command/index.html" rel="canonical" type="text/html" title="8. vpp commands :: amwork2010 blog">
+    <link href="../../vpp/8.vpp_command/index.xml" rel="alternate" type="application/rss+xml" title="8. vpp commands :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675568222" rel="stylesheet">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/8.vpp_command/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">8. vpp commands</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="8-vpp-commands">8. vpp commands</h1>
+
+<p>date: 2023-02-05</p>
+<p>vpp常用命令与基本操作</p>
+<pre tabindex="0"><code>vpp的基本操作：
+1，up/down
+vpp# set int state G0 up
+vpp# set int state G0 down
+
+2，配置IP
+vpp#set int ip address G0 192.168.59.134/24
+
+3，配置mac
+vpp#set int mac address G0 00:00:00:00:00:00
+
+4,查看基本信息
+vpp# show int 
+vpp# show int addr
+
+5，配置路由
+vpp# ip route add 0.0.0.0/0 via 0.0.0.0
+vpp# ip table [add|del] &lt;table-id&gt;   //创建IPv4 table表
+vpp# ip6 table [add|del] &lt;table-id&gt;  //创建IPv6 table表
+vpp# show ip fib  //查看路由
+vpp# show ip arp  //查看arp 表
+
+6，创建桥
+vpp# create bridge-domain 100  //桥100
+vpp# show bridge-domain 100 detail  //查看桥下信息
+
+7，创建vlan
+vpp# create sub-interfaces G1 100    //G1.100
+vpp# delete sub-interface G1.100  //del
+
+8，将vlan放桥下
+vpp#set int l2 bridge G1.100 100  
+
+9，删除桥,再删除桥
+vpp#set int l3 G0
+vpp#create bridge-domain 100 del
+
+10，配置路由
+vpp#ip route add 0.0.0.0/0 via 端口IP
+//删除路由
+vpp# ip route del 0.0.0.0/0 via 端口IP
+//查看路由
+vpp#show ip fib
+
+11，配置snat
+vpp# nat44 add interface address G0   //将G0 作为地址池
+vpp# set interface nat44 in G1 out G2 //  设置出入口
+vpp# show nat44 address  //查看地址池
+vpp# show nat44 interfaces  //查看接口
+vpp# nat44 forwarding enable|disable //nat转发的启动/禁止
+
+12，配置dnat
+vpp# set interface nat44 in &lt;intfc&gt; out &lt;intfc&gt; [output-feature] [del]
+vpp# nat44 add address &lt;ip4-range-start&gt; [- &lt;ip4-range-end&gt;] [tenant-vrf &lt;vrf-id&gt;]
+vpp# nat44 add static mapping tcp|udp|icmp local &lt;ip4-addr&gt; [&lt;port&gt;] external (&lt;ip4-addr&gt;|&lt;intfc&gt;) [&lt;port&gt;] [vrf &lt;table-id&gt;] [twice-nat] [out2in-only] [del]
+
+13，配置wireguard
+vpp# wireguard create listen-port 8899 private-key 私钥内容 src 公网IP  //创建加配置
+vpp# show wireguard interface
+vpp# show wireguard peer
+//添加peer
+vpp# wireguard peer add &lt;wg_int&gt; public-key &lt;pub_key_other&gt;endpoint &lt;ip4_dst&gt; allowed-ip &lt;prefix&gt;dst-port [port_dst] persistent-keepalive [keepalive_interval]
+vpp# wireguard peer remove &lt;index&gt;   //删除peer
+
+14，配置loopback
+vpp# create loopback interface mac 00:0c:29:1f:ce:07 instance 100
+vpp# delete loopback interface intfc loop100
+
+15，配置gre
+vpp# create gre tunnel src 1.1.1.2/24 dst 2.2.2.3/24 instance 100 outer-fib-id 0  //创建gre100
+vpp# create gre tunnel src 1.1.1.2/24 dst 2.2.2.3/24 instance 100 outer-fib-id 0 del //删除gre100
+vpp# show gre tunnel 
+
+16，配置memif
+vpp# create memif id 0 /run/vpp/contiv/memif1.sock
+vpp# create interface memif id 0 socket-id 1 master mode ip secret vpp123
+vpp# set int state memif0 up
+vpp# set int ip address memif0 192.168.1.1/24
+vpp# ping 192.168.1.2     //另一个vpp 的memif 设为192.168.1.2/24
+vpp# delete interface memif memif1/0   //删除操作
+vpp# delete memif socket id 0   //删除操作
+
+17，查看版本
+vpp# show version
+
+18，查看启动插件
+vpp# show plugin
+
+19, 查看vpp线程
+vpp# show threads
+
+vpp+ show run
+
+20, 创建tap
+# create tap id 10 host-if-name host   //创建tap10  linux主机上的接口为host
+# set int state tap10 up   //up
+# set int ip address tap10 192.168.100.100/24  //设IP
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
+  </body>
+</html>

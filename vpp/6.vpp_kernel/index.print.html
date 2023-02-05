@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>6. VPP_kernel_interaction :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/6.vpp_kernel/index.html" rel="canonical" type="text/html" title="6. VPP_kernel_interaction :: amwork2010 blog">
+    <link href="../../vpp/6.vpp_kernel/index.xml" rel="alternate" type="application/rss+xml" title="6. VPP_kernel_interaction :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675568222" rel="stylesheet">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/6.vpp_kernel/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">6. VPP_kernel_interaction</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="6-vpp_kernel_interaction">6. VPP_kernel_interaction</h1>
+
+<p>date: 2023-02-05  <br>
+VPP和Linux内核协议栈通信方法   <br>
+<a href="https://blog.csdn.net/turbock/article/details/103912015" target="_blank">https://blog.csdn.net/turbock/article/details/103912015</a>  <br>
+
+<a href="#image-4550f4860cc35b9e50bc7f7c9db227e5">
+<img src="../../img/vpp/1675565161003.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-4550f4860cc35b9e50bc7f7c9db227e5">
+<img src="../../img/vpp/1675565161003.png" alt=""loading="lazy">
+</a></p>
+<p>10.1.5.153</p>
+<pre tabindex="0"><code>2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 52:54:00:f8:00:83 brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    inet 10.1.5.153/21 brd 10.1.7.255 scope global ens3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5054:ff:fef8:83/64 scope link 
+       valid_lft forever preferred_lft forever
+3: ens4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:0d:bb:f4 brd ff:ff:ff:ff:ff:ff
+    altname enp0s4
+4: ens5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:94:18:27 brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
+</code></pre><pre tabindex="0"><code>ip l s ens3 down
+systemctl start vpp
+# vpp纳管ens4 
+ip a
+2: ens3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 52:54:00:f8:00:83 brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+4: ens5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:94:18:27 brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
+</code></pre><pre tabindex="0"><code>vppctl
+#创建tap0网卡
+create tap ?
+create tap host-ip4-addr 10.1.5.153/21 host-ip4-gw 10.1.1.1 host-mac-addr 52:54:00:0d:bb:f4 host-if-name ens4
+
+#将网络接口tap0和g0绑定到网桥1上,并启动。可以不设ip
+set int l2 bridge tap0 1
+set int l2 bridge GigabitEthernet0/4/0 1
+set int state GigabitEthernet0/4/0 up
+set int state tap0 up
+</code></pre><pre tabindex="0"><code>ip a a 10.1.5.153/21 dev ens4
+
+# FROM other VM
+ping OK
+ssh 10.1.1.5.153 --&gt; OK
+</code></pre><pre tabindex="0"><code>ip netns add ns0
+ip link add vpp0 type veth peer name vethns0
+ip link set vethns0 netns ns0
+ip netns exec ns0 ip link set lo up
+ip netns exec ns0 ip link set vethns0 up
+ip netns exec ns0 ip addr add 192.168.1.1/24 dev vethns0
+ip netns exec ns0 ethtool -K vethns0 rx off tx off
+</code></pre><pre tabindex="0"><code>vpp# set int l2 bridge GigabitEthernet4/0/0 1
+vpp# set int state GigabitEthernet4/0/0 up
+vpp# create host-interface name vpp0
+vpp# set interface state host-vpp0 up
+vpp# set interface l2 bridge host-vpp0 1
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
+  </body>
+</html>

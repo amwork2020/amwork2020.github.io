@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>VPPs on amwork2010 blog</title>
+    <title>VPP on amwork2010 blog</title>
     <link>https://example.com/vpp/index.html</link>
-    <description>Recent content in VPPs on amwork2010 blog</description>
+    <description>Recent content in VPP on amwork2010 blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 04 Feb 2023 13:40:36 +0800</lastBuildDate><atom:link href="https://example.com/vpp/index.xml" rel="self" type="application/rss+xml" />
@@ -48,6 +48,71 @@ vi /etc/default/grub GRUB_CMDLINE_LINUX=&amp;#34;..... default_hugepagesz=1G hug
       <guid>https://example.com/vpp/2.vpp-tutorial/index.html</guid>
       <description>date: 2023-02-04
 Create a veth interface https://s3-docs.fd.io/vpp/22.10/gettingstarted/progressivevpp/index.html ip link add name ns1host type veth peer name ns1vpp ip netns add vns1 ip link set ns1host netns vns1 ip netns exec vns1 ifconfig ns1host 1.1.1.2/24 up ip netns exec vns1 route add -net 2.2.2.0/24 gw 1.1.1.1 ip link add name ns2host type veth peer name ns2vpp ip netns add vns2 ip link set ns2host netns vns2 ip netns exec vns2 ifconfig ns2host 2.</description>
+    </item>
+    <item>
+      <title>3. frrdocker-dockervpp</title>
+      <link>https://example.com/vpp/3.frrdocker-dockervpp/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/3.frrdocker-dockervpp/index.html</guid>
+      <description>date: 2023-02-05 VM: 10.1.5.153 docker pull frrdocker/dockervpp:vpp1 docker run --privileged --name VPP1 --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --rm -it frrdocker/dockervpp:vpp1 vpp -c /etc/vpp/startup.conf &amp;amp; docker run --privileged --name VPP2 --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --rm -it frrdocker/dockervpp:vpp1 vpp -c /etc/vpp/startup.conf &amp;amp; docker run --privileged --name VPP3 --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --rm -it frrdocker/dockervpp:vpp1 vpp -c /etc/vpp/startup.conf &amp;amp; vi 04-docker-network-remove-default.sh #! bi/bash VPP1=$(docker exec -it VPP1 bash -c hostname | tr -d &amp;#39;\r\n&amp;#39;) VPP2=$(docker exec -it VPP2 bash -c hostname | tr -d &amp;#39;\r\n&amp;#39;) VPP3=$(docker exec -it VPP3 bash -c hostname | tr -d &amp;#39;\r\n&amp;#39;) echo $VPP1 echo $VPP2 echo $VPP3 ### Disconnect VPP1 from default bridge docker0 docker network disconnect bridge $VPP1 ### Disconnect VPP2 from default bridge docker0 docker network disconnect bridge $VPP2 ### Disconnect VPP3 from default bridge docker0 docker network disconnect bridge $VPP3 bash -xv 04-docker-network-remove-default.</description>
+    </item>
+    <item>
+      <title>4. VPP_TAP_INT_Containers1</title>
+      <link>https://example.com/vpp/4.vpp-containers1/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/4.vpp-containers1/index.html</guid>
+      <description>date: 2023-02-05 https://github.com/MarioDoman/VPP_TAP_INT_WITH_Containers echo &amp;#34;Remove old netns simlink&amp;#34; sudo rm -Rf /var/run/netns sudo mkdir /var/run/netns # veth pair for docker1 sudo ip link add veth10 type veth peer name veth11 sudo ip link set veth10 up sudo ip link set veth11 up # veth pair for docker2 sudo ip link add veth20 type veth peer name veth21 sudo ip link set veth20 up sudo ip link set veth21 up #Create docker containers docker pull busybox docker run -d --name &amp;#34;docker1&amp;#34; busybox sleep 36000 docker run -d --name &amp;#34;docker2&amp;#34; busybox sleep 36000 #Wait for containers sleep 10 #Expose containers to the &amp;#39;ip netns exec&amp;#39; tools pid1=`docker inspect -f &amp;#39;{{.</description>
+    </item>
+    <item>
+      <title>5. VPP_TAP_INT_Containers2</title>
+      <link>https://example.com/vpp/5.vpp-containers2/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/5.vpp-containers2/index.html</guid>
+      <description>date: 2023-02-05 docker pull alpine:3.17.1 cat &amp;lt;&amp;lt; EOF &amp;gt; Dockerfile FROM alpine:3.17.1 ENV TZ Asia/Shanghai RUN sed -i &amp;#39;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&amp;#39; /etc/apk/repositories RUN apk add --update --no-cache bash tcpdump iperf busybox-extras iproute2 iputils tzdata RUN cp /usr/share/zoneinfo/\${TZ} /etc/localtime \ &amp;amp;&amp;amp; echo \${TZ} &amp;gt; /etc/timezone &amp;amp;&amp;amp; rm -rf /var/cache/apk/* EOF docker build -t amwork2010/alpine:iperf . # 153 vppctl set interface state GigabitEthernet0/4/0 up set interface ip address GigabitEthernet0/4/0 1.1.1.1/24 create tap set interface state tap0 up set interface ip address tap0 2.</description>
+    </item>
+    <item>
+      <title>6. VPP_kernel_interaction</title>
+      <link>https://example.com/vpp/6.vpp_kernel/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/6.vpp_kernel/index.html</guid>
+      <description>date: 2023-02-05 VPP和Linux内核协议栈通信方法 https://blog.csdn.net/turbock/article/details/103912015 10.1.5.153
+2: ens3: &amp;lt;BROADCAST,MULTICAST,UP,LOWER_UP&amp;gt; mtu 1500 qdisc mq state UP group default qlen 1000 link/ether 52:54:00:f8:00:83 brd ff:ff:ff:ff:ff:ff altname enp0s3 inet 10.1.5.153/21 brd 10.1.7.255 scope global ens3 valid_lft forever preferred_lft forever inet6 fe80::5054:ff:fef8:83/64 scope link valid_lft forever preferred_lft forever 3: ens4: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 52:54:00:0d:bb:f4 brd ff:ff:ff:ff:ff:ff altname enp0s4 4: ens5: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 52:54:00:94:18:27 brd ff:ff:ff:ff:ff:ff altname enp0s5 ip l s ens3 down systemctl start vpp # vpp纳管ens4 ip a 2: ens3: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc mq state DOWN group default qlen 1000 link/ether 52:54:00:f8:00:83 brd ff:ff:ff:ff:ff:ff altname enp0s3 4: ens5: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state DOWN group default qlen 1000 link/ether 52:54:00:94:18:27 brd ff:ff:ff:ff:ff:ff altname enp0s5 vppctl #创建tap0网卡 create tap ?</description>
+    </item>
+    <item>
+      <title>7. vpp qemu vhost</title>
+      <link>https://example.com/vpp/7.vpp_qemu_vhost/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/7.vpp_qemu_vhost/index.html</guid>
+      <description>date: 2023-02-05
+HOST : 10.1.1.8 &amp;ndash;&amp;gt; VM: 10.1.5.155 https://s3-docs.fd.io/vpp/22.10/usecases/vhost/index.html https://wiki.fd.io/view/VPP/Use_VPP_to_connect_VMs_Using_Vhost-User_Interface
+# vm.xml &amp;lt;interface type=&amp;#39;bridge&amp;#39;&amp;gt; &amp;lt;source bridge=&amp;#39;br0&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;vmxnet3&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; &amp;lt;interface type=&amp;#39;bridge&amp;#39;&amp;gt; &amp;lt;source bridge=&amp;#39;br0&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;vmxnet3&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; ## HOST : 10.1.1.8 ../startVMs/startvm.sh vpp_5.155 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8 ######### 0.prepare apt update apt -y full-upgrade ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime [ -f /var/run/reboot-required ] &amp;amp;&amp;amp; reboot -f ######### 1. 启用rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/rc.local #!/bin/bash echo 1 &amp;gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode EOF chmod +x /etc/rc.local cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /lib/systemd/system/rc-local.</description>
+    </item>
+    <item>
+      <title>8. vpp commands</title>
+      <link>https://example.com/vpp/8.vpp_command/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/8.vpp_command/index.html</guid>
+      <description>date: 2023-02-05
+vpp常用命令与基本操作
+vpp的基本操作： 1，up/down vpp# set int state G0 up vpp# set int state G0 down 2，配置IP vpp#set int ip address G0 192.168.59.134/24 3，配置mac vpp#set int mac address G0 00:00:00:00:00:00 4,查看基本信息 vpp# show int vpp# show int addr 5，配置路由 vpp# ip route add 0.0.0.0/0 via 0.0.0.0 vpp# ip table [add|del] &amp;lt;table-id&amp;gt; //创建IPv4 table表 vpp# ip6 table [add|del] &amp;lt;table-id&amp;gt; //创建IPv6 table表 vpp# show ip fib //查看路由 vpp# show ip arp //查看arp 表 6，创建桥 vpp# create bridge-domain 100 //桥100 vpp# show bridge-domain 100 detail //查看桥下信息 7，创建vlan vpp# create sub-interfaces G1 100 //G1.</description>
+    </item>
+    <item>
+      <title>9. calico vpp vmware</title>
+      <link>https://example.com/vpp/9.calico_vpp_vmware/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/9.calico_vpp_vmware/index.html</guid>
+      <description>date: 2023-02-05
+https://projectcalico.docs.tigera.io/getting-started/kubernetes/vpp/getting-started VMware VM u2204 3台，双网卡: vmxnet3
+hostnamectl set-hostname vpp61 cat &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt; /etc/hosts 192.168.68.61 vpp61 192.168.68.62 vpp62 192.168.68.63 vpp63 EOF apt update apt -y full-upgrade [ -f /var/run/reboot-required ] &amp;amp;&amp;amp; reboot -f ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime vi /etc/default/grub GRUB_CMDLINE_LINUX=&amp;#34;iommu=pt intel_iommu=on&amp;#34; #GRUB_CMDLINE_LINUX=&amp;#34;default_hugepagesz=1G hugepagesz=1G hugepages=4 iommu=pt intel_iommu=on&amp;#34; update-grub echo &amp;#34;vfio-pci&amp;#34; &amp;gt; /etc/modules-load.d/95-vpp.conf echo &amp;#34;vm.nr_hugepages = 1024&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf reboot cat /proc/cmdline | grep -e iommu=pt -e intel_iommu=on -e huge dmesg | grep -e DMAR -e IOMMU cat /proc/meminfo | grep Huge lscpu | grep NUMA lshw -businfo -c network pci@0000:0b:00.</description>
+    </item>
+    <item>
+      <title>10. calico vpp qemu</title>
+      <link>https://example.com/vpp/10.calico_vpp_qemu/index.html</link>
+      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <guid>https://example.com/vpp/10.calico_vpp_qemu/index.html</guid>
+      <description>date: 2023-02-05
+vm.xml
+... &amp;lt;interface type=&amp;#39;bridge&amp;#39;&amp;gt; &amp;lt;source bridge=&amp;#39;br0&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;vmxnet3&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; &amp;lt;interface type=&amp;#39;bridge&amp;#39;&amp;gt; &amp;lt;source bridge=&amp;#39;br0&amp;#39;/&amp;gt; &amp;lt;model type=&amp;#39;vmxnet3&amp;#39;/&amp;gt; &amp;lt;/interface&amp;gt; ... ## HOST : 10.1.1.12 /opt/startVMs/startvm2.sh calicovpp_5.117 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8 /opt/startVMs/startvm2.sh calicovpp_5.118 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8 /opt/startVMs/startvm2.sh calicovpp_5.119 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8 root@junnan-gpu:~# kvm --version QEMU emulator version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.6) Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers kroot@junnan-gpu:~# kvm -device ? ... Network devices: name &amp;#34;e1000&amp;#34;, bus PCI, alias &amp;#34;e1000-82540em&amp;#34;, desc &amp;#34;Intel Gigabit Ethernet&amp;#34; name &amp;#34;e1000-82544gc&amp;#34;, bus PCI, desc &amp;#34;Intel Gigabit Ethernet&amp;#34; name &amp;#34;e1000-82545em&amp;#34;, bus PCI, desc &amp;#34;Intel Gigabit Ethernet&amp;#34; .</description>
     </item>
   </channel>
 </rss>

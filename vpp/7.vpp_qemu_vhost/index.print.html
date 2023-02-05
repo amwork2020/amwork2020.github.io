@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>7. vpp qemu vhost :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/7.vpp_qemu_vhost/index.html" rel="canonical" type="text/html" title="7. vpp qemu vhost :: amwork2010 blog">
+    <link href="../../vpp/7.vpp_qemu_vhost/index.xml" rel="alternate" type="application/rss+xml" title="7. vpp qemu vhost :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675568222" rel="stylesheet">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/7.vpp_qemu_vhost/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">7. vpp qemu vhost</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="7-vpp-qemu-vhost">7. vpp qemu vhost</h1>
+
+<p>date: 2023-02-05</p>
+<p>HOST : 10.1.1.8    &ndash;&gt; VM: 10.1.5.155
+<a href="https://s3-docs.fd.io/vpp/22.10/usecases/vhost/index.html" target="_blank">https://s3-docs.fd.io/vpp/22.10/usecases/vhost/index.html</a>   <br>
+<a href="https://wiki.fd.io/view/VPP/Use_VPP_to_connect_VMs_Using_Vhost-User_Interface" target="_blank">https://wiki.fd.io/view/VPP/Use_VPP_to_connect_VMs_Using_Vhost-User_Interface</a></p>
+<pre tabindex="0"><code># vm.xml
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+		&lt;interface type=&#39;bridge&#39;&gt;
+			&lt;source bridge=&#39;br0&#39;/&gt;
+			&lt;model type=&#39;vmxnet3&#39;/&gt;
+		&lt;/interface&gt;
+
+## HOST : 10.1.1.8
+../startVMs/startvm.sh vpp_5.155 jammy-server-cloudimg-amd64.20221210.pw1-10.1.5.3.img 4 8
+
+######### 0.prepare
+apt update
+apt -y full-upgrade
+ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+[ -f /var/run/reboot-required ] &amp;&amp; reboot -f
+
+######### 1. 启用rc.local
+cat &lt;&lt; EOF &gt;&gt; /etc/rc.local
+#!/bin/bash
+echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+EOF
+
+chmod +x /etc/rc.local
+
+cat &lt;&lt; EOF &gt;&gt; /lib/systemd/system/rc-local.service
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat /lib/systemd/system/rc-local.service
+
+# 启用服务
+systemctl enable rc-local
+systemctl start rc-local
+systemctl status rc-local
+
+cat /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+
+######### 2. vfio &amp;&amp; hugepages (可不做，具体见下80-vpp.conf vpp.service)
+echo &#34;vfio-pci&#34; &gt; /etc/modules-load.d/95-vpp.conf
+
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+vm.nr_hugepages = 2048
+EOF
+
+sysctl -p
+
+######### 3. vpp 22.10 &amp;&amp; dpdk
+lshw -businfo -c network
+#apt install dpdk dpdk-dev -y
+apt install dpdk -y
+
+## https://packagecloud.io/fdio
+#curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/fdio/2210/script.deb.sh | sudo bash
+cat /etc/apt/sources.list.d/fdio_2210.list
+apt update
+apt install vpp vpp-plugin-core vpp-plugin-dpdk -y
+# systemctl enable vpp
+# systemctl disable vpp
+systemctl status vpp
+mkdir -p /var/log/vpp
+vi /etc/sysctl.d/80-vpp.conf 
+vm.nr_hugepages=2048
+
+vi /lib/systemd/system/vpp.service
+ExecStartPre=-/sbin/modprobe vfio-pci
+ExecStartPre=-/bin/bash -c &#39;echo 1 &gt; /sys/module/vfio/parameters/enable_unsafe_noiommu_mode &amp;&amp; sleep 2&#39;
+
+vi /etc/vpp/startup.conf
+dpdk {
+	uio-driver vfio-pci
+	dev 0000:00:04.0
+}
+
+systemctl daemon-reload &amp;&amp; systemctl restart vpp
+## CPU0 100%
+vppctl show ver
+
+vppctl
+show interface
+</code></pre><pre tabindex="0"><code>apt update
+egrep -c &#39;(vmx|svm)&#39; /proc/cpuinfo
+grep -E --color &#39;(vmx|svm)&#39; /proc/cpuinfo
+apt install -y cpu-checker
+kvm-ok
+apt install -y qemu-kvm virt-manager libvirt-daemon-system virtinst libvirt-clients qemu-utils bridge-utils
+systemctl status libvirtd
+
+cat &gt;&gt; /etc/libvirt/qemu.conf &lt;&lt; EOF
+user = &#34;root&#34;
+group = &#34;root&#34;
+EOF
+systemctl restart libvirtd.service
+
+vppctl #
+create vhost-user socket /tmp/vm00.sock
+show vhost-user
+show int
+set interface state VirtualEthernet0/0/0 up
+set interface state GigabitEthernet0/4/0 up
+set interface l2 bridge VirtualEthernet0/0/0 100
+set interface l2 bridge GigabitEthernet0/4/0 100
+show bridge
+# clean
+# delete vhost-user VirtualEthernet0/0/0
+
+mv alpine-virt-3.16.1-iperf3-x86_64.qcow2 disk
+virsh define vm.xml
+virsh start alpine1
+virsh console alpine1
+ip link set eth0 up
+ip addr add 10.1.5.188/21 dev eth0
+ip a
+ping 10.1.1.1 ### OK
+</code></pre><p><strong>vm.xml</strong></p>
+<pre tabindex="0"><code>&lt;domain type=&#39;kvm&#39;&gt;
+	&lt;name&gt;alpine1&lt;/name&gt;
+	&lt;vcpu placement=&#39;static&#39;&gt;2&lt;/vcpu&gt;
+	&lt;memory&gt;1048576&lt;/memory&gt;
+	&lt;memoryBacking&gt;
+		&lt;hugepages&gt;
+			&lt;page size=&#39;2048&#39; unit=&#39;KiB&#39;/&gt;
+		&lt;/hugepages&gt;
+	&lt;/memoryBacking&gt;
+	&lt;os&gt;
+		&lt;type arch=&#39;x86_64&#39; machine=&#39;pc&#39;&gt;hvm&lt;/type&gt;
+		&lt;bootmenu enable=&#39;yes&#39;/&gt;
+	&lt;/os&gt;
+	&lt;features&gt;
+		&lt;acpi/&gt;
+		&lt;apic/&gt;
+		&lt;pae/&gt;
+	&lt;/features&gt;
+	&lt;cpu mode=&#34;host-passthrough&#34;&gt;
+		&lt;numa&gt;
+			&lt;cell id=&#39;0&#39; cpus=&#39;0-1&#39; memory=&#39;1048576&#39; unit=&#39;KiB&#39; memAccess=&#39;shared&#39;/&gt;
+		&lt;/numa&gt;
+	&lt;/cpu&gt;
+	&lt;clock offset=&#39;utc&#39;/&gt;
+	&lt;on_poweroff&gt;destroy&lt;/on_poweroff&gt;
+	&lt;on_reboot&gt;restart&lt;/on_reboot&gt;
+	&lt;on_crash&gt;destroy&lt;/on_crash&gt;
+	&lt;devices&gt;
+		&lt;emulator&gt;/usr/bin/kvm&lt;/emulator&gt;
+		&lt;disk type=&#39;file&#39; device=&#39;disk&#39;&gt;
+			&lt;driver name=&#39;qemu&#39; type=&#39;qcow2&#39;/&gt;
+			&lt;source file=&#39;/root/vms/alpine1/disk&#39;/&gt;
+			&lt;target dev=&#39;vda&#39; bus=&#39;virtio&#39;/&gt;
+			&lt;boot order=&#39;1&#39;/&gt;
+		&lt;/disk&gt;
+		&lt;interface type=&#39;vhostuser&#39;&gt;
+			&lt;mac address=&#39;00:00:00:00:00:01&#39;/&gt;
+			&lt;source type=&#39;unix&#39; path=&#39;/tmp/vm00.sock&#39; mode=&#39;server&#39;/&gt;
+			&lt;target dev=&#39;vnet1&#39;/&gt;
+			&lt;model type=&#39;virtio&#39;/&gt;
+			&lt;driver queues=&#39;2&#39;&gt;
+				 &lt;host mrg_rxbuf=&#39;off&#39;/&gt;
+			&lt;/driver&gt;
+		&lt;/interface&gt;
+		&lt;serial type=&#39;pty&#39;&gt;
+		  &lt;target port=&#39;0&#39;/&gt;
+		&lt;/serial&gt;
+		&lt;console type=&#39;pty&#39;&gt;
+		  &lt;target type=&#39;serial&#39; port=&#39;0&#39;/&gt;
+		&lt;/console&gt;
+		&lt;graphics type=&#39;vnc&#39; port=&#39;-1&#39; autoport=&#39;yes&#39; listen=&#39;0.0.0.0&#39;/&gt;
+		&lt;video&gt;
+			&lt;model type=&#39;cirrus&#39; vram=&#39;65536&#39; heads=&#39;1&#39;/&gt;
+		&lt;/video&gt;
+		&lt;input type=&#39;tablet&#39; bus=&#39;usb&#39;/&gt;
+		&lt;input type=&#39;mouse&#39; bus=&#39;ps2&#39;/&gt;
+	&lt;/devices&gt;
+&lt;/domain&gt;
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
+  </body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="author" content="amwork2010">
+    <title>3. frrdocker-dockervpp :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/3.frrdocker-dockervpp/index.html" rel="canonical" type="text/html" title="3. frrdocker-dockervpp :: amwork2010 blog">
+    <link href="../../vpp/3.frrdocker-dockervpp/index.xml" rel="alternate" type="application/rss+xml" title="3. frrdocker-dockervpp :: amwork2010 blog">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675568222" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675568222" rel="stylesheet">
+    <link href="../../css/fonts.css?1675568222" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675568222" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675568222" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675568222" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675568222" rel="stylesheet">
+    <link href="../../css/variant.css?1675568222" rel="stylesheet">
+    <link href="../../css/print.css?1675568222" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675568222" rel="stylesheet">
+    <script src="../../js/url.js?1675568222"></script>
+    <script src="../../js/variant.js?1675568222"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1675568222" defer></script>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/3.frrdocker-dockervpp/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">3. frrdocker-dockervpp</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="3-frrdocker-dockervpp">3. frrdocker-dockervpp</h1>
+
+<p>date: 2023-02-05      <br>
+VM: 10.1.5.153
+
+<a href="#image-ea9374b5fdb1ba6225d3c4f5a8de257e">
+<img src="../../img/vpp/1675562552504.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ea9374b5fdb1ba6225d3c4f5a8de257e">
+<img src="../../img/vpp/1675562552504.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>docker pull frrdocker/dockervpp:vpp1
+docker run --privileged --name VPP1 --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --rm -it frrdocker/dockervpp:vpp1
+vpp -c /etc/vpp/startup.conf &amp;
+docker run --privileged --name VPP2 --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --rm -it frrdocker/dockervpp:vpp1
+vpp -c /etc/vpp/startup.conf &amp;
+docker run --privileged --name VPP3 --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --rm -it frrdocker/dockervpp:vpp1
+vpp -c /etc/vpp/startup.conf &amp;
+</code></pre><p>
+<a href="#image-ff0e14dbc10bf1283cc24d25dcbd1dfb">
+<img src="../../img/vpp/1675562646130.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ff0e14dbc10bf1283cc24d25dcbd1dfb">
+<img src="../../img/vpp/1675562646130.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-ff8035bdef1cef9a878a1e8fe36140b1">
+<img src="../../img/vpp/1675562682668.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ff8035bdef1cef9a878a1e8fe36140b1">
+<img src="../../img/vpp/1675562682668.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>vi 04-docker-network-remove-default.sh 
+#! bi/bash
+VPP1=$(docker exec -it VPP1 bash -c hostname | tr -d &#39;\r\n&#39;)
+VPP2=$(docker exec -it VPP2 bash -c hostname | tr -d &#39;\r\n&#39;)
+VPP3=$(docker exec -it VPP3 bash -c hostname | tr -d &#39;\r\n&#39;)
+echo $VPP1
+echo $VPP2
+echo $VPP3
+### Disconnect VPP1 from default bridge docker0
+docker network disconnect bridge $VPP1
+### Disconnect VPP2 from default bridge docker0
+docker network disconnect bridge $VPP2
+### Disconnect VPP3 from default bridge docker0
+docker network disconnect bridge $VPP3
+
+bash -xv 04-docker-network-remove-default.sh 
+</code></pre><p>
+<a href="#image-a679071b54d18f9e26f4e72353a9d22a">
+<img src="../../img/vpp/1675562735715.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-a679071b54d18f9e26f4e72353a9d22a">
+<img src="../../img/vpp/1675562735715.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>docker network create --driver=bridge --subnet=11.11.0.0/16 vpp_subnet1
+docker network create --driver=bridge --subnet=12.12.0.0/16 vpp_subnet2
+</code></pre><p>
+<a href="#image-6cfd3706452eb8465266c482fc49e10f">
+<img src="../../img/vpp/1675562815815.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-6cfd3706452eb8465266c482fc49e10f">
+<img src="../../img/vpp/1675562815815.png" alt=""loading="lazy">
+</a>
+
+<a href="#image-a59847d5544ca38bd4ccb046a42801ef">
+<img src="../../img/vpp/1675562865110.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-a59847d5544ca38bd4ccb046a42801ef">
+<img src="../../img/vpp/1675562865110.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>#! bi/bash
+VPP1=$(docker exec -it VPP1 bash -c hostname | tr -d &#39;\r\n&#39;)
+VPP2=$(docker exec -it VPP2 bash -c hostname | tr -d &#39;\r\n&#39;)
+VPP3=$(docker exec -it VPP3 bash -c hostname | tr -d &#39;\r\n&#39;)
+echo $VPP1
+echo $VPP2
+echo $VPP3
+
+### Connect vpp_subnet1 to VPP1 and VPP2
+docker network connect vpp_subnet1 $VPP1
+docker network connect vpp_subnet1 $VPP2
+
+### Connect vpp_subnet2 to VPP2 and VPP3
+docker network connect vpp_subnet2 $VPP2
+docker network connect vpp_subnet2 $VPP3
+</code></pre><p>
+<a href="#image-64786814991790e829af3dd85b8b8483">
+<img src="../../img/vpp/1675562915349.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-64786814991790e829af3dd85b8b8483">
+<img src="../../img/vpp/1675562915349.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code># VPP1
+ifconfig eth1 0.0.0.0
+vppctl
+create host-interface name eth1
+show int
+set interface state host-eth1 up
+set interface ip address host-eth1 11.11.0.11/16
+show int addr
+ip route add 12.12.0.0/16 via 11.11.0.12
+
+# VPP2
+ifconfig eth1 0.0.0.0
+ifconfig eth2 0.0.0.0
+vppctl
+create host-interface name eth1
+create host-interface name eth2
+set interface state host-eth1 up
+set interface state host-eth2 up
+set interface ip address host-eth1 11.11.0.12/16
+set interface ip address host-eth1 12.12.0.21/16
+
+# VPP3
+ifconfig eth1 0.0.0.0
+vppctl
+create host-interface name eth1
+set interface state host-eth1 up
+set interface ip address host-eth1 12.12.0.22/16
+ip route add 11.11.0.0/16 via 12.12.0.21
+</code></pre>
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1675568222" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675568222" defer></script>
+    <script src="../../js/theme.js?1675568222" defer></script>
+  </body>
+</html>
