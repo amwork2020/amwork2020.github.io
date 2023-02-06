@@ -6,7 +6,7 @@
     <description>Recent content in ubuntu on amwork2010 blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Feb 2023 09:40:36 +0800</lastBuildDate><atom:link href="https://example.com/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Feb 2023 09:40:36 +0800</lastBuildDate><atom:link href="https://example.com/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. import ubuntu-cloud-images</title>
       <link>https://example.com/ubuntu/1.ubuntu-cloud-images/index.html</link>
@@ -18,7 +18,7 @@
     <item>
       <title>2. qemu u2204-cloudimg</title>
       <link>https://example.com/ubuntu/2.qemu-u2204-cloudimg/index.html</link>
-      <pubDate>Sun, 05 Feb 2023 09:40:36 +0800</pubDate>
+      <pubDate>Mon, 06 Feb 2023 09:40:36 +0800</pubDate>
       <guid>https://example.com/ubuntu/2.qemu-u2204-cloudimg/index.html</guid>
       <description>date: 2023-02-06 http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/
 # 10.1.1.12 : /u01/img cd /u01/img wget http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/20230110/jammy-server-cloudimg-amd64.img mv jammy-server-cloudimg-amd64.img jammy-server-cloudimg-amd64.20230110.img qemu-img info jammy-server-cloudimg-amd64.20230110.img qemu-img resize jammy-server-cloudimg-amd64.20230110.img 100G virt-customize -a jammy-server-cloudimg-amd64.20230110.img --root-password password:1 ../startVMs/startvm.sh jammy jammy-server-cloudimg-amd64.20230110.img 2 4 virsh console jammy fdisk -l fdisk /dev/vda p d 1 p n 1 y p w resize2fs /dev/vda1 cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/netplan/01-netcfg.yaml network: version: 2 renderer: networkd ethernets: ens3: addresses: - 10.1.5.3/21 nameservers: addresses: [114.114.114.114, 8.8.8.8] routes: - to: default via: 10.</description>
