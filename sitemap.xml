@@ -97,11 +97,15 @@
     <lastmod>2023-02-05T09:40:36+08:00</lastmod>
   </url>
   <url>
+    <loc>https://example.com/vpp/10.calico_vpp_qemu/index.html</loc>
+    <lastmod>2023-02-05T09:40:36+08:00</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/ubuntu/1.ubuntu-cloud-images/index.html</loc>
     <lastmod>2023-02-05T09:40:36+08:00</lastmod>
   </url>
   <url>
-    <loc>https://example.com/vpp/10.calico_vpp_qemu/index.html</loc>
+    <loc>https://example.com/ubuntu/2.qemu-u2204-cloudimg/index.html</loc>
     <lastmod>2023-02-05T09:40:36+08:00</lastmod>
   </url>
   <url>

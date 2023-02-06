@@ -11,19 +11,19 @@
     <link href="https://example.com/dpdk/8.rocky9.1-dpdk/index.html" rel="canonical" type="text/html" title="8. rocky 9.1 DPDK :: amwork2010 blog">
     <link href="../../dpdk/8.rocky9.1-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="8. rocky 9.1 DPDK :: amwork2010 blog">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1675600333" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675600333" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1675600333" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675600333" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1675600333" rel="stylesheet">
-    <link href="../../css/nucleus.css?1675600333" rel="stylesheet">
-    <link href="../../css/fonts.css?1675600333" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675600333" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1675600333" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1675600333" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1675600333" rel="stylesheet">
-    <link href="../../css/variant.css?1675600333" rel="stylesheet">
-    <link href="../../css/print.css?1675600333" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1675600333" rel="stylesheet">
-    <script src="../../js/url.js?1675600333"></script>
-    <script src="../../js/variant.js?1675600333"></script>
+    <link href="../../css/fontawesome-all.min.css?1675673273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675673273" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675673273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675673273" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675673273" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675673273" rel="stylesheet">
+    <link href="../../css/fonts.css?1675673273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675673273" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675673273" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675673273" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675673273" rel="stylesheet">
+    <link href="../../css/variant.css?1675673273" rel="stylesheet">
+    <link href="../../css/print.css?1675673273" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675673273" rel="stylesheet">
+    <script src="../../js/url.js?1675673273"></script>
+    <script src="../../js/variant.js?1675673273"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -41,7 +41,7 @@
       var baseUriFull='https:\/\/example.com/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1675600333" defer></script>
+    <script src="../../js/jquery.min.js?1675673273" defer></script>
   </head>
   <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dpdk/8.rocky9.1-dpdk/index.html">
     <div id="body" class="default-animation">
@@ -71,10 +71,10 @@
 <p>date: 2023-02-04   <br>
 <strong>VMWARE 加网卡</strong>
 
-<a href="#image-e12798695970648bad97b063d7948c2f">
+<a href="#image-b1201aa794d9441a53757f80de46a9bf">
 <img src="../../img/dpdk/1675514357163.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e12798695970648bad97b063d7948c2f">
+<a href="javascript:history.back();" class="lightbox" id="image-b1201aa794d9441a53757f80de46a9bf">
 <img src="../../img/dpdk/1675514357163.png" alt=""loading="lazy">
 </a></p>
 <pre tabindex="0"><code>编辑对应的 dpdk1.vmx，修改所有e1000为vmxnet3 ，多队列网卡
@@ -109,10 +109,10 @@ ethernet3.wakeOnPcktRcv = &#34;true&#34;
 </code></pre><p>[root@dpdk1 ~]# cat /proc/interrupts |grep ens
 vmxnet3 (4CPU)
 
-<a href="#image-94316e5db6fb0ee7c21fc5a294f9bff9">
+<a href="#image-dc9fabd6933f6ecbea6c29be95e15152">
 <img src="../../img/dpdk/1675514512476.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-94316e5db6fb0ee7c21fc5a294f9bff9">
+<a href="javascript:history.back();" class="lightbox" id="image-dc9fabd6933f6ecbea6c29be95e15152">
 <img src="../../img/dpdk/1675514512476.png" alt=""loading="lazy">
 </a></p>
 <p><strong>1G大页</strong></p>
@@ -125,10 +125,10 @@ dmesg | grep -e DMAR -e IOMMU
 cat /proc/cmdline | grep iommu=pt
 cat /proc/cmdline | grep intel_iommu=on
 </code></pre><p>
-<a href="#image-ef48d3e5e4ee5e744967ff453062a4ce">
+<a href="#image-ca8c6de11faaa81c4968cf2360015a96">
 <img src="../../img/dpdk/1675514577483.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ef48d3e5e4ee5e744967ff453062a4ce">
+<a href="javascript:history.back();" class="lightbox" id="image-ca8c6de11faaa81c4968cf2360015a96">
 <img src="../../img/dpdk/1675514577483.png" alt=""loading="lazy">
 </a></p>
 <pre tabindex="0"><code>[root@rocky91 ~]#  cat /proc/meminfo |grep Huge
@@ -229,8 +229,8 @@ ninja install
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1675600333" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1675600333" defer></script>
-    <script src="../../js/theme.js?1675600333" defer></script>
+    <script src="../../js/clipboard.min.js?1675673273" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675673273" defer></script>
+    <script src="../../js/theme.js?1675673273" defer></script>
   </body>
 </html>

@@ -7,9 +7,9 @@
     <meta name="generator" content="Relearn 5.10.2+tip">
     <meta name="description" content="Documentation for Hugo Relearn Theme">
     <meta name="author" content="amwork2010">
-    <title>8. vpp commands :: amwork2010 blog</title>
-    <link href="https://example.com/vpp/8.vpp_command/index.html" rel="canonical" type="text/html" title="8. vpp commands :: amwork2010 blog">
-    <link href="../../vpp/8.vpp_command/index.xml" rel="alternate" type="application/rss+xml" title="8. vpp commands :: amwork2010 blog">
+    <title>2. qemu u2204-cloudimg :: amwork2010 blog</title>
+    <link href="https://example.com/ubuntu/2.qemu-u2204-cloudimg/index.html" rel="canonical" type="text/html" title="2. qemu u2204-cloudimg :: amwork2010 blog">
+    <link href="../../ubuntu/2.qemu-u2204-cloudimg/index.xml" rel="alternate" type="application/rss+xml" title="2. qemu u2204-cloudimg :: amwork2010 blog">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
     <link href="../../css/fontawesome-all.min.css?1675673273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675673273" rel="stylesheet"></noscript>
     <link href="../../css/auto-complete.css?1675673273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675673273" rel="stylesheet"></noscript>
@@ -43,7 +43,7 @@
     </script>
     <script src="../../js/jquery.min.js?1675673273" defer></script>
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/8.vpp_command/index.html">
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../ubuntu/2.qemu-u2204-cloudimg/index.html">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
@@ -55,8 +55,8 @@
             </span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">8. vpp commands</span><meta itemprop="position" content="3"></li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../ubuntu/index.html"><span itemprop="name">Ubuntu</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">2. qemu u2204-cloudimg</span><meta itemprop="position" content="3"></li>
             </ol>
           </div>
         </div>
@@ -66,107 +66,107 @@
           <div id="head-tags">
           </div>
           <article class="default">
-<h1 id="8-vpp-commands">8. vpp commands</h1>
+<h1 id="2-qemu-u2204-cloudimg">2. qemu u2204-cloudimg</h1>
 
-<p>date: 2023-02-05</p>
-<p>vpp常用命令与基本操作</p>
-<pre tabindex="0"><code>vpp的基本操作：
-1，up/down
-vpp# set int state G0 up
-vpp# set int state G0 down
+<p>date: 2023-02-06  <br>
+<a href="http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/" target="_blank">http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/</a></p>
+<pre tabindex="0"><code># 10.1.1.12 : /u01/img
+cd /u01/img
+wget http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/20230110/jammy-server-cloudimg-amd64.img
+mv jammy-server-cloudimg-amd64.img jammy-server-cloudimg-amd64.20230110.img
+qemu-img info jammy-server-cloudimg-amd64.20230110.img
+qemu-img resize jammy-server-cloudimg-amd64.20230110.img 100G
+virt-customize -a jammy-server-cloudimg-amd64.20230110.img --root-password password:1
+../startVMs/startvm.sh jammy jammy-server-cloudimg-amd64.20230110.img 2 4
+virsh console jammy
+fdisk -l
+fdisk /dev/vda
+p
+d
+	1
+p
+n
+	1
 
-2，配置IP
-vpp#set int ip address G0 192.168.59.134/24
+y
+p
+w
 
-3，配置mac
-vpp#set int mac address G0 00:00:00:00:00:00
+resize2fs /dev/vda1
 
-4,查看基本信息
-vpp# show int 
-vpp# show int addr
+cat &lt;&lt; EOF &gt; /etc/netplan/01-netcfg.yaml
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        ens3:
+            addresses:
+                - 10.1.5.3/21
+            nameservers:
+                addresses: [114.114.114.114, 8.8.8.8]
+            routes:
+                - to: default
+                  via: 10.1.1.1
+EOF
 
-5，配置路由
-vpp# ip route add 0.0.0.0/0 via 0.0.0.0
-vpp# ip table [add|del] &lt;table-id&gt;   //创建IPv4 table表
-vpp# ip6 table [add|del] &lt;table-id&gt;  //创建IPv6 table表
-vpp# show ip fib  //查看路由
-vpp# show ip arp  //查看arp 表
+netplan apply 
 
-6，创建桥
-vpp# create bridge-domain 100  //桥100
-vpp# show bridge-domain 100 detail  //查看桥下信息
+sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+apt update
+apt install -y openssh-server net-tools inetutils-ping
+systemctl status sshd
+#systemctl start sshd
 
-7，创建vlan
-vpp# create sub-interfaces G1 100    //G1.100
-vpp# delete sub-interface G1.100  //del
+/usr/sbin/sshd -T
+ssh-keygen -A
 
-8，将vlan放桥下
-vpp#set int l2 bridge G1.100 100  
+vi /etc/ssh/sshd_config
+PermitRootLogin yes
+PasswordAuthentication yes
 
-9，删除桥,再删除桥
-vpp#set int l3 G0
-vpp#create bridge-domain 100 del
+systemctl restart sshd
+netstat -ltnp
 
-10，配置路由
-vpp#ip route add 0.0.0.0/0 via 端口IP
-//删除路由
-vpp# ip route del 0.0.0.0/0 via 端口IP
-//查看路由
-vpp#show ip fib
+apt remove cups -y
+apt autoremove -y
+apt update
+apt upgrade -y
+apt install chrony -y
+systemctl enable chronyd --new
+chronyc sources -v
 
-11，配置snat
-vpp# nat44 add interface address G0   //将G0 作为地址池
-vpp# set interface nat44 in G1 out G2 //  设置出入口
-vpp# show nat44 address  //查看地址池
-vpp# show nat44 interfaces  //查看接口
-vpp# nat44 forwarding enable|disable //nat转发的启动/禁止
+ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+sed -i &#39;s/.*swap.*/#&amp;/&#39; /etc/fstab
 
-12，配置dnat
-vpp# set interface nat44 in &lt;intfc&gt; out &lt;intfc&gt; [output-feature] [del]
-vpp# nat44 add address &lt;ip4-range-start&gt; [- &lt;ip4-range-end&gt;] [tenant-vrf &lt;vrf-id&gt;]
-vpp# nat44 add static mapping tcp|udp|icmp local &lt;ip4-addr&gt; [&lt;port&gt;] external (&lt;ip4-addr&gt;|&lt;intfc&gt;) [&lt;port&gt;] [vrf &lt;table-id&gt;] [twice-nat] [out2in-only] [del]
+cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+vm.swappiness=0
+EOF
+sysctl -p
 
-13，配置wireguard
-vpp# wireguard create listen-port 8899 private-key 私钥内容 src 公网IP  //创建加配置
-vpp# show wireguard interface
-vpp# show wireguard peer
-//添加peer
-vpp# wireguard peer add &lt;wg_int&gt; public-key &lt;pub_key_other&gt;endpoint &lt;ip4_dst&gt; allowed-ip &lt;prefix&gt;dst-port [port_dst] persistent-keepalive [keepalive_interval]
-vpp# wireguard peer remove &lt;index&gt;   //删除peer
+cat &gt;&gt; /etc/systemd/system.conf &lt;&lt; EOF
+DefaultLimitNOFILE=65536
+DefaultLimitNPROC=65536
+DefaultLimitMEMLOCK=infinity
+EOF
 
-14，配置loopback
-vpp# create loopback interface mac 00:0c:29:1f:ce:07 instance 100
-vpp# delete loopback interface intfc loop100
+cat &lt;&lt; EOF &gt;&gt; /etc/security/limits.conf
+* soft nproc 65536
+* soft nofile 65536
+root soft nproc 65536
+root soft nofile 65536
+EOF
 
-15，配置gre
-vpp# create gre tunnel src 1.1.1.2/24 dst 2.2.2.3/24 instance 100 outer-fib-id 0  //创建gre100
-vpp# create gre tunnel src 1.1.1.2/24 dst 2.2.2.3/24 instance 100 outer-fib-id 0 del //删除gre100
-vpp# show gre tunnel 
+rm -rf /var/lib/apt/lists/*
+cat /var/lib/ubuntu-release-upgrader/release-upgrade-available
+rm /var/lib/ubuntu-release-upgrader/release-upgrade-available
+/usr/lib/ubuntu-release-upgrader/release-upgrade-motd
+cat /var/lib/ubuntu-release-upgrader/release-upgrade-available
 
-16，配置memif
-vpp# create memif id 0 /run/vpp/contiv/memif1.sock
-vpp# create interface memif id 0 socket-id 1 master mode ip secret vpp123
-vpp# set int state memif0 up
-vpp# set int ip address memif0 192.168.1.1/24
-vpp# ping 192.168.1.2     //另一个vpp 的memif 设为192.168.1.2/24
-vpp# delete interface memif memif1/0   //删除操作
-vpp# delete memif socket id 0   //删除操作
-
-17，查看版本
-vpp# show version
-
-18，查看启动插件
-vpp# show plugin
-
-19, 查看vpp线程
-vpp# show threads
-
-vpp+ show run
-
-20, 创建tap
-# create tap id 10 host-if-name host   //创建tap10  linux主机上的接口为host
-# set int state tap10 up   //up
-# set int ip address tap10 192.168.100.100/24  //设IP
+sed -i &#39;s/ENABLED=1/ENABLED=0/g&#39; /etc/default/motd-news
 </code></pre>
             <footer class="footline">
             </footer>
