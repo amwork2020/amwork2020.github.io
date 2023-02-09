@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>11. VPP_HostStack_LDP_nginx on amwork2010 blog</title>
+    <link>https://example.com/vpp/11.vpp_ldp_nginx/index.html</link>
+    <description>Recent content in 11. VPP_HostStack_LDP_nginx on amwork2010 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 08 Feb 2023 09:40:36 +0800</lastBuildDate><atom:link href="https://example.com/vpp/11.vpp_ldp_nginx/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

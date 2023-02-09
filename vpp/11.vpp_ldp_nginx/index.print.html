@@ -7,9 +7,9 @@
     <meta name="generator" content="Relearn 5.10.2+tip">
     <meta name="description" content="Documentation for Hugo Relearn Theme">
     <meta name="author" content="amwork2010">
-    <title>2. qemu u2204-cloudimg :: amwork2010 blog</title>
-    <link href="https://example.com/ubuntu/2.qemu-u2204-cloudimg/index.html" rel="canonical" type="text/html" title="2. qemu u2204-cloudimg :: amwork2010 blog">
-    <link href="../../ubuntu/2.qemu-u2204-cloudimg/index.xml" rel="alternate" type="application/rss+xml" title="2. qemu u2204-cloudimg :: amwork2010 blog">
+    <title>11. VPP_HostStack_LDP_nginx :: amwork2010 blog</title>
+    <link href="https://example.com/vpp/11.vpp_ldp_nginx/index.html" rel="canonical" type="text/html" title="11. VPP_HostStack_LDP_nginx :: amwork2010 blog">
+    <link href="../../vpp/11.vpp_ldp_nginx/index.xml" rel="alternate" type="application/rss+xml" title="11. VPP_HostStack_LDP_nginx :: amwork2010 blog">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
     <link href="../../css/fontawesome-all.min.css?1675933203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675933203" rel="stylesheet"></noscript>
     <link href="../../css/auto-complete.css?1675933203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675933203" rel="stylesheet"></noscript>
@@ -43,7 +43,7 @@
     </script>
     <script src="../../js/jquery.min.js?1675933203" defer></script>
   </head>
-  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../ubuntu/2.qemu-u2204-cloudimg/index.html">
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../vpp/11.vpp_ldp_nginx/index.html">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
@@ -55,8 +55,8 @@
             </span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">blogs of amwork2010</span></a><meta itemprop="position" content="1"> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../ubuntu/index.html"><span itemprop="name">Ubuntu</span></a><meta itemprop="position" content="2"> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">2. qemu u2204-cloudimg</span><meta itemprop="position" content="3"></li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../vpp/index.html"><span itemprop="name">VPP</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">11. VPP_HostStack_LDP_nginx</span><meta itemprop="position" content="3"></li>
             </ol>
           </div>
         </div>
@@ -66,108 +66,83 @@
           <div id="head-tags">
           </div>
           <article class="default">
-<h1 id="2-qemu-u2204-cloudimg">2. qemu u2204-cloudimg</h1>
+<h1 id="11-vpp_hoststack_ldp_nginx">11. VPP_HostStack_LDP_nginx</h1>
 
-<p>date: 2023-02-06  <br>
-<a href="http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/" target="_blank">http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/</a></p>
-<pre tabindex="0"><code># 10.1.1.12 : /u01/img
-cd /u01/img
-wget http://mirrors.ustc.edu.cn/ubuntu-cloud-images/jammy/20230110/jammy-server-cloudimg-amd64.img
-mv jammy-server-cloudimg-amd64.img jammy-server-cloudimg-amd64.20230110.img
-qemu-img info jammy-server-cloudimg-amd64.20230110.img
-qemu-img resize jammy-server-cloudimg-amd64.20230110.img 100G
-virt-customize -a jammy-server-cloudimg-amd64.20230110.img --root-password password:1
-../startVMs/startvm.sh jammy jammy-server-cloudimg-amd64.20230110.img 2 4
-virsh console jammy
-fdisk -l
-fdisk /dev/vda
-p
-d
-	1
-p
-n
-	1
+<p>date: 2023-02-09  <br>
+<strong>VPP/HostStack/LDP/nginx</strong>    <br>
+<a href="https://wiki.fd.io/view/VPP/HostStack/LDP/nginx" target="_blank">https://wiki.fd.io/view/VPP/HostStack/LDP/nginx</a></p>
+<pre tabindex="0"><code># HOST 10.1.1.8, VM:10.1.5.151
+### 1. kernel performance
+# vpp151
+ip a
+...
+2: ens3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 52:54:00:07:a0:7d brd ff:ff:ff:ff:ff:ff
+    altname enp0s3
+    inet 10.1.5.151/21 brd 10.1.7.255 scope global ens3
+3: ens4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:2f:3b:13 brd ff:ff:ff:ff:ff:ff
+    altname enp0s4
+4: ens5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 52:54:00:0e:34:c7 brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
 
-y
-p
-w
+ip l s ens4 up
+ip a a 10.65.65.151/24 dev ens4
+nginx -c /etc/nginx/nginx.conf
 
-resize2fs /dev/vda1
+# 10.1.1.8
+wget https://github.com/scutse/wrk-rpm/releases/download/4.1.0/wrk-4.1.0-1.el7.centos.x86_64.rpm
+yum install wrk-4.1.0-1.el7.centos.x86_64.rpm
+wrk -c100 -d30s -t50 http://10.65.65.151/
+ab -n 10000 -c 100 http://10.65.65.151/
+</code></pre><p>
+<a href="#image-a071576d22eef5d17ec846e0d8172f5f">
+<img src="../../img/vpp/1675932528751.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-a071576d22eef5d17ec846e0d8172f5f">
+<img src="../../img/vpp/1675932528751.png" alt=""loading="lazy">
+</a>
 
-cat &lt;&lt; EOF &gt; /etc/netplan/01-netcfg.yaml
-network:
-    version: 2
-    renderer: networkd
-    ethernets:
-        ens3:
-            addresses:
-                - 10.1.5.3/21
-            nameservers:
-                addresses: [114.114.114.114, 8.8.8.8]
-            routes:
-                - to: default
-                  via: 10.1.1.1
-EOF
+<a href="#image-dd903dd9a7d2bea86ba6401f2e91e98b">
+<img src="../../img/vpp/1675932577163.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-dd903dd9a7d2bea86ba6401f2e91e98b">
+<img src="../../img/vpp/1675932577163.png" alt=""loading="lazy">
+</a></p>
+<pre tabindex="0"><code>### 2. vpp performance
+# vpp151
+killall nginx
+ip a f dev ens4
+ip l s ens4 down
+systemctl start vpp
 
-netplan apply 
+vppctl
+set interface state ens4 up
+set interface ip address ens4 10.65.65.151/24
+quit
 
-sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
-sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
-apt update
-apt install -y openssh-server net-tools inetutils-ping
-systemctl status sshd
-#systemctl start sshd
+LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so VCL_CONFIG=/root/vcl.conf nginx -c /etc/nginx/nginx.conf
 
-/usr/sbin/sshd -T
-ssh-keygen -A
+# 10.1.1.8
+wrk -c100 -d30s -t50 http://10.65.65.151/
+ab -n 10000 -c 100 http://10.65.65.151/
+</code></pre><p>
+<a href="#image-4d28b16912029c01e16f407c5f12ce17">
+<img src="../../img/vpp/1675932753289.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-4d28b16912029c01e16f407c5f12ce17">
+<img src="../../img/vpp/1675932753289.png" alt=""loading="lazy">
+</a>
 
-vi /etc/ssh/sshd_config
-PermitRootLogin yes
-PasswordAuthentication yes
+<a href="#image-3bbe58e98ac5688dc1396cb15da4b287">
+<img src="../../img/vpp/1675932788951.png" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-3bbe58e98ac5688dc1396cb15da4b287">
+<img src="../../img/vpp/1675932788951.png" alt=""loading="lazy">
+</a></p>
+<p><strong>快3倍</strong></p>
 
-systemctl restart sshd
-netstat -ltnp
-
-apt remove cups -y
-apt autoremove -y
-apt update
-apt upgrade -y
-apt install chrony -y
-systemctl enable chronyd --new
-chronyc sources -v
-
-ln -sf ../usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-sed -i &#39;s/.*swap.*/#&amp;/&#39; /etc/fstab
-
-cat &lt;&lt;EOF &gt;&gt; /etc/sysctl.conf 
-net.ipv4.ip_forward = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-vm.swappiness=0
-EOF
-sysctl -p
-
-cat &gt;&gt; /etc/systemd/system.conf &lt;&lt; EOF
-DefaultLimitNOFILE=65536
-DefaultLimitNPROC=65536
-DefaultLimitMEMLOCK=infinity
-EOF
-
-cat &lt;&lt; EOF &gt;&gt; /etc/security/limits.conf
-* soft nproc 65536
-* soft nofile 65536
-root soft nproc 65536
-root soft nofile 65536
-EOF
-
-rm -rf /var/lib/apt/lists/*
-cat /var/lib/ubuntu-release-upgrader/release-upgrade-available
-rm /var/lib/ubuntu-release-upgrader/release-upgrade-available
-/usr/lib/ubuntu-release-upgrader/release-upgrade-motd
-cat /var/lib/ubuntu-release-upgrader/release-upgrade-available
-
-sed -i &#39;s/ENABLED=1/ENABLED=0/g&#39; /etc/default/motd-news
-</code></pre>
             <footer class="footline">
             </footer>
           </article>

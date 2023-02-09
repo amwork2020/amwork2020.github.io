@@ -11,18 +11,18 @@
     <link href="../../dpdk/8.rocky9.1-dpdk/index.xml" rel="alternate" type="application/rss+xml" title="8. rocky 9.1 DPDK :: amwork2010 blog">
     <link href="../../dpdk/8.rocky9.1-dpdk/index.print.html" rel="alternate" type="text/html" title="8. rocky 9.1 DPDK :: amwork2010 blog">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1675673713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675673713" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1675673713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675673713" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1675673713" rel="stylesheet">
-    <link href="../../css/nucleus.css?1675673713" rel="stylesheet">
-    <link href="../../css/fonts.css?1675673713" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675673713" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1675673713" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1675673713" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1675673713" rel="stylesheet">
-    <link href="../../css/variant.css?1675673713" rel="stylesheet">
-    <link href="../../css/print.css?1675673713" rel="stylesheet" media="print">
-    <script src="../../js/url.js?1675673713"></script>
-    <script src="../../js/variant.js?1675673713"></script>
+    <link href="../../css/fontawesome-all.min.css?1675933203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675933203" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675933203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675933203" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675933203" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675933203" rel="stylesheet">
+    <link href="../../css/fonts.css?1675933203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675933203" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675933203" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675933203" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675933203" rel="stylesheet">
+    <link href="../../css/variant.css?1675933203" rel="stylesheet">
+    <link href="../../css/print.css?1675933203" rel="stylesheet" media="print">
+    <script src="../../js/url.js?1675933203"></script>
+    <script src="../../js/variant.js?1675933203"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -40,7 +40,7 @@
       var baseUriFull='https:\/\/example.com/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1675673713" defer></script>
+    <script src="../../js/jquery.min.js?1675933203" defer></script>
   </head>
   <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../dpdk/8.rocky9.1-dpdk/index.html">
     <div id="body" class="default-animation">
@@ -86,10 +86,10 @@
 <p>date: 2023-02-04   <br>
 <strong>VMWARE 加网卡</strong>
 
-<a href="#image-b22c9813cda0407c9609eef3b8a08f1c">
+<a href="#image-28192a5126ebe9b6b3536e5fcb8d0b36">
 <img src="../../img/dpdk/1675514357163.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b22c9813cda0407c9609eef3b8a08f1c">
+<a href="javascript:history.back();" class="lightbox" id="image-28192a5126ebe9b6b3536e5fcb8d0b36">
 <img src="../../img/dpdk/1675514357163.png" alt=""loading="lazy">
 </a></p>
 <pre tabindex="0"><code>编辑对应的 dpdk1.vmx，修改所有e1000为vmxnet3 ，多队列网卡
@@ -124,10 +124,10 @@ ethernet3.wakeOnPcktRcv = &#34;true&#34;
 </code></pre><p>[root@dpdk1 ~]# cat /proc/interrupts |grep ens
 vmxnet3 (4CPU)
 
-<a href="#image-c16593f77ce178a958781f80b710cb9d">
+<a href="#image-2b8d4006e5e40f8d17c74d378d163596">
 <img src="../../img/dpdk/1675514512476.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c16593f77ce178a958781f80b710cb9d">
+<a href="javascript:history.back();" class="lightbox" id="image-2b8d4006e5e40f8d17c74d378d163596">
 <img src="../../img/dpdk/1675514512476.png" alt=""loading="lazy">
 </a></p>
 <p><strong>1G大页</strong></p>
@@ -140,10 +140,10 @@ dmesg | grep -e DMAR -e IOMMU
 cat /proc/cmdline | grep iommu=pt
 cat /proc/cmdline | grep intel_iommu=on
 </code></pre><p>
-<a href="#image-8130910ab45d901a78f7e4c7b2745628">
+<a href="#image-f181e009a090ca8649cadee47facfeac">
 <img src="../../img/dpdk/1675514577483.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8130910ab45d901a78f7e4c7b2745628">
+<a href="javascript:history.back();" class="lightbox" id="image-f181e009a090ca8649cadee47facfeac">
 <img src="../../img/dpdk/1675514577483.png" alt=""loading="lazy">
 </a></p>
 <pre tabindex="0"><code>[root@rocky91 ~]#  cat /proc/meminfo |grep Huge
@@ -316,12 +316,12 @@ ninja install
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1675673713" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1675673713" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1675673713" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1675673713" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1675673713" defer></script>
-        <script src="../../js/search.js?1675673713" defer></script>
+        <script src="../../js/auto-complete.js?1675933203" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1675933203" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1675933203" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1675933203" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1675933203" defer></script>
+        <script src="../../js/search.js?1675933203" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -348,7 +348,8 @@ ninja install
           <li data-nav-id="/vpp/7.vpp_qemu_vhost/index.html" class="dd-item"><a href="../../vpp/7.vpp_qemu_vhost/index.html">7. vpp qemu vhost<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/vpp/8.vpp_command/index.html" class="dd-item"><a href="../../vpp/8.vpp_command/index.html">8. vpp commands<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/vpp/9.calico_vpp_vmware/index.html" class="dd-item"><a href="../../vpp/9.calico_vpp_vmware/index.html">9. calico vpp vmware<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/vpp/10.calico_vpp_qemu/index.html" class="dd-item"><a href="../../vpp/10.calico_vpp_qemu/index.html">10. calico vpp qemu<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/vpp/10.calico_vpp_qemu/index.html" class="dd-item"><a href="../../vpp/10.calico_vpp_qemu/index.html">10. calico vpp qemu<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/vpp/11.vpp_ldp_nginx/index.html" class="dd-item"><a href="../../vpp/11.vpp_ldp_nginx/index.html">11. VPP_HostStack_LDP_nginx<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/ubuntu/index.html" class="dd-item"><input type="checkbox" id="section-ca0908ff16b28b96cdaa469fac8d4279" aria-controls="subsections-ca0908ff16b28b96cdaa469fac8d4279" class="toggle"><label class="a11y-only toggle" for="section-ca0908ff16b28b96cdaa469fac8d4279" >Submenu Ubuntu</label><a href="../../ubuntu/index.html">Ubuntu<i class="fas fa-check read-icon"></i></a><ul id="subsections-ca0908ff16b28b96cdaa469fac8d4279">
           <li data-nav-id="/ubuntu/1.ubuntu-cloud-images/index.html" class="dd-item"><a href="../../ubuntu/1.ubuntu-cloud-images/index.html">1. import ubuntu-cloud-images<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/ubuntu/2.qemu-u2204-cloudimg/index.html" class="dd-item"><a href="../../ubuntu/2.qemu-u2204-cloudimg/index.html">2. qemu u2204-cloudimg<i class="fas fa-check read-icon"></i></a></li></ul></li>
@@ -397,8 +398,8 @@ ninja install
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1675673713" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1675673713" defer></script>
-    <script src="../../js/theme.js?1675673713" defer></script>
+    <script src="../../js/clipboard.min.js?1675933203" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675933203" defer></script>
+    <script src="../../js/theme.js?1675933203" defer></script>
   </body>
 </html>
